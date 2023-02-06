@@ -22,9 +22,12 @@ node(){
         // sh 'npm run build:frontend'
     }
 
-    // stage('Deploy') {
-    //     sh "pm2 restart all"
-    // }
+    stage('Deploy') {
+        nodejs('nodejs') {
+            sh "pm2 restart all"
+            echo "Deploy completed"
+        }
+    }
     
 }
 
