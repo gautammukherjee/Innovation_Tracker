@@ -1,6 +1,6 @@
 node(){
     stage('Checkout SCM') {
-        git branch: 'SP2', url: 'https://github.com/piyushsrivastava80/innovation_tracker_frontend.git'
+        git branch: 'master', url: 'https://github.com/piyushsrivastava80/innovation_tracker_frontend.git'
     }
 
     stage('Install node modules') {
