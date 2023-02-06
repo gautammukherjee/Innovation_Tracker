@@ -7,6 +7,7 @@ node(){
         nodejs('nodejs') {
             sh 'npm install --force'
             sh 'npm install --legacy-peer-deps'
+            sh 'npm i -g pm2'
             echo "Modules installed"
         }
         // sh 'npm install --force'
