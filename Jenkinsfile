@@ -26,7 +26,7 @@ node(){
     stage('Deploy') {
         nodejs('nodejs') {
             sh "npm run start"
-            echo "Deploy completed 3"
+            // echo "Deploy completed 3"
         }
     }
     
