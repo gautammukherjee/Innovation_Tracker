@@ -7,8 +7,8 @@ node(){
         nodejs('nodejs') {
             sh 'npm install --force'
             sh 'npm install --legacy-peer-deps'
-            sh 'npm i -g pm2'
-            echo "Modules installed"
+            // sh 'npm i -g pm2'
+            echo "Modules installed 1"
         }
         // sh 'npm install --force'
         // sh 'npm install --legacy-peer-deps'
@@ -18,7 +18,7 @@ node(){
     stage('Build') {
         nodejs('nodejs') {
             sh 'npm run build'
-            echo "Build completed"
+            echo "Build completed 2"
         }
         // sh 'npm run build:frontend'
     }
@@ -26,7 +26,7 @@ node(){
     stage('Deploy') {
         nodejs('nodejs') {
             sh "npm run start"
-            echo "Deploy completed"
+            echo "Deploy completed 3"
         }
     }
     
