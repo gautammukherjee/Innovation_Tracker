@@ -1,0 +1,197 @@
+<div class="dashboard-wrapper" id="dashboard-wrapper">
+    <div class="custom-loader" *ngIf="loading">
+        <img src="assets/custom-loader.gif" />
+    </div>
+    <div class="logo-dashboard">
+        <img src="assets/images/product-logo.png" width="140px" class="first-lg" />
+    </div>
+    <div class="boxed-modal">
+        <!-- <div class="row">
+            <div class="col-md-12">
+                <a (click)="openTAs(0)" class="float-right btn btn-warning">
+                    <i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;Global Search
+                </a>
+            </div>
+        </div>
+        <hr> -->
+        <div class="dashboard-card-box">
+            <div class="card-single">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title">Digital Health</h4>
+                            <p class="card-text">
+                                Digital health is the convergence of digital technologies with health, healthcare,
+                                living, and society to enhance the efficiency of healthcare delivery and make medicine
+                                more personalized and precise.
+                            </p>
+                            <a id="index" (click)="openTAs(1)" routerLinkActive="active"
+                                class="btn btn-outline-primary">Explore
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-img-body">
+                            <img class="card-img img-thumbnail" src="assets/images/digital-health.jpg" alt="InveniAI">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-single">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <div class="card-img-body">
+                            <img class="card-img img-thumbnail" src="assets/images/active-ingradients.jpg"
+                                alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title">Active Ingredients</h4>
+                            <p class="card-text">An active ingredient is the ingredient in a pharmaceutical drug or
+                                pesticide that is biologically active. The similar terms active pharmaceutical
+                                ingredient and bulk active are also used in medicine, and the term active substance may
+                                be used for natural products.</p>
+                            <a id="index" (click)="openTAs(2)" routerLinkActive="active"
+                                class="btn btn-outline-primary">Explore
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="card-single">
+                <div class="row align-items-center">
+                    <div class="col-md-4 display-card-mobile">
+                        <div class="card-img-body">
+                            <img class="card-img img-thumbnail" src="assets/images/excipient.jpg" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title">Excipient</h4>
+                            <p class="card-text">An excipient is a substance formulated alongside the active ingredient
+                                of a medication, included for the purpose of long-term stabilization, bulking up solid
+                                formulations that contain potent active ingredients in small amounts</p>
+                            <a id="index" (click)="openTAs(3)" routerLinkActive="active"
+                                class="btn btn-outline-primary">Explore
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 hidden-card-mobile">
+                        <div class="card-img-body">
+                            <img class="card-img img-thumbnail" src="assets/images/excipient.jpg" alt="Card image cap">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-single">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <div class="card-img-body">
+                            <img class="card-img img-thumbnail" src="assets/images/microbiome.jpg" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title">Microbiome</h4>
+                            <p class="card-text">The microbiome is the genetic material of all the microbes - bacteria,
+                                fungi, protozoa and viruses - that live on and inside the human body. The number of
+                                genes in all the microbes in one person's microbiome is 200 times the number of genes in
+                                the human genome. The microbiome may weigh as much as five pounds.</p>
+                            <a id="index" (click)="openTAs(4)" routerLinkActive="active"
+                                class="btn btn-outline-primary">Explore
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-single d-none d-lg-block">
+                <div class="row align-items-center">
+                    <div class="col-md-4 display-card-mobile">
+                        <div class="card-img-body">
+                            <img class="card-img img-thumbnail" src="assets/images/technology.png" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title">Technology</h4>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in
+                                to
+                                additional content. This content is a little bit longer. This is a wider card with
+                                supporting text below as a natural lead-in to additional content. This content is a
+                                little
+                                bit longer.</p>
+                            <a id="index" (click)="openTAs(5)" routerLinkActive="active"
+                                class="btn btn-outline-primary">Explore
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 hidden-card-mobile">
+                        <div class="card-img-body">
+                            <img class="card-img img-thumbnail" src="assets/images/technology.png" alt="Card image cap">
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+            <!-- <div class="card-single d-none d-lg-block">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <div class="card-img-body">
+                            <img class="card-img img-thumbnail" src="assets/images/flavours.webp" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title">Flavours</h4>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in
+                                to
+                                additional content. This content is a little bit longer. This is a wider card with
+                                supporting text below as a natural lead-in to additional content. This content is a
+                                little
+                                bit longer.</p>
+                            <a id="index" routerLink="/modules/flavours/index" routerLinkActive="active"
+                                class="btn btn-outline-primary disabled">Explore
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-single d-none d-lg-block">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <div class="card-img-body">
+                            <img class="card-img img-thumbnail" src="assets/images/otc.jpg" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title">Rx to OTC</h4>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in
+                                to
+                                additional content. This content is a little bit longer. This is a wider card with
+                                supporting text below as a natural lead-in to additional content. This content is a
+                                little
+                                bit longer.</p>
+                            <a id="index" routerLink="/modules/RxToOtc/index" routerLinkActive="active"
+                                class="btn btn-outline-primary disabled">Explore
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+</div>
