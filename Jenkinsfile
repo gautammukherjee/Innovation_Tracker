@@ -25,7 +25,7 @@ node(){
 
     stage('Deploy') {
         nodejs('nodejs') {
-            sh "pm2 restart all"
+            sh "pm2 start app.js"
             echo "Deploy completed"
         }
     }
