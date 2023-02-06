@@ -18,18 +18,17 @@ node(){
     stage('Build') {
         nodejs('nodejs') {
             sh 'npm run build'
-            sh "npm run start"
             echo "Build completed 2"
         }
         // sh 'npm run build:frontend'
     }
 
-    // stage('Deploy') {
-    //     nodejs('nodejs') {
-    //         sh "npm run start"
-    //         // echo "Deploy completed 3"
-    //     }
-    // }
+    stage('Deploy') {
+        nodejs('nodejs') {
+            sh "npm run start"
+            echo "Deploy completed 3"
+        }
+    }
     
 }
 
