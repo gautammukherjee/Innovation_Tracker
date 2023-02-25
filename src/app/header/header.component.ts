@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,10 +10,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class HeaderComponent implements OnInit {
   result: any;
-  constructor(private router: Router, private _activatedRoute: ActivatedRoute) {
-    this.result = JSON.parse(sessionStorage.getItem('currentUser'));
+  error = "false";
+  errorMessage = "";
 
+  constructor(private router: Router, private _activatedRoute: ActivatedRoute, private usersService: UsersService) {
+    this.result = JSON.parse(sessionStorage.getItem('currentUser'));
     console.log("currentUser: ", this.result);
+    if (this.usersService.isLoggednIn() == false) {
+      this.autologout();
+    }
   }
 
   ngOnInit(): void {
@@ -20,6 +26,17 @@ export class HeaderComponent implements OnInit {
     if (sessVal == null) {
       this.router.navigate(['login']);
     }
+  }
+
+  autologout() {
+    setTimeout(() => {
+      this.error = "true";
+      this.errorMessage = "Your session is expired..";
+      sessionStorage.removeItem('currentUser');
+      localStorage.removeItem('id_token');
+      localStorage.removeItem('expires_at');
+      this.router.navigate(['login'], { queryParams: { error: this.error, errorMessage: this.errorMessage } }); // when user is not logged in app is redirected to login page 
+    }, 1000);
   }
 
 }

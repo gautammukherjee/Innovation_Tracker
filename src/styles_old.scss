@@ -1,0 +1,252 @@
+/* You can add global styles to this file, and also import other style files */
+$primary-color : #bb61a3;
+$secondary-color : #554f9f;
+$cardHeading : #344050;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
+
+body {
+    min-height: 100vh;
+    background-color: #e5eaf2;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Inter', sans-serif;
+}
+
+@mixin buttonBackground {
+    background-image: linear-gradient(to right, $primary-color, $secondary-color);
+    border: none;
+    height: 42px;
+}
+
+@mixin card {
+    border: none;
+}
+
+@mixin cardHeader {
+    padding: 1.25rem 1rem 0;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $cardHeading;
+}
+
+@mixin cardBody {
+    padding: 0.7rem 1rem 1rem;
+}
+
+@mixin selectDropdown {
+    font-size: 13px;
+}
+
+//NAVBAR CSS
+.mainNav {
+    box-shadow: 0 0.5rem 0.5rem -0.5rem rgba(155, 155, 155, 1%) !important;
+    background-color: #fff;
+
+    .navbar-toggler {
+        font-size: 15px;
+        color: #000;
+    }
+
+    .navbar-brand {
+        padding: 0px;
+        margin-right: 0;
+        width: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .side-menu-toggler {
+            display: none;
+            width: 30px;
+            margin-right: -16px;
+        }
+
+        @media (max-width:767px) {
+            .side-menu-toggler {
+                display: block;
+            }
+        }
+    }
+
+    .navbar-nav {
+        li {
+            a {
+                color: #424242;
+                padding: 0.5rem 2.25rem;
+
+                &.active {
+                    color: $secondary-color;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+
+//CARD GLOBAL CSS 
+.card {
+    @include card();
+
+    .card-header {
+        @include cardHeader();
+
+        h6 {
+            margin-bottom: 0px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .card-body {
+        @include cardBody();
+
+        select {
+            @include selectDropdown();
+        }
+
+        input.form-control {
+            font-size: 13px;
+        }
+    }
+}
+
+//DASHBOARD PAGE CSS
+.dashboard-main-wrapper {
+    display: flex;
+    column-gap: 30px;
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 4.5rem;
+
+    .breadcrumb {
+        .card {
+            width: 100%;
+
+            .card-body {
+                z-index: 1;
+
+                h3 {
+                    font-size: 22px;
+                    color: $cardHeading;
+                }
+
+                ul {
+                    padding: 0;
+                    margin: 0;
+
+                    li {
+                        list-style: none;
+                    }
+                }
+            }
+        }
+
+        .bg-holder {
+            background-image: url('assets/images/corner-4.png');
+            position: absolute;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            background-position: right;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+
+    .left-sidebar {
+        width: 250px;
+        min-width: 250px;
+        position: fixed;
+        top: 72px;
+        left: 11px;
+        bottom: 0;
+        overflow: auto;
+        padding-right: 5px;
+        transition: all 0.5s;
+
+        h2.filters {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card {
+            .card-header {
+                svg {
+                    width: 13px;
+                }
+            }
+        }
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #adadad;
+            border-radius: 8px;
+        }
+    }
+
+    .right-content {
+        width: calc(100% - 250px);
+        margin-left: auto;
+        padding-left: 30px;
+    }
+
+    &.sidebar-opened {
+        .left-sidebar {
+            margin-left: 0;
+        }
+    }
+
+    @media (max-width:767px) {
+        .left-sidebar {
+            z-index: 1031;
+            background: #fff;
+            padding: 20px 10px 20px 15px;
+            top: 0;
+            left: 0;
+            margin-left: -261px;
+
+            h2.filters {
+                margin-bottom: 0;
+            }
+
+            .card {
+                margin-bottom: 0 !important;
+
+                .card-header {
+                    padding: 1.25rem 0 0;
+                }
+
+                .card-body {
+                    padding: 0.7rem 0 0;
+                }
+            }
+        }
+
+        .right-content {
+            width: 100%;
+            padding-left: 0;
+        }
+    }
+}

@@ -21,32 +21,47 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private usersService: UsersService
-  ) { }
+  ) {
+    this._activatedRoute.queryParams.subscribe(params => {
+      this.error = params['error'];
+      this.errorMessage = params['errorMessage'];
+    });
+  }
 
   ngOnInit(): void {
   }
 
-  loginFrmSubmit(myForm: any) {
+  loginFrmSubmit(loginForm: any) {
     this.loading = true;
-    let userEmail = myForm.value.email;
-    let userPwd = myForm.value.pass;
+    this.error = "false";
+    let userEmail = loginForm.value.email;
+    let userPwd = loginForm.value.pass;
     this.userCredentials = { email: userEmail, password: userPwd };
 
     this.usersService.doLogin(this.userCredentials).subscribe( //3 Login
       data => {
         this.result = data;
         console.log("result: ", this.result);
+        // console.log("newres: ", this.result.search['original']['user']);
 
-        if (this.result.search[0] == undefined) {
+        if (this.result.success == false) {
           this.error = "true";
           this.loading = false;
           this.errorMessage = "Invalid User name or password";
         } else {
-          if (this.result.search[0].deleted == 1) {
-            this.setSession(this.result.search[0]);
+          if (this.result.success == true) {
+            this.setSession(this.result.search['original']);
             this._router.navigate(['/dashboard'], { relativeTo: this._activatedRoute });
           }
         }
+      },
+      err => {
+        this.error = "true";
+        this.errorMessage = err.message;
+        this.loading = false;
+      },
+      () => {
+        // this.loading = false;
       }
     );
 
@@ -60,9 +75,10 @@ export class LoginComponent implements OnInit {
   }
 
   private setSession(authResult) {
-    const expiresAt = moment().add(authResult.expiresAt, authResult.expireTimeUnit);
-    sessionStorage.setItem('currentUser', JSON.stringify({ user_name: authResult.firstname, user_id: authResult.member_id, email: authResult.email }));
-    localStorage.setItem('id_token', authResult.idToken);
+    // const expiresAt = moment().add(authResult.expiresAt, authResult.expireTimeUnit);
+    const expiresAt = moment().add(authResult.expires_in, authResult.expireTimeUnit);
+    sessionStorage.setItem('currentUser', JSON.stringify({ user_name: authResult.user.name, user_id: authResult.user.user_id, user_type_id: authResult.user.user_type_id, email: authResult.user.email }));
+    localStorage.setItem('id_token', authResult.access_token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
 
   }
