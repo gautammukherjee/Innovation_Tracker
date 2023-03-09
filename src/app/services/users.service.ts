@@ -25,7 +25,7 @@ export class UsersService {
     return this._http.post<any>(this.API_URL + 'register', params, httpOptions);
   }
 
-  getCurrentUser(): string {
+  getCurrentUser(): any {
     return sessionStorage.getItem('currentUser');
   }
 
@@ -46,9 +46,9 @@ export class UsersService {
     this.router.navigate(['login']);
   }
 
-  getExpiration() {
+  getExpiration(): any {
     const expiration = localStorage.getItem("expires_at");
-    const expiresAt = JSON.parse(expiration);
+    const expiresAt = expiration !== null ? JSON.parse(expiration) : '';
     return moment(expiresAt);
   }
 

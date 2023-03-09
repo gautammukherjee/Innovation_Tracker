@@ -15,6 +15,8 @@ import { map } from 'rxjs/operators';
 })
 export class FilterCategoriesAIV2Component implements OnInit {
 
+  @Output() onSelectTa: EventEmitter<any> = new EventEmitter();
+
   tas: any = [];
   private result: any = [];
   private results2: any = [];
@@ -29,19 +31,19 @@ export class FilterCategoriesAIV2Component implements OnInit {
   public alphabeticallyGroupedDieseases = [];
   public isAllSelected: boolean = false;
   public disableProceed = false;
-  public filterText: string;
-  public seeMoreFilterText: string;
-  public enableFilter: boolean;
-  public seeMoreFilterPlaceholder: string;
-  public filterPlaceholder: string;
+  public filterText: string = '';
+  public seeMoreFilterText: string = '';
+  public enableFilter: boolean = true;
+  public seeMoreFilterPlaceholder: string = '';
+  public filterPlaceholder: string = '';
   public filterInput = new FormControl();
   public seeMoreFilterInput = new FormControl();
 
-  selectedTa = [];
-  selectedTasWithName = [];
+  public selectedTa: Array<object> = [];
+  public selectedTasWithName: Array<object> = [];
 
-  private _selectedTa = [];  // For locally holding data, because with getselectedTA(), this variable was getting update due to singleton nature of angular i.e Component variables bind to service variables automatically,
-  private _selectedTasWithName = [];// For locally holding data, because with getSelectedDefaultTA(), this variable was getting update due to singleton nature of angular i.e Component variables bind to service variables automatically,
+  public _selectedTa: Array<object> = [];  // For locally holding data, because with getselectedTA(), this variable was getting update due to singleton nature of angular i.e Component variables bind to service variables automatically,
+  public _selectedTasWithName: Array<object> = [];// For locally holding data, because with getSelectedDefaultTA(), this variable was getting update due to singleton nature of angular i.e Component variables bind to service variables automatically,
 
   @Output() onSelectIndication: EventEmitter<any> = new EventEmitter();
 
@@ -52,7 +54,7 @@ export class FilterCategoriesAIV2Component implements OnInit {
   ) {
     this.selectedTa = this.globalVariableService.getSelectedTa();
     console.log("selectedTAs: ", this.selectedTa);
-    this.selectedTasWithName = this.globalVariableService.getSelectedDefaultTA();
+    // this.selectedTasWithName = this.globalVariableService.getSelectedDefaultTA();
   }
 
   ngOnInit(): void {
@@ -96,7 +98,7 @@ export class FilterCategoriesAIV2Component implements OnInit {
     );
   }
 
-  onSelectTa(ta, event, warning = null) {
+  selectTa(ta: any, event: any, warning: any = null) {
     this.showDiseaseIndicationList = false;
     if (event.target.checked) {
       this.selectedTa.push(ta.ta_id);
@@ -119,11 +121,24 @@ export class FilterCategoriesAIV2Component implements OnInit {
       //############### Start, For Locally Storing Data to Remove checked on close ###########//
       this._selectedTa.splice(this._selectedTa.indexOf(ta.ta_id), 1);
       let _object = this.findObjectByKey(this._selectedTasWithName, 'ta_id', ta.ta_id);
-      if (_object != null) {
-        this._selectedTasWithName.splice(object.index, 1);
-      }
+      // if (_object != null) {
+      //   this._selectedTasWithName.splice(object.index, 1);
+      // }
       //############### End, For Locally Storing Data to Remove checked on close ###########//
     }
+
+
+    this.proceed();
+    // this.enableDisableProceedButton();
+  }
+
+  proceed() {
+    this.globalVariableService.setSelectedTa(this.selectedTa);
+    this.selectedTa = Array.from(this.globalVariableService.getSelectedTa());
+    console.log("selectedTA: ", this.selectedTa);
+    // if (this.seeMorediseaseModal != undefined)
+    //   this.seeMorediseaseModal.close();
+    this.onSelectTa.emit();
   }
 
   public proceedWithMultipleTAs() {
@@ -138,7 +153,7 @@ export class FilterCategoriesAIV2Component implements OnInit {
 
   }
 
-  private findObjectByKey(array, key, value) {
+  private findObjectByKey(array: any, key: any, value: any) {
     for (var i = 0; i < array.length; i++) {
       if (array[i][key] === value) {
         return { object: array[i], index: i };
@@ -147,32 +162,32 @@ export class FilterCategoriesAIV2Component implements OnInit {
     return null;
   }
 
-  closePopup() {
-    // console.log("selectedTa", this.selectedTa);
-    // console.log("_selectedTa", this._selectedTa);
-    this.showDiseaseIndicationList = false;
-    if (this.selectedTa.length > 1) {
-      this._selectedTa.forEach(element => {
-        this.selectedTa.splice(this.selectedTa.indexOf(element), 1);
-      });
-    }
-    if (this.selectedTasWithName.length > 1) {
-      this._selectedTasWithName.forEach(element => {
-        let _object = this.findObjectByKey(this.selectedTasWithName, 'ta_id', element.ta_id);
-        if (_object != null) {
-          this.selectedTasWithName.splice(_object.index, 1);
-        }
-      });
-    }
-    this.warningModalRef.close();
-    this._selectedTa = [];
-    this._selectedTasWithName = [];
+  // closePopup() {
+  //   // console.log("selectedTa", this.selectedTa);
+  //   // console.log("_selectedTa", this._selectedTa);
+  //   this.showDiseaseIndicationList = false;
+  //   if (this.selectedTa.length > 1) {
+  //     this._selectedTa.forEach(element => {
+  //       this.selectedTa.splice(this.selectedTa.indexOf(element), 1);
+  //     });
+  //   }
+  //   if (this.selectedTasWithName.length > 1) {
+  //     this._selectedTasWithName.forEach(element => {
+  //       let _object = this.findObjectByKey(this.selectedTasWithName, 'ta_id', element);
+  //       if (_object != null) {
+  //         this.selectedTasWithName.splice(_object.index, 1);
+  //       }
+  //     });
+  //   }
+  //   this.warningModalRef.close();
+  //   this._selectedTa = [];
+  //   this._selectedTasWithName = [];
 
-  }
+  // }
 
 
 
-  scrollToView(key) {
+  scrollToView(key: any) {
     var elmnt = document.getElementById(key);
     if (elmnt !== null)
       elmnt.scrollIntoView();

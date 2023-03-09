@@ -14,26 +14,27 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class FilterGeneComponent implements OnInit {
 
   @Output() onSelectGene: EventEmitter<any> = new EventEmitter();
-  @Input() UpdateFilterDataApply: Subject<any>;
-  public alphabeticallyGroupedGenes = [];
-  public selectedGenes = [];
+  @Input() UpdateFilterDataApply?: Subject<any>;
+  // public alphabeticallyGroupedGenes = [];
+  public alphabeticallyGroupedGenes: any = '';
+  public selectedGenes: Array<object> = [];
   public genes: Array<object> = [];
   private params: object = {};
   private result: any = [];
   private results2: any = [];
   public loading: boolean = false;
-  public enableFilter: boolean;
-  public filterText: string;
-  public seeMoreFilterText: string;
-  public filterPlaceholder: string;
-  public seeMoreFilterPlaceholder: string;
+  public enableFilter: boolean = false;;
+  public filterText: string = '';
+  public seeMoreFilterText: string = '';
+  public filterPlaceholder: string = '';
+  public seeMoreFilterPlaceholder: string = '';
   public filterInput = new FormControl();
   public seeMoreFilterInput = new FormControl();
   public isAllSelected: boolean = false;
   togglecollapseStatus: boolean = false;
   private seeMoreGeneModal: any;
-  mouseOverON: string = undefined;
-  otherMouseOverONElem: string = undefined;
+  mouseOverON: any = undefined;
+  otherMouseOverONElem: any = undefined;
   public disableProceed = false;
   geneFilter: string = '';
   geneFilterText: string = '';
@@ -74,10 +75,10 @@ export class FilterGeneComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.UpdateFilterDataApply.unsubscribe();
+    this.UpdateFilterDataApply?.unsubscribe();
   }
 
-  public getGenes(event, type) {
+  public getGenes(event: any, type: any) {
     this.loading = true;
     this.params = this.globalVariableService.getFilterParams();
     // this.diseaseCheck = this.params['di_ids']; // if disease_id is checked
@@ -125,7 +126,7 @@ export class FilterGeneComponent implements OnInit {
     // }
   }
 
-  selectGene(gene, event, from = null) {
+  selectGene(gene: any, event: any, from: any = null) {
     if (event.target.checked) {
       this.selectedGenes.push(gene.gene_id);
     } else {
@@ -144,12 +145,12 @@ export class FilterGeneComponent implements OnInit {
     this.togglecollapseStatus = !this.togglecollapseStatus;
   }
 
-  selectAll(event, geneWarningModal) {
+  selectAll(event: any, geneWarningModal: any) {
     if (this.isAllSelected) {
-      this.result.map(element => {
-        // console.log("element: ", element);
-        this.selectedGenes.push(element.gene_id);
-      })
+      // this.result.map(element => {
+      //   // console.log("element: ", element);
+      //   this.selectedGenes.push(element.gene_id);
+      // })
     } else {
       this.selectedGenes = [];
     }
@@ -171,7 +172,7 @@ export class FilterGeneComponent implements OnInit {
       this.getGenes(event, 1);
   }
 
-  SeeMore(evt, seeMoreGeneModal) {
+  SeeMore(evt: any, seeMoreGeneModal: any) {
     this.seeMoreGeneModal = this.modalService.open(seeMoreGeneModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
   }
   seeMoreClosePopup() {
@@ -207,13 +208,13 @@ export class FilterGeneComponent implements OnInit {
     }
   }
 
-  private groupBy(collection, property) {   //collection:Array, property:String
+  private groupBy(collection: any, property: any) {   //collection:Array, property:String
     // prevents the application from breaking if the array of objects doesn't exist yet
     if (!collection) {
       return null;
     }
 
-    const groupedCollection = collection.reduce((previous, current) => {
+    const groupedCollection = collection.reduce((previous: any, current: any) => {
       if (!previous[current[property].charAt(0)]) {
         previous[current[property].charAt(0)] = [current];
       } else {
@@ -226,7 +227,7 @@ export class FilterGeneComponent implements OnInit {
     return Object.keys(groupedCollection).map(key => ({ key, value: groupedCollection[key] }));
   }
 
-  scrollToView(key) {
+  scrollToView(key: any) {
     var elmnt = document.getElementById(key);
     if (elmnt !== null)
       elmnt.scrollIntoView();

@@ -14,26 +14,26 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class FilterCompanyComponent implements OnInit {
 
   @Output() onSelectCompany: EventEmitter<any> = new EventEmitter();
-  @Input() UpdateFilterDataApply: Subject<any>;
-  public alphabeticallyGroupedCompanies = [];
-  public selectedCompanies = [];
+  @Input() UpdateFilterDataApply?: Subject<any>;
+  public alphabeticallyGroupedCompanies: any = [];
+  public selectedCompanies: Array<object> = [];
   public companies: Array<object> = [];
   private params: object = {};
   private result: any = [];
   private results2: any = [];
   public loading: boolean = false;
-  public enableFilter: boolean;
-  public filterText: string;
-  public seeMoreFilterText: string;
-  public filterPlaceholder: string;
-  public seeMoreFilterPlaceholder: string;
+  public enableFilter: boolean = false;
+  public filterText: string = '';
+  public seeMoreFilterText: string = '';
+  public filterPlaceholder: string = '';
+  public seeMoreFilterPlaceholder: string = '';
   public filterInput = new FormControl();
   public seeMoreFilterInput = new FormControl();
   public isAllSelected: boolean = false;
   togglecollapseStatus: boolean = false;
   private seeMoreCompanyModal: any;
-  mouseOverON: string = undefined;
-  otherMouseOverONElem: string = undefined;
+  mouseOverON: any = undefined;
+  otherMouseOverONElem: any = undefined;
   public disableProceed = false;
   companyFilter: string = '';
   companyFilterText: string = '';
@@ -74,10 +74,10 @@ export class FilterCompanyComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.UpdateFilterDataApply.unsubscribe();
+    this.UpdateFilterDataApply?.unsubscribe();
   }
 
-  public getCompanies(event, type) {
+  public getCompanies(event: any, type: any) {
     this.loading = true;
     this.params = this.globalVariableService.getFilterParams();
     // this.diseaseCheck = this.params['di_ids']; // if disease_id is checked
@@ -125,7 +125,7 @@ export class FilterCompanyComponent implements OnInit {
     // }
   }
 
-  selectCompany(company, event, from = null) {
+  selectCompany(company: any, event: any, from: any = null) {
     if (event.target.checked) {
       this.selectedCompanies.push(company.company_id);
     } else {
@@ -144,12 +144,12 @@ export class FilterCompanyComponent implements OnInit {
     this.togglecollapseStatus = !this.togglecollapseStatus;
   }
 
-  selectAll(event, companyWarningModal) {
+  selectAll(event: any, companyWarningModal: any) {
     if (this.isAllSelected) {
-      this.result.map(element => {
-        // console.log("element: ", element);
-        this.selectedCompanies.push(element.company_id);
-      })
+      // this.result.map(element => {
+      //   // console.log("element: ", element);
+      //   this.selectedCompanies.push(element.company_id);
+      // })
     } else {
       this.selectedCompanies = [];
     }
@@ -171,7 +171,7 @@ export class FilterCompanyComponent implements OnInit {
       this.getCompanies(event, 1);
   }
 
-  SeeMore(evt, seeMoreCompanyModal) {
+  SeeMore(evt: any, seeMoreCompanyModal: any) {
     this.seeMoreCompanyModal = this.modalService.open(seeMoreCompanyModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
   }
   seeMoreClosePopup() {
@@ -207,13 +207,13 @@ export class FilterCompanyComponent implements OnInit {
     }
   }
 
-  private groupBy(collection, property) {   //collection:Array, property:String
+  private groupBy(collection: any, property: any) {   //collection:Array, property:String
     // prevents the application from breaking if the array of objects doesn't exist yet
     if (!collection) {
       return null;
     }
 
-    const groupedCollection = collection.reduce((previous, current) => {
+    const groupedCollection = collection.reduce((previous: any, current: any) => {
       if (!previous[current[property].charAt(0)]) {
         previous[current[property].charAt(0)] = [current];
       } else {
@@ -226,7 +226,7 @@ export class FilterCompanyComponent implements OnInit {
     return Object.keys(groupedCollection).map(key => ({ key, value: groupedCollection[key] }));
   }
 
-  scrollToView(key) {
+  scrollToView(key: any) {
     var elmnt = document.getElementById(key);
     if (elmnt !== null)
       elmnt.scrollIntoView();

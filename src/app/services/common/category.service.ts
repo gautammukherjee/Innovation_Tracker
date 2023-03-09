@@ -19,8 +19,8 @@ const httpOptions = {
 export class CategoryService {
 
   private API_URL: string = environment.apiUrl;
-  private _TAs;
-  private _TAsAI;
+  private _TAs: any;
+  private _TAsAI: any;
   constructor(private _http: HttpClient) {
   }
 

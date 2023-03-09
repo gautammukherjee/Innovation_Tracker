@@ -13,31 +13,33 @@ export class DashboardComponent implements OnInit {
   doFilterApply: Subject<any> = new Subject();  // ## P= Parent
 
   constructor(private globalVaiableService: GlobalVariableService, private router: Router) {
-
+    this.globalVaiableService.setSelectedTa([1]);
   }
 
   ngOnInit(): void {
 
   }
 
-  dateRangeChanged(e) {
-    // console.log("change: ", e);
-    this.doFilterApply.next;
+  dateRangeChanged(e: any) {
+    this.doFilterApply.next(e);
   }
-  indicationChanged(clickOn = null) {
-    //this.doFilterApply.next;
+  taChanged(e: any) {
+    this.doFilterApply.next(e);
   }
-  companyChanged(clickOn = null) {
-    // this.doFilterApply.next;
+  indicationChanged(e: any) {
+    // this.doFilterApply.next(e);
   }
-  drugChanged(clickOn = null) {
-    // this.doFilterApply.next;
+  companyChanged(e: any) {
+    // this.doFilterApply.next(e);
   }
-  geneChanged(clickOn = null) {
-    // this.doFilterApply.next;
+  drugChanged(e: any) {
+    // this.doFilterApply.next(e);
   }
-  moaChanged(clickOn = null) {
-    // this.doFilterApply.next;
+  geneChanged(e: any) {
+    // this.doFilterApply.next(e);
+  }
+  moaChanged(e: any) {
+    // this.doFilterApply.next(e);
   }
 
 }
