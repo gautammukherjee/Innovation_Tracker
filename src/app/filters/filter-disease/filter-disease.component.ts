@@ -14,27 +14,28 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class FilterDiseaseComponent implements OnInit {
 
   @Output() onSelectIndication: EventEmitter<any> = new EventEmitter();
-  @Input() UpdateFilterDataApply: Subject<any>;
-  public alphabeticallyGroupedDieseases = [];
-  public selectedIndications = [];
+  @Input() UpdateFilterDataApply?: Subject<any>;
+  //public alphabeticallyGroupedDieseases: Array<object> = [];
+  public alphabeticallyGroupedDieseases: any = '';
+  public selectedIndications: Array<object> = [];
   public diseases: Array<object> = [];
   private params: object = {};
   private result: any = [];
   private result1: any = [];
   private results2: any = [];
   public loading: boolean = false;
-  public enableFilter: boolean;
-  public filterText: string;
-  public seeMoreFilterText: string;
-  public filterPlaceholder: string;
-  public seeMoreFilterPlaceholder: string;
+  public enableFilter: boolean = false;
+  public filterText: string = '';
+  public seeMoreFilterText: string = '';
+  public filterPlaceholder: string = '';
+  public seeMoreFilterPlaceholder: string = '';
   public filterInput = new FormControl();
   public seeMoreFilterInput = new FormControl();
   public isAllSelected: boolean = false;
   togglecollapseStatus: boolean = false;
   private seeMorediseaseModal: any;
-  mouseOverON: string = undefined;
-  otherMouseOverONElem: string = undefined;
+  mouseOverON: any = undefined;
+  otherMouseOverONElem: any = undefined;
   public disableProceed = false;
   diseaseFilter: string = '';
   diseaseFilterText: string = '';
@@ -58,7 +59,7 @@ export class FilterDiseaseComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.UpdateFilterDataApply.unsubscribe();
+    this.UpdateFilterDataApply?.unsubscribe();
   }
 
   public getindications() {
@@ -127,7 +128,7 @@ export class FilterDiseaseComponent implements OnInit {
     // }
   }
 
-  selectDisease(disease, event, from = null) {
+  selectDisease(disease: any, event: any, from: any = null) {
     if (event.target.checked) {
       this.selectedIndications.push(disease.disease_id);
     } else {
@@ -145,19 +146,19 @@ export class FilterDiseaseComponent implements OnInit {
     this.togglecollapseStatus = !this.togglecollapseStatus;
   }
 
-  selectAll(event, diseaseWarningModal) {
+  selectAll(event: any, diseaseWarningModal: any) {
     if (this.isAllSelected) {
-      this.result.map(element => {
-        console.log("Elementt: ", element);
-        this.selectedIndications.push(element.disease_id);
-      })
+      // this.result.map(element => {
+      //   console.log("Elementt: ", element);
+      //   this.selectedIndications.push(element.disease_id);
+      // })
     } else {
       this.selectedIndications = [];
     }
     this.enableDisableProceedButton();
   }
 
-  resetDisease(event) {
+  resetDisease(event: any) {
     this.selectedIndications = [];
     console.log("selectedIndications_reset: ", this.selectedIndications);
     this.globalVariableService.setSelectedIndication(this.selectedIndications);
@@ -165,7 +166,7 @@ export class FilterDiseaseComponent implements OnInit {
     // this.proceed();
   }
 
-  SeeMore(evt, seeMorediseaseModal) {
+  SeeMore(evt: any, seeMorediseaseModal: any) {
     this.seeMorediseaseModal = this.modalService.open(seeMorediseaseModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
   }
   seeMoreClosePopup() {
@@ -196,13 +197,13 @@ export class FilterDiseaseComponent implements OnInit {
     }
   }
 
-  private groupBy(collection, property) {   //collection:Array, property:String
+  private groupBy(collection: any, property: any) {   //collection:Array, property:String
     // prevents the application from breaking if the array of objects doesn't exist yet
     if (!collection) {
       return null;
     }
 
-    const groupedCollection = collection.reduce((previous, current) => {
+    const groupedCollection = collection.reduce((previous: any, current: any) => {
       if (!previous[current[property].charAt(0)]) {
         previous[current[property].charAt(0)] = [current];
       } else {
@@ -215,7 +216,7 @@ export class FilterDiseaseComponent implements OnInit {
     return Object.keys(groupedCollection).map(key => ({ key, value: groupedCollection[key] }));
   }
 
-  scrollToView(key) {
+  scrollToView(key: any) {
     var elmnt = document.getElementById(key);
     if (elmnt !== null)
       elmnt.scrollIntoView();

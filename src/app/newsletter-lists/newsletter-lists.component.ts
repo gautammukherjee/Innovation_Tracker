@@ -15,13 +15,13 @@ declare var jQuery: any;
   providers: [DatePipe]
 })
 export class NewsletterListsComponent implements OnInit {
-  @Input() ProceedDoFilterApply: Subject<any>; //# Input for ProceedDoFilter is getting from clinical details html
-  private filterParams;
+  @Input() ProceedDoFilterApply?: Subject<any>; //# Input for ProceedDoFilter is getting from clinical details html
+  private filterParams: any;
   result: any = [];
   newsletterListsRecords: any = [];
 
   loading = false;
-  params;
+  params: any;
   layout: any = {};
   graphData: any = [];
   diseaseCheck: any;
@@ -39,24 +39,25 @@ export class NewsletterListsComponent implements OnInit {
 
   ngOnInit() {
     this.filterParams = this.globalVariableService.getFilterParams();
-    // console.log("new Filters1: ", this.filterParams);
+    console.log("new Filters1: ", this.filterParams);
     // this.getNewsletterLists(this.filterParams);
 
-    this.ProceedDoFilterApply.subscribe(data => {  // Calling from details, details working as mediator
+    this.ProceedDoFilterApply?.subscribe(data => {  // Calling from details, details working as mediator
+      console.log("data: ", data);
       if (data === undefined) { // data=undefined true when apply filter from side panel
         //this.hideCardBody = true;
         this.filterParams = this.globalVariableService.getFilterParams();
         this.getNewsletterLists(this.filterParams);
         console.log("new Filters for newsletter: ", this.filterParams);
-      }
-      else {
+      } else if (data.clickOn !== 'clickOnEventDetails') { // because graph should not change when click on this component itself
+        // this.filterParams = this.globalVariableService.getFilterParams(this.globalVariableService.getChartFilterParams());
         this.getNewsletterLists(this.filterParams);
       }
     });
-    // this.getNewsletterLists(this.filterParams);
+    this.getNewsletterLists(this.filterParams);
   }
 
-  getNewsletterLists(_filterParams) {
+  getNewsletterLists(_filterParams: any) {
     this.loading = true;
 
     this.diseaseCheck = _filterParams['di_ids']; // if disease_id is checked

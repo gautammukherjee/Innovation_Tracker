@@ -14,26 +14,27 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class FilterDrugComponent implements OnInit {
 
   @Output() onSelectDrug: EventEmitter<any> = new EventEmitter();
-  @Input() UpdateFilterDataApply: Subject<any>;
-  public alphabeticallyGroupedDrugs = [];
-  public selectedDrugs = [];
+  @Input() UpdateFilterDataApply?: Subject<any>;
+  // public alphabeticallyGroupedDrugs = [];
+  public alphabeticallyGroupedDrugs: any = '';
+  public selectedDrugs: Array<object> = [];
   public drugs: Array<object> = [];
   private params: object = {};
   private result: any = [];
   private results2: any = [];
   public loading: boolean = false;
-  public enableFilter: boolean;
-  public filterText: string;
-  public seeMoreFilterText: string;
-  public filterPlaceholder: string;
-  public seeMoreFilterPlaceholder: string;
+  public enableFilter: boolean = false;
+  public filterText: string = '';
+  public seeMoreFilterText: string = '';
+  public filterPlaceholder: string = '';
+  public seeMoreFilterPlaceholder: string = '';
   public filterInput = new FormControl();
   public seeMoreFilterInput = new FormControl();
   public isAllSelected: boolean = false;
   togglecollapseStatus: boolean = false;
   private seeMoreDrugModal: any;
-  mouseOverON: string = undefined;
-  otherMouseOverONElem: string = undefined;
+  mouseOverON: any = undefined;
+  otherMouseOverONElem: any = undefined;
   public disableProceed = false;
   drugFilter: string = '';
   drugFilterText: string = '';
@@ -74,10 +75,10 @@ export class FilterDrugComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.UpdateFilterDataApply.unsubscribe();
+    this.UpdateFilterDataApply?.unsubscribe();
   }
 
-  public getDrugs(event, type) {
+  public getDrugs(event: any, type: any) {
     this.loading = true;
     this.params = this.globalVariableService.getFilterParams();
     // this.diseaseCheck = this.params['di_ids']; // if disease_id is checked
@@ -125,7 +126,7 @@ export class FilterDrugComponent implements OnInit {
     // }
   }
 
-  selectDrug(drug, event, from = null) {
+  selectDrug(drug: any, event: any, from: any = null) {
     if (event.target.checked) {
       this.selectedDrugs.push(drug.drug_id);
     } else {
@@ -144,12 +145,12 @@ export class FilterDrugComponent implements OnInit {
     this.togglecollapseStatus = !this.togglecollapseStatus;
   }
 
-  selectAll(event, drugWarningModal) {
+  selectAll(event: any, drugWarningModal: any) {
     if (this.isAllSelected) {
-      this.result.map(element => {
-        // console.log("element: ", element);
-        this.selectedDrugs.push(element.drug_id);
-      })
+      // this.result.map(element => {
+      //   // console.log("element: ", element);
+      //   this.selectedDrugs.push(element.drug_id);
+      // })
     } else {
       this.selectedDrugs = [];
     }
@@ -171,7 +172,7 @@ export class FilterDrugComponent implements OnInit {
       this.getDrugs(event, 1);
   }
 
-  SeeMore(evt, seeMoreDrugModal) {
+  SeeMore(evt: any, seeMoreDrugModal: any) {
     this.seeMoreDrugModal = this.modalService.open(seeMoreDrugModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
   }
   seeMoreClosePopup() {
@@ -207,13 +208,13 @@ export class FilterDrugComponent implements OnInit {
     }
   }
 
-  private groupBy(collection, property) {   //collection:Array, property:String
+  private groupBy(collection: any, property: any) {   //collection:Array, property:String
     // prevents the application from breaking if the array of objects doesn't exist yet
     if (!collection) {
       return null;
     }
 
-    const groupedCollection = collection.reduce((previous, current) => {
+    const groupedCollection = collection.reduce((previous: any, current: any) => {
       if (!previous[current[property].charAt(0)]) {
         previous[current[property].charAt(0)] = [current];
       } else {
@@ -226,7 +227,7 @@ export class FilterDrugComponent implements OnInit {
     return Object.keys(groupedCollection).map(key => ({ key, value: groupedCollection[key] }));
   }
 
-  scrollToView(key) {
+  scrollToView(key: any) {
     var elmnt = document.getElementById(key);
     if (elmnt !== null)
       elmnt.scrollIntoView();

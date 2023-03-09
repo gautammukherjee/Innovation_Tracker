@@ -12,7 +12,7 @@ const httpOptions = {
 export class NewsletterListsService {
   private API_URL: string = environment.apiUrl;
   constructor(private http: HttpClient) { }
-  getNewsletterLists(params) {
+  getNewsletterLists(params: any) {
     return this.http.post(this.API_URL + 'getNewsletterFrontLists', params, httpOptions);
   }
 

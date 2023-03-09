@@ -28,9 +28,7 @@ export class FilterDataRangeComponent implements OnInit {
 
   // Initialized to specific date
 
-  fromDateChanged(event) {
-    console.log("evts: ", event);
-
+  fromDateChanged(event: any) {
     this.frmDate1 = event.month + "-" + event.day + "-" + event.year;
     console.log("fromdate: ", this.frmDate1);
     // var frmDates = moment(event.target.value, 'YYYY-MM-DD');
@@ -40,7 +38,7 @@ export class FilterDataRangeComponent implements OnInit {
     // console.log("FromDates: ", this.globalVariableService.getFilterParams());
     this.onDateRangeChangedEvent.emit();
   }
-  toDateChanged(event) {
+  toDateChanged(event: any) {
 
     this.toDate1 = event.month + "-" + event.day + "-" + event.year;
     // var toDates = moment(event.target.value, 'YYYY-MM-DD');
