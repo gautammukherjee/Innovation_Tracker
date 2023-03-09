@@ -1,0 +1,27 @@
+<div class="card-panel-box left-filter-box">
+    <div class="card-panel-box-heading">
+        <img src="../../assets/images/date_range.png" />
+        Publish Date Range
+    </div>
+    <div class="card-panel-box-detail">
+
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" name="frmDate" placeholder="mm-dd-yyyy" [value]="frmDate1" (dateSelect)="fromDateChanged($event)"
+                    ngbDatepicker #f="ngbDatepicker">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="f.toggle()" type="button"><span class="fa fa-calendar"></span></button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group m-0">
+            <div class="input-group">
+                <input class="form-control" name="toDate" placeholder="mm-dd-yyyy" [value]="toDate1" (dateSelect)="toDateChanged($event)"
+                    ngbDatepicker #t="ngbDatepicker">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="t.toggle()" type="button"><span class="fa fa-calendar"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

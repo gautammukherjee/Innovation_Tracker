@@ -1,133 +1,31 @@
-
 <app-header></app-header>
 
-<main class="dashboard-main-wrapper">
 <section class="blogs-listing">
-   
-    <app-filters></app-filters>
+  <div class="main-wrapper">
 
-    <div class="right-content">
-      <!--<div class="breadcrumb">
-        <div class="card">
-          <div class="bg-holder"></div>
-          <div class="card-body">
-            <h3>Dashboard</h3>
-            <ul>
-              <li>Home > <a href="">Dashboard</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>-->
-      
-      <div class="card mb-3">
-        <div class="card-header">
-          <h6>Dashboard</h6>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Designation</th>
-                  <th>Location</th>
-                  <th width="100px" class="text-center">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>John</td>
-                  <td>john@gmail.com</td>
-                  <td>CTO</td>
-                  <td>Los Ang.</td>
-                  <td class="text-center"><span width="20px" data-feather="share"></span></td>
-                </tr>
-                <tr>
-                  <td>John</td>
-                  <td>john@gmail.com</td>
-                  <td>CTO</td>
-                  <td>Los Ang.</td>
-                  <td class="text-center"><span width="20px" data-feather="share"></span></td>
-                </tr>
-                <tr>
-                  <td>John</td>
-                  <td>john@gmail.com</td>
-                  <td>CTO</td>
-                  <td>Los Ang.</td>
-                  <td class="text-center"><span width="20px" data-feather="share"></span></td>
-                </tr>
-                <tr>
-                  <td>John</td>
-                  <td>john@gmail.com</td>
-                  <td>CTO</td>
-                  <td>Los Ang.</td>
-                  <td class="text-center"><span width="20px" data-feather="share"></span></td>
-                </tr>
-                <tr>
-                  <td>John</td>
-                  <td>john@gmail.com</td>
-                  <td>CTO</td>
-                  <td>Los Ang.</td>
-                  <td class="text-center pointer"><span width="20px" data-feather="share"></span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <!--<div class="card mb-3">
-        <div class="card-header">
-          <h6>Chart</h6>
-          <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-            </div>
-            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-              <span data-feather="calendar"></span>
-              This week
-            </button>
-          </div>
-        </div>
-        <div class="card-body">
-          <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-        </div>
-      </div>-->
+  <div class="sidebar-wrapper">
+    <div class="heading-filter">Filter</div>
+    <!--<app-filters></app-filters>-->
+    <!--Show here all the filters lists -->
+    <app-filter-data-range (onDateRangeChangedEvent)='dateRangeChanged($event)'></app-filter-data-range>
+    <app-filter-categories-ai-v2 (onSelectIndication)='indicationChanged($event)'>
+    </app-filter-categories-ai-v2>
+    <app-filter-disease (onSelectIndication)='indicationChanged($event)'>
+    </app-filter-disease>
+    <app-filter-company (onSelectCompany)='companyChanged($event)'>
+    </app-filter-company>
+    <app-filter-drug (onSelectDrug)='drugChanged($event)'>
+    </app-filter-drug>
+    <app-filter-gene (onSelectGene)='geneChanged($event)'>
+    </app-filter-gene>
+    <app-filter-moa (onSelectMoa)='moaChanged($event)'>
+    </app-filter-moa>    
+  </div>
+
+    <div class="main-article">        
+      <app-newsletter-lists [ProceedDoFilterApply]="doFilterApply"></app-newsletter-lists>
+      <app-footer></app-footer>
     </div>
 
+  </div>
 </section>
-</main>
-
-
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 text-start">
-          <div class="footer-logo">
-            <img src="../assets/images/logo-home.png" alt="" width="200px">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="address">
-            <p>BioXcel LLC.<br>
-              2614 Boston Post Road Suite #33B , Guilford |<br>
-              CT 06437 | USA</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <address>
-            <h3>Our family of Companies</h3>
-            <ul>
-              <li><a href="">BioXcel Therapeutics</a></li>
-              <li><a href="">InveniAI® LLC</a></li>
-              <li><a href="">E.Z. BioXcel</a></li>
-            </ul>
-          </address>
-        </div>
-      </div>
-    </div>
-    <div class="bottom-copy">
-      <p class="mt-4">Copyright &copy; 2022, BioXcel Therapeutics, Inc. All rights reserved.</p>
-    </div>
-  </footer>

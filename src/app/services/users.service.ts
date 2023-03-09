@@ -13,16 +13,16 @@ const httpOptions = {
 })
 export class UsersService {
 
-  private SERVER_URL: string = environment.SERVER_URL;
+  private API_URL: string = environment.apiUrl;
 
   constructor(private _http: HttpClient, private router: Router) { }
 
   doLogin(params: any): Observable<any> {
-    return this._http.post<any>(this.SERVER_URL + 'login', params, httpOptions);
+    return this._http.post<any>(this.API_URL + 'login', params, httpOptions);
   }
 
   doRegister(params: any): Observable<any> {
-    return this._http.post<any>(this.SERVER_URL + 'register', params, httpOptions);
+    return this._http.post<any>(this.API_URL + 'register', params, httpOptions);
   }
 
   getCurrentUser(): string {
@@ -53,7 +53,7 @@ export class UsersService {
   }
 
   getUsersLists(): Observable<any> {
-    return this._http.get(this.SERVER_URL + 'getUsersLists', httpOptions);
+    return this._http.get(this.API_URL + 'getUsersLists', httpOptions);
   }
 
 }

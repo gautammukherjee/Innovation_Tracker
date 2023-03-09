@@ -4,7 +4,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { ModuleSelectionComponent } from './module-selection/module-selection.component';
 
 const routes: Routes = [
   {
@@ -20,19 +19,14 @@ const routes: Routes = [
     component: IndexComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
     path: 'logout',
     component: LogoutComponent,
     data: { title: 'Logout', animation: 'LogoutPage' }
   },
   {
-    path: 'module_selection',
-    component: ModuleSelectionComponent,
-    data: { title: 'Module Selection' }
-  },
+    path: 'dashboard',
+    component: DashboardComponent
+  }
 ];
 
 @NgModule({

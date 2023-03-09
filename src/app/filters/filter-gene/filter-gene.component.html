@@ -1,0 +1,120 @@
+<div class="card-panel-box bg-theme top-tile">
+  <div class="card-panel-box-heading">
+    <img src="../../assets/images/associated_company.png" />
+    Gene <img *ngIf="loading" src="../../assets/images/small-loader.gif" width="18px" />
+    <!--<i *ngIf="genes.length > 0" class="fa fa-file-excel-o hideOn640" alt="Download"
+      title="Download" style="float:right;"></i>-->
+
+    <i *ngIf="genes.length > 0" (click)="reloadGene()"
+      style="color:white; float:right; cursor: pointer; margin-right: 8px;" title="Reload"
+      class="ion-refresh">Reload</i>
+  </div>
+
+  <div class="card-panel-box-detail" *ngIf="genes.length > 0" [hidden]="hideCardBody" style="height: 150px;overflow: auto;">
+      <div class="checkbox-group" style="min-height: 183px; color: aliceblue;">
+      <div class="search-input">
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="geneFilter" />
+      </div>
+      <div class="checkbox-group">
+        <div class="form-check" *ngFor="let gene of genes | GeneFilterPipe:geneFilter">
+          <input class="form-check-input" type="checkbox" name="genes" [value]="gene"
+            [checked]="selectedGenes.indexOf(gene.gene_id)>-1 " (change)="selectGene(gene,$event)">
+          <label class="form-check-label" for="defaultCheck1">
+            {{gene.gene_name}}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <span *ngIf="selectedGenes.length > 0" style="cursor: pointer" class="text-white float-left"
+      (click)="resetGene();">Reset</span>
+    <span *ngIf="genes.length > 2" style="cursor: pointer" class="text-white float-right"
+      (click)="SeeMore($event,seeMoreGeneModal);">{{genes.length-10}}
+      More</span>
+  </div>
+
+  <div class="card-panel-box-detail" *ngIf="genes.length <= 0">
+    <div class="">
+      <!-- <div class="checkbox-group"> -->
+      <i (click)="reloadGene()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
+        Click here to load Gene</i>
+      <!-- </div> -->
+    </div>
+  </div>
+
+</div>
+
+<ng-template #geneWarningModal let-c="close" let-d="dismiss">
+  <div class="modal-header    modal-lg" style="background: #ff0c66 !important;">
+    <h4 class="modal-title">Warning</h4>
+    &nbsp;
+    <button class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body white_bg without_bord_rad">
+    <h6 style="color:#ff0c66">You unchecked the "Select All" option. If you will Proceed with this then result-set
+      of
+      with all gene(s).
+      Otherwise you may choose indications and proceed.</h6>
+    <div class="pull-right">
+      <button class="btn btn-hero-info btn-demo" (click)="closePopup()">Okay</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #seeMoreGeneModal let-c="close" let-d="dismiss">
+  <div class="modal-body without_bord_rad indicators-modal">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-md-12">
+          <h6 class="text-white">Select Genes
+            <span aria-hidden="true" aria-label="Close" (click)="seeMoreClosePopup()"
+              class="close pull-right">&times;</span>
+            <div class="clearfix"></div>
+          </h6>
+        </div>
+        <div class="col-md-12">
+          <div class="indicator_search">
+            <input class="form-control" type="text" [(ngModel)]="geneFilterText">
+            <span class="fa fa-search "></span>
+          </div>
+
+          <div class="indicator_alpha">
+            <span *ngFor="let genes of alphabeticallyGroupedGenes">
+              <span class="text-white" (mouseleave)="mouseOverON=''" (mouseover)="mouseOverON =genes.key"
+                (click)="scrollToView(genes.key)">{{genes.key}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="custom-modal-body">
+      <div class="my-div-content singleIndicatorFilter" id="{{genes.key}}"
+        [ngClass]="(mouseOverON==genes.key ) ?'cls-highlight':''"
+        *ngFor="let genes of alphabeticallyGroupedGenes">
+        <div class="two-column_popup demo-checkboxes-radio"
+          *ngFor="let gene of genes.value | GeneFilterPipe:geneFilterText">
+          <input type="checkbox" name="genes" [value]="gene"
+            [checked]="selectedGenes.indexOf(gene.gene_id)>-1 "
+            (change)="selectGene(gene,$event,'geneWarningModal')">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description text-dark">&nbsp;&nbsp;{{gene.gene_name}}</span>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="demo-checkboxes-radio">
+        <input type="checkbox" name="genes" [(ngModel)]="isAllSelected" [value]="genes" [checked]=""
+          (change)="selectAll($event,geneWarningModal);">
+        <span class="custom-control-description text-dark">&nbsp;Select All</span>
+      </div>
+      <button class="btn btn-outline-primary" [disabled]="disableProceed" (click)="seeMoreproceed()">Proceed</button>
+      <button class="btn btn-danger" (click)="seeMoreClosePopup()">Close</button>
+    </div>
+  </div>
+</ng-template>

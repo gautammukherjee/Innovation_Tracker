@@ -30,9 +30,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/font-awesome/css/font-awesome.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./src/assets/extrnalJs/jquery.min.js",
+              "./src/assets/extrnalJs/popper.min.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,55 @@
+<div class="main-article-content" style="min-height:365px;">
+
+  <div class="loading-custom" *ngIf="loading"><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</div>
+
+  <div class="row card-listing-row" *ngFor="let newsletterListsTable of newsletterListsRecords">
+    <div class="col-md-8">
+      <div class="blogs-card">
+        <div class="title">
+          <h3>
+            <a href="news2.html">
+              {{newsletterListsTable.title}}
+            </a>
+          </h3>
+          <small class="text-muted">
+            Source:
+            <a href="{{newsletterListsTable.url}}"
+              target="_blank">
+              {{newsletterListsTable.url}}
+            </a>
+          </small>
+        </div>
+        <div class="date-time">
+          <span>{{newsletterListsTable.publication_date}}</span>
+        </div>
+        <div class="description">
+          &bull; {{newsletterListsTable.description}}
+
+        </div>
+        <div class="mt-3 read-more">
+          <div class="text-end">
+            <a href="news2.html">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4" style="height:220px;">
+      <div class="tags-list sidebar-box">
+        <h3 class="sidebar-title mb-3 border-bottom border-secondary p-2" style="position: sticky;">
+          Tags
+        </h3>
+
+        <div style="overflow-y:scroll; height:166px;">
+          <li>Person: John Ussher</li>
+          <li>Drug: metformin, insulin secretagogues, pimozide, diphenylbutylpiperidines (DPBP)</li>
+          <li>Disease: Type 2 diabetes</li>
+          <li>Journal: Diabetes</li>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  
