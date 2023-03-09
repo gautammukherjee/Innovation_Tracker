@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   }
 
   dateRangeChanged(e) {
-    console.log("change: ", e);
+    // console.log("change: ", e);
     this.doFilterApply.next;
   }
   indicationChanged(clickOn = null) {
