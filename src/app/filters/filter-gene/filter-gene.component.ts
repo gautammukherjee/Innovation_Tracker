@@ -71,7 +71,7 @@ export class FilterGeneComponent implements OnInit {
     //   // this.getGenes(event, 2);
     // });
     // this.getGenes(event, 1);
-    this.hideCardBody = true;
+    // this.hideCardBody = true;
   }
 
   ngOnDestroy() {
@@ -147,10 +147,10 @@ export class FilterGeneComponent implements OnInit {
 
   selectAll(event: any, geneWarningModal: any) {
     if (this.isAllSelected) {
-      // this.result.map(element => {
-      //   // console.log("element: ", element);
-      //   this.selectedGenes.push(element.gene_id);
-      // })
+      this.result.map((element: any) => {
+        // console.log("element: ", element);
+        this.selectedGenes.push(element.gene_id);
+      })
     } else {
       this.selectedGenes = [];
     }
@@ -166,10 +166,10 @@ export class FilterGeneComponent implements OnInit {
 
   reloadGene() {
     // this.globalVariableService.resetChartFilter();
-    this.hideCardBody = !this.hideCardBody;
-    this.params = this.globalVariableService.getFilterParams();
-    if (!this.hideCardBody)
-      this.getGenes(event, 1);
+    // this.hideCardBody = !this.hideCardBody;
+    // this.params = this.globalVariableService.getFilterParams();
+    // if (!this.hideCardBody)
+    this.getGenes(event, 1);
   }
 
   SeeMore(evt: any, seeMoreGeneModal: any) {

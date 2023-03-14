@@ -71,7 +71,7 @@ export class FilterDrugComponent implements OnInit {
     //   // this.getDrugs(event, 2);
     // });
     // this.getDrugs(event, 1);
-    this.hideCardBody = true;
+    // this.hideCardBody = true;
   }
 
   ngOnDestroy() {
@@ -100,12 +100,12 @@ export class FilterDrugComponent implements OnInit {
           // console.log("alphabeticallyGroupedDrugs: ", this.alphabeticallyGroupedDrugs);
 
           //if (event !== undefined && event.type == 'load') { // i.e No Drugs selected previously
-          for (let i = 0; i < this.result.drugsRecords.length && i < 1; i++) {
-            this.selectedDrugs.push(this.result.drugsRecords[i].drug_id);
-            //this.selectedDrugs = [];
-          }
-          console.log("selected Drug: ", this.selectedDrugs);
-          this.globalVariableService.setSelectedDrugs(this.selectedDrugs);
+          // for (let i = 0; i < this.result.drugsRecords.length && i < 1; i++) {
+          //   this.selectedDrugs.push(this.result.drugsRecords[i].drug_id);
+          //   //this.selectedDrugs = [];
+          // }
+          // console.log("selected Drug: ", this.selectedDrugs);
+          // this.globalVariableService.setSelectedDrugs(this.selectedDrugs);
           //} else {
           //this.selectedDrugs = Array.from(this.globalVariableService.getSelectedDrugs());
           //}
@@ -147,10 +147,10 @@ export class FilterDrugComponent implements OnInit {
 
   selectAll(event: any, drugWarningModal: any) {
     if (this.isAllSelected) {
-      // this.result.map(element => {
-      //   // console.log("element: ", element);
-      //   this.selectedDrugs.push(element.drug_id);
-      // })
+      this.result.map((element: any) => {
+        // console.log("element: ", element);
+        this.selectedDrugs.push(element.drug_id);
+      })
     } else {
       this.selectedDrugs = [];
     }
@@ -166,10 +166,10 @@ export class FilterDrugComponent implements OnInit {
 
   reloadDrug() {
     // this.globalVariableService.resetChartFilter();
-    this.hideCardBody = !this.hideCardBody;
-    this.params = this.globalVariableService.getFilterParams();
-    if (!this.hideCardBody)
-      this.getDrugs(event, 1);
+    // this.hideCardBody = !this.hideCardBody;
+    // this.params = this.globalVariableService.getFilterParams();
+    // if (!this.hideCardBody)
+    this.getDrugs(event, 1);
   }
 
   SeeMore(evt: any, seeMoreDrugModal: any) {

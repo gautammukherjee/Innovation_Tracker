@@ -99,12 +99,12 @@ export class FilterCompanyComponent implements OnInit {
           // console.log("alphabeticallyGroupedCompanies: ", this.alphabeticallyGroupedCompanies);
 
           //if (event !== undefined && event.type == 'load') { // i.e No companies selected previously
-          for (let i = 0; i < this.result.companiesRecords.length && i < 1; i++) {
-            this.selectedCompanies.push(this.result.companiesRecords[i].company_id);
-            //this.selectedCompanies = [];
-          }
-          console.log("selected Company: ", this.selectedCompanies);
-          this.globalVariableService.setSelectedCompanies(this.selectedCompanies);
+          // for (let i = 0; i < this.result.companiesRecords.length && i < 1; i++) {
+          //   this.selectedCompanies.push(this.result.companiesRecords[i].company_id);
+          //   //this.selectedCompanies = [];
+          // }
+          // console.log("selected Company: ", this.selectedCompanies);
+          // this.globalVariableService.setSelectedCompanies(this.selectedCompanies);
           //} else {
           //this.selectedCompanies = Array.from(this.globalVariableService.getSelectedCompanies());
           //}

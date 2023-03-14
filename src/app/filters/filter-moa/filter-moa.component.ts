@@ -100,12 +100,12 @@ export class FilterMoaComponent implements OnInit {
           // console.log("alphabeticallyGroupedMoas: ", this.alphabeticallyGroupedMoas);
 
           //if (event !== undefined && event.type == 'load') { // i.e No Moas selected previously
-          for (let i = 0; i < this.result.moasRecords.length && i < 1; i++) {
-            this.selectedMoas.push(this.result.moasRecords[i].moa_id);
-            //this.selectedMoas = [];
-          }
-          console.log("selected Moa: ", this.selectedMoas);
-          this.globalVariableService.setSelectedMoas(this.selectedMoas);
+          // for (let i = 0; i < this.result.moasRecords.length && i < 1; i++) {
+          //   this.selectedMoas.push(this.result.moasRecords[i].moa_id);
+          //   //this.selectedMoas = [];
+          // }
+          // console.log("selected Moa: ", this.selectedMoas);
+          // this.globalVariableService.setSelectedMoas(this.selectedMoas);
           //} else {
           //this.selectedMoas = Array.from(this.globalVariableService.getSelectedMoas());
           //}
@@ -147,10 +147,10 @@ export class FilterMoaComponent implements OnInit {
 
   selectAll(event: any, moaWarningModal: any) {
     if (this.isAllSelected) {
-      // this.result.map(element => {
-      //   // console.log("element: ", element);
-      //   this.selectedMoas.push(element.moa_id);
-      // })
+      this.result.map((element: any) => {
+        // console.log("element: ", element);
+        this.selectedMoas.push(element.moa_id);
+      })
     } else {
       this.selectedMoas = [];
     }

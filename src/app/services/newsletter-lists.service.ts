@@ -19,22 +19,22 @@ export class NewsletterListsService {
   private _newsletterDetails: any;
   constructor(private _http: HttpClient) { }
 
-  // getNewsletterLists2(params: any) {
-  //   return this._http.post(this.API_URL + 'getNewsletterFrontLists', params, httpOptions);
-  // } 
-
   getNewsletterLists(params: any) {
-    console.log("newsletterliste: ", this._newsLetterLists);
-    if (this._newsLetterLists) {
-      return Observable.of(this._newsLetterLists);
-    } else {
-      //return this.http.get(API_URL + 'getTherapeuticAreas');
-      return this._http.post(this.API_URL + 'getNewsletterFrontLists', params, httpOptions).do(
-        (data: any) => {
-          this._newsLetterLists = data;
-        });
-    }
+    return this._http.post(this.API_URL + 'getNewsletterFrontLists', params, httpOptions);
   }
+
+  // getNewsletterLists(params: any) {
+  //   console.log("newsletterliste: ", this._newsLetterLists);
+  //   if (this._newsLetterLists) {
+  //     return Observable.of(this._newsLetterLists);
+  //   } else {
+  //     //return this.http.get(API_URL + 'getTherapeuticAreas');
+  //     return this._http.post(this.API_URL + 'getNewsletterFrontLists', params, httpOptions).do(
+  //       (data: any) => {
+  //         this._newsLetterLists = data;
+  //       });
+  //   }
+  // }
 
   getNewsletterDetails(params: any) {
     return this._http.post(this.API_URL + 'getNewsletterFrontDetails', params, httpOptions);

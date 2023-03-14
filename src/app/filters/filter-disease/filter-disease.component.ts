@@ -103,11 +103,11 @@ export class FilterDiseaseComponent implements OnInit {
           // console.log("getEvent:: ", event);
 
           // if (event !== undefined && event.type == 'load') { // i.e No indication selected previously
-          for (let i = 0; i < this.result.diseasesRecords.length && i < 1; i++) {
-            this.selectedIndications.push(this.result.diseasesRecords[i].disease_id);
-          }
-          console.log("loading the page get Indication22: ", this.selectedIndications);
-          this.globalVariableService.setSelectedIndication(this.selectedIndications);
+          // for (let i = 0; i < this.result.diseasesRecords.length && i < 1; i++) {
+          //   this.selectedIndications.push(this.result.diseasesRecords[i].disease_id);
+          // }
+          // console.log("loading the page get Indication22: ", this.selectedIndications);
+          // this.globalVariableService.setSelectedIndication(this.selectedIndications);
           // } else {
           //   this.selectedIndications = Array.from(this.globalVariableService.getSelectedIndication());
           //   console.log("loading the page get Indication225: ", this.selectedIndications);
