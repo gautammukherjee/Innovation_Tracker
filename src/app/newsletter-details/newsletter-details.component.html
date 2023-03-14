@@ -1,0 +1,90 @@
+<app-header></app-header>
+
+<section class="blog-detail-wrapper">
+
+  <div class="loading-custom" *ngIf="loading" style="text-align:center;"><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</div>
+
+  <div class="container" *ngIf="loading==false">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="blog-detail-box">
+          <div class="back-arrow">
+            <span class="text-end">
+              <a href="index.html" class="btn btn-bxl" [routerLink]="['/dashboard']"> <img src="./../assets/images/back.svg" alt=""> Back
+              </a>
+            </span>
+          </div>        
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="author-info">
+                <div class="author">
+                  <div class="avatar">
+                    <img src="./../assets/images/avatar.png" alt="" class="img-fluid">
+                  </div>
+                  <span>
+                    <a href="{{newsletterDetailsData.url}}"
+                      target="_blank">
+                      {{newsletterDetailsData.url}}
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="author-info">
+                <div class="author">
+                  <div class="avatar">
+                    <img src="./../assets/images/calendar.png" alt="" class="img-fluid">
+                  </div>
+                  <span>{{newsletterDetailsData.publication_date}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-heading">
+            <h1>{{newsletterDetailsData.title}}</h1>
+          </div>
+          <div class="blog-content">
+            {{newsletterDetailsData.description}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tag Lists -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tags-list mb-5">
+          <h3 class="sidebar-title">Tags list</h3>
+          <li>Genetic illness: Alagille syndrome</li>
+          <li>Newly created medicine: NoRA1</li>
+          <li>Cell-level signaling system: Notch pathway</li>
+          <li>Biological structure: bile duct</li>
+          <li>Organ: liver</li>
+          <li>Species used in medical research: zebrafish</li>
+          <li>Research institute: Sanford Burnham Prebys Medical Discovery Institute</li>
+          <li>Molecular scientist: Chengjian Zhao</li>
+          <li>Molecular biologist: Duc Dong</li>
+          <li>Scientific journal: Proceedings of the National Academy of Sciences</li>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="blog-detail-box">
+        <div class="back-arrow">
+          <span class="text-end">
+            <a class="btn btn-bxl" [routerLink]="['/dashboard']"> <img src="./../assets/images/back.svg" alt=""> Back
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Tag Lists -->
+
+</section>

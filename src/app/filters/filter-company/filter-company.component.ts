@@ -70,7 +70,7 @@ export class FilterCompanyComponent implements OnInit {
     //   // this.getCompanies(event, 2);
     // });
     // this.getCompanies(event, 1);
-    this.hideCardBody = true;
+    // this.hideCardBody = true;
   }
 
   ngOnDestroy() {
@@ -146,10 +146,10 @@ export class FilterCompanyComponent implements OnInit {
 
   selectAll(event: any, companyWarningModal: any) {
     if (this.isAllSelected) {
-      // this.result.map(element => {
-      //   // console.log("element: ", element);
-      //   this.selectedCompanies.push(element.company_id);
-      // })
+      this.companies.map((element: any) => {
+        console.log("element: ", element);
+        this.selectedCompanies.push(element.company_id);
+      })
     } else {
       this.selectedCompanies = [];
     }
@@ -164,11 +164,12 @@ export class FilterCompanyComponent implements OnInit {
   }
 
   reloadCompany() {
+    console.log("company: ")
     // this.globalVariableService.resetChartFilter();
-    this.hideCardBody = !this.hideCardBody;
+    // this.hideCardBody = !this.hideCardBody;
     this.params = this.globalVariableService.getFilterParams();
-    if (!this.hideCardBody)
-      this.getCompanies(event, 1);
+    // if (!this.hideCardBody)
+    this.getCompanies(event, 1);
   }
 
   SeeMore(evt: any, seeMoreCompanyModal: any) {
@@ -194,6 +195,7 @@ export class FilterCompanyComponent implements OnInit {
   proceed() {
     this.globalVariableService.setSelectedCompanies(this.selectedCompanies);
     this.selectedCompanies = Array.from(this.globalVariableService.getSelectedCompanies());
+    console.log("selectedCompanies_add: ", this.selectedCompanies);
     if (this.seeMoreCompanyModal != undefined)
       this.seeMoreCompanyModal.close();
     this.onSelectCompany.emit();

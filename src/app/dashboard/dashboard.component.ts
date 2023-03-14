@@ -27,10 +27,10 @@ export class DashboardComponent implements OnInit {
     this.doFilterApply.next(e);
   }
   indicationChanged(e: any) {
-    // this.doFilterApply.next(e);
+    this.doFilterApply.next(e);
   }
   companyChanged(e: any) {
-    // this.doFilterApply.next(e);
+    this.doFilterApply.next(e);
   }
   drugChanged(e: any) {
     // this.doFilterApply.next(e);

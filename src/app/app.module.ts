@@ -24,6 +24,7 @@ import { FilterDrugComponent } from './filters/filter-drug/filter-drug.component
 import { FilterGeneComponent } from './filters/filter-gene/filter-gene.component';
 import { FilterMoaComponent } from './filters/filter-moa/filter-moa.component';
 import { NewsletterListsComponent } from './newsletter-lists/newsletter-lists.component';
+import { NewsletterDetailsComponent } from './newsletter-details/newsletter-details.component';
 import { DiseaseDataPipe } from './pipes/diseaseDataPipe';
 import { CompanyDataPipe } from './pipes/companyDataPipe';
 import { DrugDataPipe } from './pipes/drugDataPipe';
@@ -38,6 +39,7 @@ import { MoaDataPipe } from './pipes/moaDataPipe';
     IndexComponent,
     DashboardComponent,
     NewsletterListsComponent,
+    NewsletterDetailsComponent,
     HeaderComponent,
     FooterComponent,
     FilterDataRangeComponent,

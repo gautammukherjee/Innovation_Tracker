@@ -21,7 +21,7 @@ export class FilterDiseaseComponent implements OnInit {
   public diseases: Array<object> = [];
   private params: object = {};
   private result: any = [];
-  private result1: any = [];
+  private results1: any = [];
   private results2: any = [];
   public loading: boolean = false;
   public enableFilter: boolean = false;
@@ -74,35 +74,37 @@ export class FilterDiseaseComponent implements OnInit {
     this.indicationService.getIndication()
       .subscribe(
         data => {
-          this.result1 = data;
-          this.result = this.result1.diseasesRecords;
-          console.log("indication: ", this.result);
-          //if (type == 1) {
-          var result1 = [], result2 = [];
-          var checkSelectedIndication = this.globalVariableService.getSelectedIndication();
-          console.log("loading the page get Indication: ", checkSelectedIndication);
+          this.result = data;
+          // this.result = this.results1.diseasesRecords;
+          this.diseases = this.result.diseasesRecords;
 
-          for (var i = 0; i < this.result.length; i++) {
-            // if (checkSelectedIndication.includes("737")) {
-            if (this.result[i].disease_name === "ABDOMINAL PAIN") {
-              result1.push(this.result[i]);
-            } else {
-              result2.push(this.result[i]);
-            }
-            // } else {
-            //   result2.push(this.result[i]);
-            // }
-          }
-          this.results2 = result1.concat(result2);
-          this.diseases = this.results2; //set in filter disease indication html view
-          console.log("dd Disease for AI: ", this.diseases);
+          console.log("indication: ", this.diseases);
+          //if (type == 1) {
+          // var result1 = [], result2 = [];
+          // var checkSelectedIndication = this.globalVariableService.getSelectedIndication();
+          // console.log("loading the page get Indication: ", checkSelectedIndication);
+
+          // for (var i = 0; i < this.result.length; i++) {
+          //   // if (checkSelectedIndication.includes("737")) {
+          //   if (this.result[i].disease_name === "ABDOMINAL PAIN") {
+          //     result1.push(this.result[i]);
+          //   } else {
+          //     result2.push(this.result[i]);
+          //   }
+          //   // } else {
+          //   //   result2.push(this.result[i]);
+          //   // }
+          // }
+          // this.results2 = result1.concat(result2);
+          // this.diseases = this.results2; //set in filter disease indication html view
+          // console.log("dd Disease for AI: ", this.diseases);
 
           this.alphabeticallyGroupedDieseases = this.groupBy(this.diseases, 'disease_name');
           // console.log("getEvent:: ", event);
 
           // if (event !== undefined && event.type == 'load') { // i.e No indication selected previously
-          for (let i = 0; i < this.results2.length && i < 1; i++) {
-            this.selectedIndications.push(this.results2[i].disease_id);
+          for (let i = 0; i < this.result.diseasesRecords.length && i < 1; i++) {
+            this.selectedIndications.push(this.result.diseasesRecords[i].disease_id);
           }
           console.log("loading the page get Indication22: ", this.selectedIndications);
           this.globalVariableService.setSelectedIndication(this.selectedIndications);
@@ -148,10 +150,10 @@ export class FilterDiseaseComponent implements OnInit {
 
   selectAll(event: any, diseaseWarningModal: any) {
     if (this.isAllSelected) {
-      // this.result.map(element => {
-      //   console.log("Elementt: ", element);
-      //   this.selectedIndications.push(element.disease_id);
-      // })
+      this.diseases.map((element: any) => {
+        console.log("Elementt: ", element);
+        this.selectedIndications.push(element.disease_id);
+      })
     } else {
       this.selectedIndications = [];
     }

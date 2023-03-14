@@ -10,6 +10,8 @@ import * as moment from "moment";
 })
 export class LoginComponent implements OnInit {
 
+  email: string = '';
+  password: string = '';
   userCredentials: any = {};
   currentUser: any = {};
   result: any;
@@ -31,12 +33,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loginFrmSubmit(loginForm: any) {
+  login() {
     this.loading = true;
     this.error = "false";
-    let userEmail = loginForm.value.email;
-    let userPwd = loginForm.value.pass;
-    this.userCredentials = { email: userEmail, password: userPwd };
+    this.userCredentials = { email: this.email, password: this.password };
 
     this.usersService.doLogin(this.userCredentials).subscribe( //3 Login
       data => {

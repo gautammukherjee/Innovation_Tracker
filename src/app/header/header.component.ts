@@ -15,8 +15,8 @@ export class HeaderComponent implements OnInit {
   errorMessage = "";
 
   constructor(private router: Router, private _activatedRoute: ActivatedRoute, private usersService: UsersService, private globalVariableService: GlobalVariableService) {
-    this.result = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-    console.log("currentUser: ", this.result);
+    // this.result = JSON.parse(sessionStorage.getItem('currentUser') || '');
+    // console.log("currentUser: ", this.result);
     if (this.usersService.isLoggednIn() == false) {
       this.autologout();
     }
