@@ -34,7 +34,7 @@ export class FilterCompanyComponent implements OnInit {
   private seeMoreCompanyModal: any;
   mouseOverON: any = undefined;
   otherMouseOverONElem: any = undefined;
-  public disableProceed = false;
+  public disableProceed = true;
   companyFilter: string = '';
   companyFilterText: string = '';
   //diseaseCheck: any;

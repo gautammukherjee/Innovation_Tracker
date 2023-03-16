@@ -19,6 +19,8 @@ export class NewsletterListsComponent implements OnInit {
   private filterParams: any;
   result: any = [];
   newsletterListsRecords: any = [];
+  newsletterListings: any = [];
+  newsletterDListings: any = [];
 
   loading = false;
   params: any;
@@ -37,6 +39,7 @@ export class NewsletterListsComponent implements OnInit {
     private modalService: NgbModal,
   ) { }
 
+
   ngOnInit() {
     this.filterParams = this.globalVariableService.getFilterParams();
     console.log("new Filters1: ", this.filterParams);
@@ -47,11 +50,11 @@ export class NewsletterListsComponent implements OnInit {
       if (data === undefined) { // data=undefined true when apply filter from side panel
         //this.hideCardBody = true;
         this.filterParams = this.globalVariableService.getFilterParams();
-        this.getNewsletterLists(this.filterParams);
+        this.getNewsletterLists2(this.filterParams);
         console.log("new Filters for newsletter: ", this.filterParams);
       } else if (data.clickOn !== 'clickOnEventDetails') { // because graph should not change when click on this component itself
         // this.filterParams = this.globalVariableService.getFilterParams(this.globalVariableService.getChartFilterParams());
-        this.getNewsletterLists(this.filterParams);
+        this.getNewsletterLists2(this.filterParams);
       }
     });
     this.getNewsletterLists(this.filterParams);
@@ -64,6 +67,68 @@ export class NewsletterListsComponent implements OnInit {
     console.log("checked here Disease in event description: ", this.diseaseCheck);
     //if (this.diseaseCheck !== undefined) {
     this.newsletterListsService.getNewsletterLists(_filterParams).subscribe(
+      data => {
+        this.result = data;
+        this.newsletterListsRecords = this.result.newsletterRecords;
+        console.log("showNewsletterListsData: ", this.newsletterListsRecords);
+
+        this.newsletterListings = [];
+
+        this.newsletterListsRecords.forEach((event: any) => {
+
+          // var str: any = {};
+          // str = event.disease_names;
+          // let diseaseNames = str.replace(/\//g, '\/\u200B');
+
+          // event.disease_names.forEach((x: any) => {
+          //   var y = x ? '' || 'XXX' : 'MyVAL'
+          //   console.log("x: ", y);
+          // });
+
+
+          var temps: any = {};
+          temps['news_id'] = event.news_id;
+          temps["title"] = event.title;
+          temps["url"] = event.url;
+          temps["description"] = event.description;
+          temps["ta_names"] = event.ta_names;
+          temps["disease_names"] = event.disease_names;
+          temps["drug_names"] = event.drug_names;
+          temps["company_names"] = event.company_names;
+          temps["gene_names"] = event.gene_names;
+          temps["marker_names"] = event.marker_names;
+          temps["moa_names"] = event.moa_names;
+          temps["publication_date"] = this.datePipe.transform(event.publication_date, 'yyyy-MM-dd');
+          //temps["link"] = '<a href="' + event.link + '" target="_blank">link</a>';
+          //temps["url_title"] = '<a href="' + event.link + '" target="_blank">' + event.link + '</a>';
+          this.newsletterListings.push(temps);
+        });
+        console.log("newsletterListings: ", this.newsletterListings);
+
+
+      },
+      err => {
+        console.log(err.message);
+        this.loading = false;
+      },
+      () => {
+        this.loading = false;
+      }
+    );
+    // }
+    // else {
+    //   this.newsletterListsRecords = [];
+    //   this.loading = false;
+    // }
+  }
+
+  getNewsletterLists2(_filterParams: any) {
+    this.loading = true;
+
+    this.diseaseCheck = _filterParams['di_ids']; // if disease_id is checked
+    console.log("checked here Disease in event description: ", this.diseaseCheck);
+    //if (this.diseaseCheck !== undefined) {
+    this.newsletterListsService.getNewsletterLists2(_filterParams).subscribe(
       data => {
         this.result = data;
         this.newsletterListsRecords = this.result.newsletterRecords;

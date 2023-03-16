@@ -35,7 +35,7 @@ export class FilterDrugComponent implements OnInit {
   private seeMoreDrugModal: any;
   mouseOverON: any = undefined;
   otherMouseOverONElem: any = undefined;
-  public disableProceed = false;
+  public disableProceed = true;
   drugFilter: string = '';
   drugFilterText: string = '';
   //diseaseCheck: any;

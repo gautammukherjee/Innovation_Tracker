@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import * as moment from "moment";
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 declare var jQuery: any;
 
@@ -36,10 +37,12 @@ export class NewsletterDetailsComponent implements OnInit {
     private newsletterListsService: NewsletterListsService,
     private datePipe: DatePipe,
     private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit() {
     this.filterParams = this.globalVariableService.getFilterParams();
+    console.log("new Filters in details: ", this.filterParams);
     this.getNewsletterDetails();
   }
 
@@ -63,5 +66,9 @@ export class NewsletterDetailsComponent implements OnInit {
       }
     );
   }
+
+  // backToDashboard() {
+  //   this.location.back();
+  // }
 
 }

@@ -35,7 +35,7 @@ export class FilterGeneComponent implements OnInit {
   private seeMoreGeneModal: any;
   mouseOverON: any = undefined;
   otherMouseOverONElem: any = undefined;
-  public disableProceed = false;
+  public disableProceed = true;
   geneFilter: string = '';
   geneFilterText: string = '';
   //diseaseCheck: any;

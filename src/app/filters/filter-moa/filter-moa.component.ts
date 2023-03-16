@@ -35,7 +35,7 @@ export class FilterMoaComponent implements OnInit {
   private seeMoreMoaModal: any;
   mouseOverON: any = undefined;
   otherMouseOverONElem: any = undefined;
-  public disableProceed = false;
+  public disableProceed = true;
   moaFilter: string = '';
   moaFilterText: string = '';
   //diseaseCheck: any;

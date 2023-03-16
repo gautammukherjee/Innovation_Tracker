@@ -2,7 +2,7 @@
 
   <div class="loading-custom" *ngIf="loading"><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</div>
 
-  <div class="row card-listing-row" *ngFor="let newsletterListsTable of newsletterListsRecords">
+  <div class="row card-listing-row" *ngFor="let newsletterListsTable of newsletterListings">
     <div class="col-md-8">
       <div class="blogs-card">
         <div class="title">
@@ -41,9 +41,13 @@
 
         <div style="overflow-y:scroll; height:166px;">
           <li>Person: John Ussher</li>
-          <li>Drug: metformin, insulin secretagogues, pimozide, diphenylbutylpiperidines (DPBP)</li>
-          <li>Disease: Type 2 diabetes</li>
-          <li>Journal: Diabetes</li>
+          <li *ngIf="newsletterListsTable.ta_names">TA: {{newsletterListsTable.ta_names}}</li> 
+          <li *ngIf="newsletterListsTable.disease_names">Disease: {{newsletterListsTable.disease_names}}</li> 
+          <!--<li *ngIf="newsletterListsTable.company_names">Company: {{newsletterListsTable.company_names}}</li> 
+          <li *ngIf="newsletterListsTable.drug_names">Drug: {{newsletterListsTable.drug_names}}</li>
+          <li *ngIf="newsletterListsTable.gene_names">Gene: {{newsletterListsTable.gene_names}}</li> 
+          <li *ngIf="newsletterListsTable.moa_names">MOA: {{newsletterListsTable.moa_names}}</li>-->
+          <!--<li>Journal: Diabetes</li>-->
         </div>
       </div>
     </div>

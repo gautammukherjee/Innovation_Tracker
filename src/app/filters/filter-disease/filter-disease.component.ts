@@ -36,7 +36,7 @@ export class FilterDiseaseComponent implements OnInit {
   private seeMorediseaseModal: any;
   mouseOverON: any = undefined;
   otherMouseOverONElem: any = undefined;
-  public disableProceed = false;
+  public disableProceed = true;
   diseaseFilter: string = '';
   diseaseFilterText: string = '';
   // taCheck: any;
