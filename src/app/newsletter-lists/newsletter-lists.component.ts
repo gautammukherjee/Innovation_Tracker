@@ -104,8 +104,6 @@ export class NewsletterListsComponent implements OnInit {
           this.newsletterListings.push(temps);
         });
         console.log("newsletterListings: ", this.newsletterListings);
-
-
       },
       err => {
         console.log(err.message);
@@ -133,7 +131,27 @@ export class NewsletterListsComponent implements OnInit {
         this.result = data;
         this.newsletterListsRecords = this.result.newsletterRecords;
         console.log("showNewsletterListsData: ", this.newsletterListsRecords);
+        this.newsletterListings = [];
 
+        this.newsletterListsRecords.forEach((event: any) => {
+          var temps: any = {};
+          temps['news_id'] = event.news_id;
+          temps["title"] = event.title;
+          temps["url"] = event.url;
+          temps["description"] = event.description;
+          temps["ta_names"] = event.ta_names;
+          temps["disease_names"] = event.disease_names;
+          temps["drug_names"] = event.drug_names;
+          temps["company_names"] = event.company_names;
+          temps["gene_names"] = event.gene_names;
+          temps["marker_names"] = event.marker_names;
+          temps["moa_names"] = event.moa_names;
+          temps["publication_date"] = this.datePipe.transform(event.publication_date, 'yyyy-MM-dd');
+          //temps["link"] = '<a href="' + event.link + '" target="_blank">link</a>';
+          //temps["url_title"] = '<a href="' + event.link + '" target="_blank">' + event.link + '</a>';
+          this.newsletterListings.push(temps);
+        });
+        console.log("newsletterListings2: ", this.newsletterListings);
       },
       err => {
         console.log(err.message);
