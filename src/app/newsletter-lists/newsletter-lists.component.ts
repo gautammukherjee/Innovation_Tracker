@@ -19,7 +19,7 @@ export class NewsletterListsComponent implements OnInit {
   private filterParams: any;
   result: any = [];
   newsletterListsRecords: any = [];
-  newsletterDiseaseNames: any = [];
+  // newsletterDiseaseNames: any = [];
   newsletterListings: any = [];
   newsletterDListings: any = [];
 
