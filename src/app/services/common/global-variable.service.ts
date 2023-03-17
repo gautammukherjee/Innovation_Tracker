@@ -14,7 +14,7 @@ export class GlobalVariableService {
 
   // selectedTa = this.configureTAID();
   selectedTa = [];
-  defaultTAID: any;
+  // defaultTAID: any;
   selectedDefaultTasWithName: any = [];
 
   filterParams = {};
@@ -34,10 +34,10 @@ export class GlobalVariableService {
   fromDate = this.initFromDate;
   toDate = this.initToDate;
 
-  configureTAID() {
-    this.defaultTAID = parseInt(localStorage.getItem('selectedDefaultTA') || '{}');
-    return [this.defaultTAID];
-  }
+  // configureTAID() {
+  //   this.defaultTAID = parseInt(localStorage.getItem('selectedDefaultTA') || '{}');
+  //   return [this.defaultTAID];
+  // }
 
   setFromDate(from_date: any) {
     this.fromDate = from_date;
@@ -60,13 +60,13 @@ export class GlobalVariableService {
     return this.selectedTa;
   }
 
-  setSelectedDefaultTA(ta: any) { //First Choice i.e Single TA
-    this.selectedDefaultTasWithName[0] = ta;
-    localStorage.setItem('selectedDefaultTA', ta.ta_id);
-  }
-  getSelectedDefaultTA() {
-    return this.selectedDefaultTasWithName;
-  }
+  // setSelectedDefaultTA(ta: any) { //First Choice i.e Single TA
+  //   this.selectedDefaultTasWithName[0] = ta;
+  //   localStorage.setItem('selectedDefaultTA', ta.ta_id);
+  // }
+  // getSelectedDefaultTA() {
+  //   return this.selectedDefaultTasWithName;
+  // }
 
   setSelectedIndication(indication: any) {
     // console.log("indications: ", indication);

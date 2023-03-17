@@ -55,6 +55,8 @@ export class FilterDiseaseComponent implements OnInit {
     this.filterText = "";
     this.filterPlaceholder = "Disease Filter..";
 
+    this.selectedIndications = Array.from(this.globalVariableService.getSelectedIndication());
+    console.log("getSelectedInd: ", this.selectedIndications);
     this.getindications();
   }
 
@@ -68,7 +70,7 @@ export class FilterDiseaseComponent implements OnInit {
     this.params = this.globalVariableService.getFilterParams();
     // this.taCheck = this.params['ta_id']; // if ta_id is checked
     // console.log("checked here TAs: ", this.taCheck);
-    this.selectedIndications = [];
+    // this.selectedIndications = [];
 
     // if (this.taCheck !== undefined) {
     this.indicationService.getIndication()

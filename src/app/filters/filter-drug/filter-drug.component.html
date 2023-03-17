@@ -5,7 +5,7 @@
     <!--<i *ngIf="drugs.length > 0" class="fa fa-file-excel-o hideOn640" alt="Download"
       title="Download" style="float:right;"></i>-->
 
-    <i *ngIf="drugs.length > 0" (click)="reloadDrug()"
+    <i *ngIf="drugsCheck==true" (click)="reloadDrug()"
       style="color:white; float:right; cursor: pointer; margin-right: 8px;" title="Reload"
       class="ion-refresh">Reload</i>
   </div>
@@ -33,13 +33,15 @@
       More</span>
   </div>
 
-  <div class="card-panel-box-detail" *ngIf="drugs.length <= 0">
-    <div class="">
-      <!-- <div class="checkbox-group"> -->
-      <i (click)="reloadDrug()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
-        Click here
-        to load Drug</i>
-      <!-- </div> -->
+  <div class="card-panel-box-detail">
+    <div class="" *ngIf="(drugs.length <= 0 && drugsCheck==false)">
+      <i (click)="reloadDrug()" *ngIf="drugsCheck==false" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
+        Click here to load Drug</i>
+    </div>
+
+    <div *ngIf="(drugs.length <= 0 && drugsCheck==true)">
+      <i style="color:white" title="Reload">&nbsp;
+        No news exists for any drug</i>
     </div>
   </div>
 

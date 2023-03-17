@@ -23,6 +23,7 @@ export class FilterMoaComponent implements OnInit {
   private result: any = [];
   private results2: any = [];
   public loading: boolean = false;
+  public moasCheck: boolean = false;
   public enableFilter: boolean = true;
   public filterText: string = '';
   public seeMoreFilterText: string = '';
@@ -71,7 +72,8 @@ export class FilterMoaComponent implements OnInit {
     //   // this.getMoas(event, 2);
     // });
     // this.getMoas(event, 1);
-    this.hideCardBody = true;
+    // this.hideCardBody = true;
+    this.selectedMoas = Array.from(this.globalVariableService.getSelectedMoas());
   }
 
   ngOnDestroy() {
@@ -85,7 +87,7 @@ export class FilterMoaComponent implements OnInit {
     // this.diseaseCheckCT = this.params['ct_di_ids']; // if disease_id is checked
     // console.log("checked here Moa: ", this.diseaseCheck);
 
-    this.selectedMoas = [];
+    // this.selectedMoas = [];
 
     //if (this.diseaseCheck !== undefined || this.diseaseCheckCT !== undefined) {
     this.moaService.getMoa()
@@ -111,10 +113,12 @@ export class FilterMoaComponent implements OnInit {
           //}
         },
         err => {
+          this.moasCheck = true;
           this.loading = false;
           console.log(err.message)
         },
         () => {
+          this.moasCheck = true;
           this.loading = false;
           console.log("loading finish")
         }

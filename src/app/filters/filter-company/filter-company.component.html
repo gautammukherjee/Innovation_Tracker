@@ -5,7 +5,7 @@
     <!--<i *ngIf="companies.length > 0" class="fa fa-file-excel-o hideOn640" alt="Download"
       title="Download" style="float:right;"></i>-->
 
-    <i *ngIf="companies.length > 0" (click)="reloadCompany()"
+    <i *ngIf="companyCheck==true" (click)="reloadCompany()"
       style="color:white; float:right; cursor: pointer; margin-right: 8px;" title="Reload"
       class="ion-refresh">Reload</i>
   </div>
@@ -34,13 +34,14 @@
       More</span>
   </div>
 
-  <div class="card-panel-box-detail" *ngIf="companies.length <= 0">
-    <div class="">
-      <!-- <div class="checkbox-group"> -->
+  <div class="card-panel-box-detail">
+    <div class="" *ngIf="(companies.length <= 0 && companyCheck==false)">
       <i (click)="reloadCompany()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
-        Click here
-        to load Company</i>
-      <!-- </div> -->
+        Click here to load Company</i>
+    </div>
+    <div *ngIf="(companies.length <= 0 && companyCheck==true)">
+      <i style="color:white" title="Reload">&nbsp;
+        No news exists for any company</i>
     </div>
   </div>
 

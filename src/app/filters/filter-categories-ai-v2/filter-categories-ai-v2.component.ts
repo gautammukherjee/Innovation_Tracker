@@ -52,8 +52,8 @@ export class FilterCategoriesAIV2Component implements OnInit {
     private globalVariableService: GlobalVariableService,
     private modalService: NgbModal
   ) {
-    this.selectedTa = this.globalVariableService.getSelectedTa();
-    console.log("selectedTAs: ", this.selectedTa);
+    // this.selectedTa = this.globalVariableService.getSelectedTa();
+    // console.log("selectedTAs: ", this.selectedTa);
     // this.selectedTasWithName = this.globalVariableService.getSelectedDefaultTA();
   }
 
@@ -82,6 +82,9 @@ export class FilterCategoriesAIV2Component implements OnInit {
       });
     //End here
 
+    this.selectedTa = Array.from(this.globalVariableService.getSelectedTa());
+    console.log("getSelectedTA: ", this.selectedTa);
+
     this.categoryService.getCategories().subscribe(
       data => {
         this.result = data;
@@ -99,36 +102,23 @@ export class FilterCategoriesAIV2Component implements OnInit {
   }
 
   selectTa(ta: any, event: any, warning: any = null) {
-    this.showDiseaseIndicationList = false;
+
+
+
     if (event.target.checked) {
       this.selectedTa.push(ta.ta_id);
-      console.log("t1: ", this.selectedTa);
-      this.selectedTasWithName.push(ta);
-
-      //############### Start, For Locally Storing Data to Remove checked on close ###########//
-      this._selectedTa.push(ta.ta_id);
-      this._selectedTasWithName.push(ta);
-      //############### End, For Locally Storing Data to Remove checked on close ###########//
-
     } else {
       this.selectedTa.splice(this.selectedTa.indexOf(ta.ta_id), 1);
-      console.log("t2: ", this.selectedTa);
-      var object = this.findObjectByKey(this.selectedTasWithName, 'ta_id', ta.ta_id);
-      if (object != null) {
-        this.selectedTasWithName.splice(object.index, 1);
-      }
-
-      //############### Start, For Locally Storing Data to Remove checked on close ###########//
-      this._selectedTa.splice(this._selectedTa.indexOf(ta.ta_id), 1);
-      let _object = this.findObjectByKey(this._selectedTasWithName, 'ta_id', ta.ta_id);
-      // if (_object != null) {
-      //   this._selectedTasWithName.splice(object.index, 1);
-      // }
-      //############### End, For Locally Storing Data to Remove checked on close ###########//
     }
 
+    // this.globalVariableService.setSelectedSegment(undefined);
 
     this.proceed();
+
+
+
+
+
     // this.enableDisableProceedButton();
   }
 

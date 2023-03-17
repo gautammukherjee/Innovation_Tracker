@@ -23,6 +23,7 @@ export class FilterDrugComponent implements OnInit {
   private result: any = [];
   private results2: any = [];
   public loading: boolean = false;
+  public drugsCheck: boolean = false;
   public enableFilter: boolean = false;
   public filterText: string = '';
   public seeMoreFilterText: string = '';
@@ -72,6 +73,7 @@ export class FilterDrugComponent implements OnInit {
     // });
     // this.getDrugs(event, 1);
     // this.hideCardBody = true;
+    this.selectedDrugs = Array.from(this.globalVariableService.getSelectedDrugs());
   }
 
   ngOnDestroy() {
@@ -85,7 +87,7 @@ export class FilterDrugComponent implements OnInit {
     // this.diseaseCheckCT = this.params['ct_di_ids']; // if disease_id is checked
     // console.log("checked here Drug: ", this.diseaseCheck);
 
-    this.selectedDrugs = [];
+    // this.selectedDrugs = [];
 
     //if (this.diseaseCheck !== undefined || this.diseaseCheckCT !== undefined) {
     this.drugService.getDrug()
@@ -111,10 +113,12 @@ export class FilterDrugComponent implements OnInit {
           //}
         },
         err => {
+          this.drugsCheck = true;
           this.loading = false;
           console.log(err.message)
         },
         () => {
+          this.drugsCheck = true;
           this.loading = false;
           console.log("loading finish")
         }

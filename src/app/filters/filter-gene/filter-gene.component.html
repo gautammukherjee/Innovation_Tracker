@@ -5,7 +5,7 @@
     <!--<i *ngIf="genes.length > 0" class="fa fa-file-excel-o hideOn640" alt="Download"
       title="Download" style="float:right;"></i>-->
 
-    <i *ngIf="genes.length > 0" (click)="reloadGene()"
+    <i *ngIf="genesCheck==true" (click)="reloadGene()"
       style="color:white; float:right; cursor: pointer; margin-right: 8px;" title="Reload"
       class="ion-refresh">Reload</i>
   </div>
@@ -33,12 +33,14 @@
       More</span>
   </div>
 
-  <div class="card-panel-box-detail" *ngIf="genes.length <= 0">
-    <div class="">
-      <!-- <div class="checkbox-group"> -->
+  <div class="card-panel-box-detail">
+    <div class="" *ngIf="(genes.length <= 0 && genesCheck==false)">
       <i (click)="reloadGene()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
         Click here to load Gene</i>
-      <!-- </div> -->
+    </div>
+    <div *ngIf="(genes.length <= 0 && genesCheck==true)">
+      <i style="color:white" title="Reload">&nbsp;
+        No news exists for any gene</i>
     </div>
   </div>
 

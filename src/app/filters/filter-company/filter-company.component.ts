@@ -22,6 +22,7 @@ export class FilterCompanyComponent implements OnInit {
   private result: any = [];
   private results2: any = [];
   public loading: boolean = false;
+  public companyCheck: boolean = false;
   public enableFilter: boolean = false;
   public filterText: string = '';
   public seeMoreFilterText: string = '';
@@ -71,6 +72,8 @@ export class FilterCompanyComponent implements OnInit {
     // });
     // this.getCompanies(event, 1);
     // this.hideCardBody = true;
+
+    this.selectedCompanies = Array.from(this.globalVariableService.getSelectedCompanies());
   }
 
   ngOnDestroy() {
@@ -84,7 +87,7 @@ export class FilterCompanyComponent implements OnInit {
     // this.diseaseCheckCT = this.params['ct_di_ids']; // if disease_id is checked
     // console.log("checked here Company: ", this.diseaseCheck);
 
-    this.selectedCompanies = [];
+    // this.selectedCompanies = [];
 
     //if (this.diseaseCheck !== undefined || this.diseaseCheckCT !== undefined) {
     this.companyService.getCompany()
@@ -110,10 +113,12 @@ export class FilterCompanyComponent implements OnInit {
           //}
         },
         err => {
+          this.companyCheck = true;
           this.loading = false;
           console.log(err.message)
         },
         () => {
+          this.companyCheck = true;
           this.loading = false;
           console.log("loading finish")
         }

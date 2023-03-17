@@ -43,10 +43,18 @@
           <li>Person: John Ussher</li>
           <li *ngIf="newsletterListsTable.ta_names">TA: {{newsletterListsTable.ta_names}}</li> 
           <li *ngIf="newsletterListsTable.disease_names">Disease: {{newsletterListsTable.disease_names}}</li> 
-          <!--<li *ngIf="newsletterListsTable.company_names">Company: {{newsletterListsTable.company_names}}</li> 
+
+          <!--<label ng-repeat="data in newsletterListsTable.disease_names">{{data}}</label>-->          
+            <!--<li >Address:
+              <span *ngFor="let field of newsletterListsTable.disease_names | keyvalue; last as last">
+                {{ field }}<span *ngIf="!last">, </span>
+              </span>
+            </li>-->          
+
+          <li *ngIf="newsletterListsTable.company_names">Company: {{newsletterListsTable.company_names}}</li> 
           <li *ngIf="newsletterListsTable.drug_names">Drug: {{newsletterListsTable.drug_names}}</li>
           <li *ngIf="newsletterListsTable.gene_names">Gene: {{newsletterListsTable.gene_names}}</li> 
-          <li *ngIf="newsletterListsTable.moa_names">MOA: {{newsletterListsTable.moa_names}}</li>-->
+          <li *ngIf="newsletterListsTable.moa_names">MOA: {{newsletterListsTable.moa_names}}</li>
           <!--<li>Journal: Diabetes</li>-->
         </div>
       </div>

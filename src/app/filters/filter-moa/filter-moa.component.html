@@ -5,7 +5,7 @@
     <!--<i *ngIf="moas.length > 0" class="fa fa-file-excel-o hideOn640" alt="Download"
       title="Download" style="float:right;"></i>-->
 
-    <i *ngIf="moas.length > 0" (click)="reloadMoa()"
+    <i *ngIf="moasCheck==true" (click)="reloadMoa()"
       style="color:white; float:right; cursor: pointer; margin-right: 8px;" title="Reload"
       class="ion-refresh">Reload</i>
   </div>
@@ -34,12 +34,14 @@
       More</span>
   </div>
 
-  <div class="card-panel-box-detail" *ngIf="moas.length <= 0">
-    <div class="">
-      <!-- <div class="checkbox-group"> -->
+  <div class="card-panel-box-detail">
+    <div class="" *ngIf="(moas.length <= 0 && moasCheck==false)">      
       <i (click)="reloadMoa()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
         Click here to load Moa</i>
-      <!-- </div> -->
+    </div>
+    <div *ngIf="(moas.length <= 0 && moasCheck==true)">
+      <i style="color:white" title="Reload">&nbsp;
+        No news exists for any moa</i>
     </div>
   </div>
 

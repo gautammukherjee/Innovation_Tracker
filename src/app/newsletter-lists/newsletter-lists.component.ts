@@ -19,13 +19,15 @@ export class NewsletterListsComponent implements OnInit {
   private filterParams: any;
   result: any = [];
   newsletterListsRecords: any = [];
+  newsletterDiseaseNames: any = [];
   newsletterListings: any = [];
   newsletterDListings: any = [];
+
+  array1: any = [];
 
   loading = false;
   params: any;
   layout: any = {};
-  graphData: any = [];
   diseaseCheck: any;
   //hideCardBody: boolean = true;
   modalRef: any;
@@ -84,6 +86,43 @@ export class NewsletterListsComponent implements OnInit {
           //   var y = x ? '' || 'XXX' : 'MyVAL'
           //   console.log("x: ", y);
           // });
+
+          // var arr = event.disease_names.match(/(".*?"|[^",{\s]+)(?=\s*,|\s*$)/g);
+          // console.log("x: ", arr);
+
+          // const field = Object.values(event.disease_names)
+          //   .map((address: any) =>
+          //     Object.entries(address).map(([value]) => `${value}`)
+          //   )
+          //   .join(', ');
+          // console.log("x: ", field);
+
+          // this.array1 = event.disease_names;
+          // console.log("xx: ", [this.array1]);
+
+          // var myString = [this.array1].join(', ');
+          // console.log("x: ", myString);
+
+          // this.newsletterDiseaseNames = [];
+          // this.newsletterListsService.getNewsletterDisease({ 'news_id': event.news_id }).subscribe(
+          //   data => {
+          //     this.result = data;
+
+          //     this.newsletterDiseaseNames = this.result.newsletterDiseaseNames;
+          //     console.log("newsletterDiseaseNames: ", this.newsletterDiseaseNames);
+
+          //     // var myString = [this.newsletterDiseaseNames.disease_name].join(', ');
+          //     // console.log("x: ", myString);
+
+          //   },
+          //   err => {
+          //     console.log(err.message);
+          //     this.loading = false;
+          //   },
+          //   () => {
+          //     this.loading = false;
+          //   }
+          // );
 
 
           var temps: any = {};

@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'frontend_v1.1';
 
   constructor(private globalVariableService: GlobalVariableService) {
-    this.globalVariableService.setSelectedDefaultTA([1]);
+    // this.globalVariableService.setSelectedDefaultTA([1]);
   }
   ngOnInit(): void {
 

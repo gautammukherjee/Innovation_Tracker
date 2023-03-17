@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   doFilterApply: Subject<any> = new Subject();  // ## P= Parent
 
   constructor(private globalVaiableService: GlobalVariableService, private router: Router) {
-    this.globalVaiableService.setSelectedTa([1]);
+    // this.globalVaiableService.setSelectedTa([1]);
   }
 
   ngOnInit(): void {

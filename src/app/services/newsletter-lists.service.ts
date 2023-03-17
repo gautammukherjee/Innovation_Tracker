@@ -16,6 +16,7 @@ const httpOptions = {
 export class NewsletterListsService {
   private API_URL: string = environment.apiUrl;
   private _newsLetterLists: any;
+  private _newsLetterDName: any;
   private _newsletterDetails: any;
   constructor(private _http: HttpClient) { }
 
@@ -52,5 +53,16 @@ export class NewsletterListsService {
   //       });
   //   }
   // }
+
+  getNewsletterDisease(params: any) {
+    if (this._newsLetterDName) {
+      return Observable.of(this._newsLetterDName);
+    } else {
+      return this._http.post(this.API_URL + 'getNewsletterDisease', params, httpOptions).do(
+        (data: any) => {
+          this._newsLetterDName = data;
+        });
+    }
+  }
 
 }

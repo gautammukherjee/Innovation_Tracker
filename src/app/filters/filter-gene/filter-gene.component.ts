@@ -23,6 +23,7 @@ export class FilterGeneComponent implements OnInit {
   private result: any = [];
   private results2: any = [];
   public loading: boolean = false;
+  public genesCheck: boolean = false;
   public enableFilter: boolean = false;;
   public filterText: string = '';
   public seeMoreFilterText: string = '';
@@ -72,6 +73,7 @@ export class FilterGeneComponent implements OnInit {
     // });
     // this.getGenes(event, 1);
     // this.hideCardBody = true;
+    this.selectedGenes = Array.from(this.globalVariableService.getSelectedGenes());
   }
 
   ngOnDestroy() {
@@ -85,7 +87,7 @@ export class FilterGeneComponent implements OnInit {
     // this.diseaseCheckCT = this.params['ct_di_ids']; // if disease_id is checked
     // console.log("checked here Gene: ", this.diseaseCheck);
 
-    this.selectedGenes = [];
+    // this.selectedGenes = [];
 
     //if (this.diseaseCheck !== undefined || this.diseaseCheckCT !== undefined) {
     this.geneService.getGene()
@@ -111,10 +113,12 @@ export class FilterGeneComponent implements OnInit {
           //}
         },
         err => {
+          this.genesCheck = true;
           this.loading = false;
           console.log(err.message)
         },
         () => {
+          this.genesCheck = true;
           this.loading = false;
           console.log("loading finish")
         }
