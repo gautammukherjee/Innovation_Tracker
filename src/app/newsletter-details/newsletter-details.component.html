@@ -60,17 +60,15 @@
     <div class="row">
       <div class="col-md-12">
         <div class="tags-list mb-5">
-          <h3 class="sidebar-title">Tags list</h3>
-          <li>Genetic illness: Alagille syndrome</li>
-          <li>Newly created medicine: NoRA1</li>
-          <li>Cell-level signaling system: Notch pathway</li>
-          <li>Biological structure: bile duct</li>
-          <li>Organ: liver</li>
-          <li>Species used in medical research: zebrafish</li>
-          <li>Research institute: Sanford Burnham Prebys Medical Discovery Institute</li>
-          <li>Molecular scientist: Chengjian Zhao</li>
-          <li>Molecular biologist: Duc Dong</li>
-          <li>Scientific journal: Proceedings of the National Academy of Sciences</li>
+
+          <h3 class="sidebar-title">Tags</h3>
+          <li *ngIf="newsletterDetailsData.ta_names">TA: {{newsletterDetailsData.ta_names}}</li> 
+          <li *ngIf="newsletterDetailsData.disease_names">Disease: {{newsletterDetailsData.disease_names}}</li> 
+          <li *ngIf="newsletterDetailsData.company_names">Company: {{newsletterDetailsData.company_names}}</li> 
+          <li *ngIf="newsletterDetailsData.drug_names">Drug: {{newsletterDetailsData.drug_names}}</li>
+          <li *ngIf="newsletterDetailsData.gene_names">Gene: {{newsletterDetailsData.gene_names}}</li> 
+          <li *ngIf="newsletterDetailsData.moa_names">MOA: {{newsletterDetailsData.moa_names}}</li>          
+          
         </div>
       </div>
     </div>

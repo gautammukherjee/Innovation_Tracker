@@ -22,13 +22,14 @@ export class NewsletterListsComponent implements OnInit {
   // newsletterDiseaseNames: any = [];
   newsletterListings: any = [];
   newsletterDListings: any = [];
+  newsLetterUserName: string = '';
 
   array1: any = [];
 
   loading = false;
   params: any;
   layout: any = {};
-  diseaseCheck: any;
+  // diseaseCheck: any;
   //hideCardBody: boolean = true;
   modalRef: any;
   helpContents: any;
@@ -65,9 +66,9 @@ export class NewsletterListsComponent implements OnInit {
   getNewsletterLists(_filterParams: any) {
     this.loading = true;
 
-    this.diseaseCheck = _filterParams['di_ids']; // if disease_id is checked
-    console.log("checked here Disease in event description: ", this.diseaseCheck);
-    //if (this.diseaseCheck !== undefined) {
+    // this.diseaseCheck = _filterParams['di_ids']; // if disease_id is checked
+    // console.log("checked here Disease in event description: ", this.diseaseCheck);
+    // if (this.diseaseCheck !== undefined) {
     this.newsletterListsService.getNewsletterLists(_filterParams).subscribe(
       data => {
         this.result = data;
@@ -75,7 +76,6 @@ export class NewsletterListsComponent implements OnInit {
         console.log("showNewsletterListsData: ", this.newsletterListsRecords);
 
         this.newsletterListings = [];
-
         this.newsletterListsRecords.forEach((event: any) => {
 
           // var str: any = {};
@@ -125,7 +125,11 @@ export class NewsletterListsComponent implements OnInit {
           // );
 
 
+          // let userName = this.getUserName(event.user_id);
+          // console.log("username: ", userName);
+
           var temps: any = {};
+          // temps['userName'] = userName;
           temps['news_id'] = event.news_id;
           temps["title"] = event.title;
           temps["url"] = event.url;
@@ -162,8 +166,8 @@ export class NewsletterListsComponent implements OnInit {
   getNewsletterLists2(_filterParams: any) {
     this.loading = true;
 
-    this.diseaseCheck = _filterParams['di_ids']; // if disease_id is checked
-    console.log("checked here Disease in event description: ", this.diseaseCheck);
+    // this.diseaseCheck = _filterParams['di_ids']; // if disease_id is checked
+    // console.log("checked here Disease in event description: ", this.diseaseCheck);
     //if (this.diseaseCheck !== undefined) {
     this.newsletterListsService.getNewsletterLists2(_filterParams).subscribe(
       data => {
@@ -206,6 +210,24 @@ export class NewsletterListsComponent implements OnInit {
     //   this.loading = false;
     // }
   }
+
+  // getUserName(userId: number) {
+  //   this.loading = true;
+  //   this.newsletterListsService.getNewsletterUserName({ 'user_id': userId }).subscribe(
+  //     data => {
+  //       this.result = data;
+  //       // console.log("newsLetterUserName: ", this.result.newsletterUserName[0].user_name);
+  //       return this.result.newsletterUserName[0].user_name;
+  //     },
+  //     err => {
+  //       console.log(err.message);
+  //       this.loading = false;
+  //     },
+  //     () => {
+  //       this.loading = false;
+  //     }
+  //   );
+  // }
 
   // reloadDescription() {
   //   console.log("Event description: ")

@@ -21,6 +21,7 @@ export class FilterCategoriesAIV2Component implements OnInit {
   private result: any = [];
   private results2: any = [];
   loading: boolean = false;
+  showTABody: boolean = false;
 
   private warningModalRef: any;
   private selectedIndications = [];
@@ -99,6 +100,11 @@ export class FilterCategoriesAIV2Component implements OnInit {
         this.loading = false;
       }
     );
+  }
+
+
+  onTAHeaderClick() {
+    this.showTABody = !this.showTABody;
   }
 
   selectTa(ta: any, event: any, warning: any = null) {

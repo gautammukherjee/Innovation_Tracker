@@ -1,9 +1,12 @@
 <div class="card-panel-box left-filter-box">
-    <div class="card-panel-box-heading">
+    <div class="card-panel-box-heading" (click)="onDateRangeHeaderClick()">
         <img src="../../assets/images/date_range.png" />
-        Publish Date Range
+        Publish Date Range <span class="arrow-down">
+            <img src="../../assets/images/arrow-down.svg" *ngIf="!showDateRangeBody"/>
+            <img src="../../assets/images/arrow-up.svg" *ngIf="showDateRangeBody"/>
+        </span>
     </div>
-    <div class="card-panel-box-detail">
+    <div class="card-panel-box-detail" *ngIf="showDateRangeBody">
 
         <div class="form-group">
             <div class="input-group">

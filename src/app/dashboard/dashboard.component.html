@@ -1,17 +1,28 @@
 <app-header></app-header>
 
 <section class="blogs-listing">
+  <div class="full-width-filters">
+    <div class="filter-single">
+      <app-filter-data-range (onDateRangeChangedEvent)='dateRangeChanged($event)'></app-filter-data-range>
+    </div>
+    <div class="filter-single">
+      <app-filter-categories-ai-v2 (onSelectTa)='taChanged($event)'>
+      </app-filter-categories-ai-v2>
+    </div>
+    <div class="filter-single">
+      <app-filter-disease (onSelectIndication)='indicationChanged($event)'>
+      </app-filter-disease>
+    </div>
+  </div>
   <div class="main-wrapper">
 
-  <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper">
     <div class="heading-filter">Filter</div>
     <!--<app-filters></app-filters>-->
     <!--Show here all the filters lists -->
-    <app-filter-data-range (onDateRangeChangedEvent)='dateRangeChanged($event)'></app-filter-data-range>
-    <app-filter-categories-ai-v2 (onSelectTa)='taChanged($event)'>
-    </app-filter-categories-ai-v2>
-    <app-filter-disease (onSelectIndication)='indicationChanged($event)'>
-    </app-filter-disease>
+    
+    
+    
     <app-filter-company (onSelectCompany)='companyChanged($event)'>
     </app-filter-company>
     <app-filter-drug (onSelectDrug)='drugChanged($event)'>
@@ -20,7 +31,7 @@
     </app-filter-gene>
     <app-filter-moa (onSelectMoa)='moaChanged($event)'>
     </app-filter-moa>    
-  </div>
+    </div>
 
     <div class="main-article"> 
       <app-newsletter-lists [ProceedDoFilterApply]="doFilterApply"></app-newsletter-lists>

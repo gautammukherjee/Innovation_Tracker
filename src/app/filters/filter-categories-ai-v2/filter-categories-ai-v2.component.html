@@ -1,9 +1,13 @@
 <div class="card-panel-box bg-theme top-tile">
-  <div class="card-panel-box-heading">
+  <div class="card-panel-box-heading" (click)="onTAHeaderClick()">
     <img src="../../assets/images/categories.png" />
     Therapeutic Area <img *ngIf="loading" src="../../assets/images/small-loader.gif" width="18px" />
+    <span class="arrow-down">
+      <img src="../../assets/images/arrow-down.svg" *ngIf="!showTABody"/>
+      <img src="../../assets/images/arrow-up.svg" *ngIf="showTABody"/>
+  </span>
   </div>
-  <div class="card-panel-box-detail" style="height: 150px;overflow: auto;">
+  <div class="card-panel-box-detail" style="height: 150px;overflow: auto;" *ngIf="showTABody">
     <div class="checkbox-group" style="min-height: 183px; color: aliceblue;">
       <div *ngFor="let ta of tas" class="form-check">
         <!-- <input class="form-check-input" type="checkbox" name="ta" [value]="ta" id="defaultCheckTAAI"

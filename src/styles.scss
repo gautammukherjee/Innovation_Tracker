@@ -64,9 +64,9 @@ a {
     width: 300px;
     min-width: 300px;
     position: fixed;
-    top: 88px;
-    z-index: 99;
-    height: calc(100vh - 88px);
+    top: 200px;
+    z-index: 9;
+    height: calc(100vh - 200px);
     padding: 15px 15px;
     overflow: auto;
     bottom: 0;
@@ -93,6 +93,21 @@ a {
     border-bottom: 1px solid #e7e7e7;
 }
 
+.full-width-filters {
+    .filter-single {
+        .card-panel-box {
+            position: relative;
+            margin-bottom: 0;
+
+            .card-panel-box-detail {
+                position: absolute;
+                width: 100%;
+                background: #32404e;
+            }
+        }
+    }
+}
+
 .main-wrapper .sidebar-wrapper .body-card {
     padding: 10px 10px 20px;
     max-height: 250px;
@@ -102,10 +117,11 @@ a {
 .main-wrapper .main-article {
     width: calc(100% - 300px);
     margin-left: 300px;
+    margin-top: 92px;
 }
 
 .main-wrapper .main-article .main-article-content {
-    padding: 40px 40px 0px;
+    padding: 20px 40px 0px;
 }
 
 /* Main wrapper css */
@@ -289,9 +305,31 @@ h3.sidebar-title {
     font-size: 17px;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+}
+
+.blogs-listing .blogs-card .tag-lists {
+    h3 {
+        font-size: 20px;
+        border-bottom: 1px solid #af5da2;
+        padding-bottom: 8px;
+        margin-bottom: 15px;
+    }
+
+    li {
+        list-style: none;
+        display: inline-block;
+        word-break: break-all;
+        padding: 7px 15px;
+        background: #8157A1;
+        color: #fff;
+        margin-bottom: 5px;
+        border-radius: 3px;
+        margin-right: 7px;
+        font-size: 14px;
+    }
 }
 
 .blog-detail-wrapper {

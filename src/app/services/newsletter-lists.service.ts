@@ -17,6 +17,7 @@ export class NewsletterListsService {
   private API_URL: string = environment.apiUrl;
   private _newsLetterLists: any;
   private _newsLetterDName: any;
+  private _newsLetterUName: any;
   private _newsletterDetails: any;
   constructor(private _http: HttpClient) { }
 
@@ -54,15 +55,26 @@ export class NewsletterListsService {
   //   }
   // }
 
-  getNewsletterDisease(params: any) {
-    if (this._newsLetterDName) {
-      return Observable.of(this._newsLetterDName);
-    } else {
-      return this._http.post(this.API_URL + 'getNewsletterDisease', params, httpOptions).do(
-        (data: any) => {
-          this._newsLetterDName = data;
-        });
-    }
-  }
+  // getNewsletterDisease(params: any) {
+  //   if (this._newsLetterDName) {
+  //     return Observable.of(this._newsLetterDName);
+  //   } else {
+  //     return this._http.post(this.API_URL + 'getNewsletterDisease', params, httpOptions).do(
+  //       (data: any) => {
+  //         this._newsLetterDName = data;
+  //       });
+  //   }
+  // }
+
+  // getNewsletterUserName(params: any) {
+  //   if (this._newsLetterUName) {
+  //     return Observable.of(this._newsLetterUName);
+  //   } else {
+  //     return this._http.post(this.API_URL + 'getNewsletterUserName', params, httpOptions).do(
+  //       (data: any) => {
+  //         this._newsLetterUName = data;
+  //       });
+  //   }
+  // }
 
 }

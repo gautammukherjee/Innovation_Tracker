@@ -1,0 +1,19 @@
+.full-width-filters {
+    display: flex;
+    column-gap: 30px;
+    justify-content: space-between;
+    padding: 20px;
+    width: calc(100% - 40px);
+    margin: auto;
+    margin-left: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    position: fixed;
+    top: 88px;
+    background: #fff;
+    z-index: 99;
+
+    .filter-single {
+        width: 100%;
+    }
+}

@@ -16,8 +16,20 @@
 .card-panel-box .card-panel-box-heading {
 	font-size: 16px;
 	padding: 12px 15px;
-	/*background: #187ebc;*/
 	color: #fff;
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+	border-bottom: 1px solid;
+
+	span.arrow-down {
+		margin-left: auto;
+
+		img {
+			width: 20px;
+
+		}
+	}
 }
 
 .card-panel-box .card-panel-box-detail {

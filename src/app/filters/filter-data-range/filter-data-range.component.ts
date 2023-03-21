@@ -14,6 +14,7 @@ export class FilterDataRangeComponent implements OnInit {
 
   frmDate1: any;
   toDate1: any;
+  showDateRangeBody: boolean = false;
 
   constructor(private globalVariableService: GlobalVariableService) { }
   @Output() onDateRangeChangedEvent: EventEmitter<any> = new EventEmitter()
@@ -27,6 +28,10 @@ export class FilterDataRangeComponent implements OnInit {
   }
 
   // Initialized to specific date
+
+  onDateRangeHeaderClick() {
+    this.showDateRangeBody = !this.showDateRangeBody;
+  }
 
   fromDateChanged(event: any) {
     this.frmDate1 = event.month + "-" + event.day + "-" + event.year;

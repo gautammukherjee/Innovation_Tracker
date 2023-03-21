@@ -3,7 +3,7 @@
   <div class="loading-custom" *ngIf="loading"><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</div>
 
   <div class="row card-listing-row" *ngFor="let newsletterListsTable of newsletterListings">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="blogs-card">
         <div class="title">
           <h3>
@@ -30,35 +30,20 @@
             <a [routerLink]="['/newsletter-details', newsletterListsTable.news_id]">Read More</a>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-md-4" style="height:220px;">
-      <div class="tags-list sidebar-box">
-        <h3 class="sidebar-title mb-3 border-bottom border-secondary p-2" style="position: sticky;">
-          Tags
-        </h3>
-
-        <div style="overflow-y:scroll; height:166px;">
-          <li>Person: John Ussher</li>
+        <div class="tag-lists">
+          <h3 *ngIf="newsletterListsTable.ta_names || newsletterListsTable.disease_names || newsletterListsTable.company_names || newsletterListsTable.drug_names || newsletterListsTable.gene_names || newsletterListsTable.moa_names">Tags</h3>
           <li *ngIf="newsletterListsTable.ta_names">TA: {{newsletterListsTable.ta_names}}</li> 
           <li *ngIf="newsletterListsTable.disease_names">Disease: {{newsletterListsTable.disease_names}}</li> 
-
-          <!--<label ng-repeat="data in newsletterListsTable.disease_names">{{data}}</label>-->          
-            <!--<li >Address:
-              <span *ngFor="let field of newsletterListsTable.disease_names | keyvalue; last as last">
-                {{ field }}<span *ngIf="!last">, </span>
-              </span>
-            </li>-->          
-
           <li *ngIf="newsletterListsTable.company_names">Company: {{newsletterListsTable.company_names}}</li> 
           <li *ngIf="newsletterListsTable.drug_names">Drug: {{newsletterListsTable.drug_names}}</li>
           <li *ngIf="newsletterListsTable.gene_names">Gene: {{newsletterListsTable.gene_names}}</li> 
           <li *ngIf="newsletterListsTable.moa_names">MOA: {{newsletterListsTable.moa_names}}</li>
-          <!--<li>Journal: Diabetes</li>-->
         </div>
       </div>
     </div>
+
+    
 
   </div>
 </div>
