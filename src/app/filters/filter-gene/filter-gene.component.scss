@@ -1,40 +1,48 @@
-.text-white{
-    color:#fff;
+.text-white {
+    color: #fff;
 }
-.close{
-    opacity:1;
+
+.close {
+    opacity: 1;
 }
-.modal-header{
-    padding:7px 20px;
-    border:none;
-    background:#077cb7;
-    h4{
+
+.modal-header {
+    padding: 7px 20px;
+    border: none;
+    background: #7d689f;
+
+    h4 {
         font-size: 20px;
-        margin-top:0px;
+        margin-top: 0px;
     }
 }
-.filter-single-left{
-    h4{
+
+.filter-single-left {
+    h4 {
         font-size: 16px;
         padding: 10px 15px;
         color: #fff;
         border-bottom: 1px solid #1767c5;
     }
-    .filter-single-body{
-        padding:10px 15px;
 
-        .custom-control-description{
+    .filter-single-body {
+        padding: 10px 15px;
+
+        .custom-control-description {
             font-size: 13px;
         }
     }
-    .search-box{
+
+    .search-box {
         position: relative;
-        margin-bottom:10px;
-        input{
+        margin-bottom: 10px;
+
+        input {
             font-size: 13px;
             border-radius: 5px;
         }
-        span{
+
+        span {
             position: absolute;
             right: 10px;
             top: 12px;

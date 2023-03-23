@@ -26,19 +26,19 @@
       </div>
     </div>
 
-    <span *ngIf="selectedGenes.length > 0" style="cursor: pointer" class="text-white float-left"
+    <span *ngIf="selectedGenes.length > 0" style="cursor: pointer; float:right;" class="text-white float-left"
       (click)="resetGene();">Reset</span>
     <span *ngIf="genes.length > 2" style="cursor: pointer" class="text-white float-right"
       (click)="SeeMore($event,seeMoreGeneModal);">{{genes.length-10}}
       More</span>
   </div>
 
-  <div class="card-panel-box-detail">
-    <div class="" *ngIf="(genes.length <= 0 && genesCheck==false)">
+  <div class="card-panel-box-detail" *ngIf="genes.length <= 0">
+    <div class="" *ngIf="(genesCheck==false)">
       <i (click)="reloadGene()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
         Click here to load Gene</i>
     </div>
-    <div *ngIf="(genes.length <= 0 && genesCheck==true)">
+    <div *ngIf="(genesCheck==true)">
       <i style="color:white" title="Reload">&nbsp;
         No news exists for any gene</i>
     </div>

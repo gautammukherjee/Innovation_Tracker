@@ -26,20 +26,20 @@
       </div>
     </div>
 
-    <span *ngIf="selectedDrugs.length > 0" style="cursor: pointer" class="text-white float-left"
+    <span *ngIf="selectedDrugs.length > 0" style="cursor: pointer; float:right;" class="text-white float-left"
       (click)="resetDrug();">Reset</span>
     <span *ngIf="drugs.length > 2" style="cursor: pointer" class="text-white float-right"
       (click)="SeeMore($event,seeMoreDrugModal);">{{drugs.length-10}}
       More</span>
   </div>
 
-  <div class="card-panel-box-detail">
-    <div class="" *ngIf="(drugs.length <= 0 && drugsCheck==false)">
+  <div class="card-panel-box-detail" *ngIf="drugs.length <= 0">
+    <div class="" *ngIf="(drugsCheck==false)">
       <i (click)="reloadDrug()" *ngIf="drugsCheck==false" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
         Click here to load Drug</i>
     </div>
 
-    <div *ngIf="(drugs.length <= 0 && drugsCheck==true)">
+    <div *ngIf="(drugsCheck==true)">
       <i style="color:white" title="Reload">&nbsp;
         No news exists for any drug</i>
     </div>

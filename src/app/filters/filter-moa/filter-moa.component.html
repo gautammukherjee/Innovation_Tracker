@@ -27,19 +27,19 @@
       </div>
     </div>
 
-    <span *ngIf="selectedMoas.length > 0" style="cursor: pointer" class="text-white float-left"
+    <span *ngIf="selectedMoas.length > 0" style="cursor: pointer;float:right;" class="text-white float-left"
       (click)="resetMoa();">Reset</span>
     <span *ngIf="moas.length > 2" style="cursor: pointer" class="text-white float-right"
       (click)="SeeMore($event,seeMoreMoaModal);">{{moas.length-10}}
       More</span>
   </div>
 
-  <div class="card-panel-box-detail">
-    <div class="" *ngIf="(moas.length <= 0 && moasCheck==false)">      
+  <div class="card-panel-box-detail" *ngIf="moas.length <= 0">
+    <div class="" *ngIf="(moasCheck==false)">      
       <i (click)="reloadMoa()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
         Click here to load Moa</i>
     </div>
-    <div *ngIf="(moas.length <= 0 && moasCheck==true)">
+    <div *ngIf="(moasCheck==true)">
       <i style="color:white" title="Reload">&nbsp;
         No news exists for any moa</i>
     </div>

@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <span *ngIf="selectedCompanies.length > 0" style="cursor: pointer" class="text-white float-left"
+    <span *ngIf="selectedCompanies.length > 0" style="cursor: pointer; float:right;" class="text-white float-left"
       (click)="resetCompany();">Reset</span>
 
     <span *ngIf="companies.length > 2" style="cursor: pointer" class="text-white float-right"
@@ -34,12 +34,12 @@
       More</span>
   </div>
 
-  <div class="card-panel-box-detail">
-    <div class="" *ngIf="(companies.length <= 0 && companyCheck==false)">
+  <div class="card-panel-box-detail" *ngIf="companies.length <= 0">
+    <div class="" *ngIf="(companyCheck==false)">
       <i (click)="reloadCompany()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
         Click here to load Company</i>
     </div>
-    <div *ngIf="(companies.length <= 0 && companyCheck==true)">
+    <div *ngIf="(companyCheck==true)">
       <i style="color:white" title="Reload">&nbsp;
         No news exists for any company</i>
     </div>
