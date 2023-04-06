@@ -149,10 +149,9 @@
           <div class="container">
               <div class="loading-custom" *ngIf="loadingSyns"><h3><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</h3></div>
               <div class="row" *ngIf="drugs_syns.length > 0">
-                  <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Drug Name</span></div>
                   <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Drug Synonym Name</span></div>
-              </div> 
-
+                  <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Drug Name</span></div>
+              </div>
               <div class="row" *ngFor="let drugsyn of drugs_syns | DrugSynFilterPipe:drugSynFilterText" style="border:1px solid #32404e;">
                   <div class="col-sm-6" style="background-color:#572e51;">
                       <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{drugsyn.drug_syn_name}}</span>

@@ -145,8 +145,8 @@
             <div class="container">
                 <div class="loading-custom" *ngIf="loadingSyns"><h3><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</h3></div>
                 <div class="row" *ngIf="diseases_syns.length > 0">
-                    <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Disease Name</span></div>
                     <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Disease Synonym Name</span></div>
+                    <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Disease Name</span></div>
                 </div> 
 
                 <div class="row" *ngFor="let diseasesyn of diseases_syns | DiseaseSynFilterPipe:diseaseSynFilterText" style="border:1px solid #32404e;">
