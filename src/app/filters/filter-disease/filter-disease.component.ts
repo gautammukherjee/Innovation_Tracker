@@ -34,6 +34,7 @@ export class FilterDiseaseComponent implements OnInit {
   public isAllSelected: boolean = false;
   togglecollapseStatus: boolean = false;
   private seeMorediseaseModal: any;
+  private seeSynsdiseaseModal: any;
   mouseOverON: any = undefined;
   otherMouseOverONElem: any = undefined;
   public disableProceed = true;
@@ -178,10 +179,17 @@ export class FilterDiseaseComponent implements OnInit {
   SeeMore(evt: any, seeMorediseaseModal: any) {
     this.seeMorediseaseModal = this.modalService.open(seeMorediseaseModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
   }
+
+  SeeSyns(evt: any, seeSynsdiseaseModal: any) {
+    this.seeSynsdiseaseModal = this.modalService.open(seeSynsdiseaseModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
+  }
+
   seeMoreClosePopup() {
     this.selectedIndications = Array.from(this.globalVariableService.getSelectedIndication());
     this.isAllSelected = false;
     this.seeMorediseaseModal.close();
+    // this.seeSynsdiseaseModal.close();
+
   }
 
   public seeMoreproceed() {
