@@ -2,7 +2,7 @@
 
   <div class="loading-custom" *ngIf="loading"><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</div>
 
-  <div *ngIf="!loading"><span><strong>Total News: </strong></span><span class="circle">{{newsletterListings.length}}</span></div>
+  <div class="total-count" *ngIf="!loading"><span><strong>Total News: </strong></span><span class="circle">{{newsletterListings.length}}</span></div>
   <br/>
 
   <div class="row card-listing-row" *ngFor="let newsletterListsTable of newsletterListings">

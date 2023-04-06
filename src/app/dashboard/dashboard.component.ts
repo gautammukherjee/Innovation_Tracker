@@ -11,6 +11,7 @@ import { GlobalVariableService } from '../services/common/global-variable.servic
 export class DashboardComponent implements OnInit {
 
   doFilterApply: Subject<any> = new Subject();  // ## P= Parent
+  showSidebar : boolean = false;
 
   constructor(private globalVaiableService: GlobalVariableService, private router: Router) {
     // this.globalVaiableService.setSelectedTa([1]);
@@ -18,6 +19,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  ontoggleSidebar() {
+    this.showSidebar = !this.showSidebar;
   }
 
   dateRangeChanged(e: any) {

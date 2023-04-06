@@ -16,24 +16,21 @@
   </div>
   <div class="main-wrapper">
 
-    <div class="sidebar-wrapper">
-    <!--<div class="heading-filter">Filter</div>-->
-    <!--<app-filters></app-filters>-->
-    <!--Show here all the filters lists -->
-    
-    
-    
-    <app-filter-company (onSelectCompany)='companyChanged($event)'>
-    </app-filter-company>
-    <app-filter-drug (onSelectDrug)='drugChanged($event)'>
-    </app-filter-drug>
-    <app-filter-gene (onSelectGene)='geneChanged($event)'>
-    </app-filter-gene>
-    <app-filter-moa (onSelectMoa)='moaChanged($event)'>
-    </app-filter-moa>    
+    <div class="sidebar-wrapper" *ngIf="showSidebar">
+      <app-filter-company (onSelectCompany)='companyChanged($event)'>
+      </app-filter-company>
+      <app-filter-drug (onSelectDrug)='drugChanged($event)'>
+      </app-filter-drug>
+      <app-filter-gene (onSelectGene)='geneChanged($event)'>
+      </app-filter-gene>
+      <app-filter-moa (onSelectMoa)='moaChanged($event)'>
+      </app-filter-moa>
     </div>
 
-    <div class="main-article"> 
+    <div class="main-article">
+      <div class="toggleBtn" (click)='ontoggleSidebar()'>
+        <img src="../../assets/images/menu.svg" alt="" width="40px">
+      </div>
       <app-newsletter-lists [ProceedDoFilterApply]="doFilterApply"></app-newsletter-lists>
       <app-footer></app-footer>
     </div>
