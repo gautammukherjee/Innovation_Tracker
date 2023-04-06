@@ -19,11 +19,13 @@ export class FilterDiseaseComponent implements OnInit {
   public alphabeticallyGroupedDieseases: any = '';
   public selectedIndications: Array<object> = [];
   public diseases: Array<object> = [];
+  public diseases_syns: Array<any> = [];
   private params: object = {};
   private result: any = [];
   private results1: any = [];
   private results2: any = [];
   public loading: boolean = false;
+  public loadingSyns: boolean = false;
   public enableFilter: boolean = false;
   public filterText: string = '';
   public seeMoreFilterText: string = '';
@@ -34,7 +36,7 @@ export class FilterDiseaseComponent implements OnInit {
   public isAllSelected: boolean = false;
   togglecollapseStatus: boolean = false;
   private seeMorediseaseModal: any;
-  private seeSynsdiseaseModal: any;
+  private seeSynsDiseaseModal: any;
   mouseOverON: any = undefined;
   otherMouseOverONElem: any = undefined;
   public disableProceed = true;
@@ -180,16 +182,37 @@ export class FilterDiseaseComponent implements OnInit {
     this.seeMorediseaseModal = this.modalService.open(seeMorediseaseModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
   }
 
-  SeeSyns(evt: any, seeSynsdiseaseModal: any) {
-    this.seeSynsdiseaseModal = this.modalService.open(seeSynsdiseaseModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
+  SeeSyns(evt: any, seeSynsDiseaseModal: any) {
+    this.loadingSyns = true;
+    this.seeSynsDiseaseModal = this.modalService.open(seeSynsDiseaseModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
+    this.indicationService.getIndicationSynonym()
+      .subscribe(
+        data => {
+          this.result = data;
+          // this.result = this.results1.diseasesRecords;
+          this.diseases_syns = this.result.diseasesSynsRecords;
+          console.log("diseases_syns: ", this.diseases_syns);
+        },
+        err => {
+          this.loadingSyns = false;
+          console.log(err.message)
+        },
+        () => {
+          this.loadingSyns = false;
+          console.log("loading finish")
+        }
+      );
+
   }
 
   seeMoreClosePopup() {
     this.selectedIndications = Array.from(this.globalVariableService.getSelectedIndication());
     this.isAllSelected = false;
     this.seeMorediseaseModal.close();
-    // this.seeSynsdiseaseModal.close();
+  }
 
+  seeSynonymClosePopup() {
+    this.seeSynsDiseaseModal.close();
   }
 
   public seeMoreproceed() {

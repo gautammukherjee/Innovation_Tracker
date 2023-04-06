@@ -29,6 +29,7 @@
 
     <span *ngIf="selectedMoas.length > 0" style="cursor: pointer;float:right;" class="text-white float-left"
       (click)="resetMoa();">Reset</span>
+      
     <span *ngIf="moas.length > 2" style="cursor: pointer" class="text-white float-right"
       (click)="SeeMore($event,seeMoreMoaModal);">{{moas.length-10}}
       More</span>

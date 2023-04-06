@@ -15,6 +15,7 @@ const httpOptions = {
 export class IndicationService {
   private API_URL: string = environment.apiUrl;
   private _Inds: any;
+  private _Inds_syns: any;
 
   constructor(private _http: HttpClient) { }
 
@@ -30,6 +31,18 @@ export class IndicationService {
       return this._http.get(this.API_URL + 'getDiseasesLists', httpOptions).do(
         (data: any) => {
           this._Inds = data;
+        });
+    }
+  }
+
+  getIndicationSynonym() {
+    console.log("_Inds_syns: ", this._Inds_syns);
+    if (this._Inds_syns) {
+      return Observable.of(this._Inds_syns);
+    } else {
+      return this._http.get(this.API_URL + 'getDiseasesSynsLists', httpOptions).do(
+        (data: any) => {
+          this._Inds_syns = data;
         });
     }
   }

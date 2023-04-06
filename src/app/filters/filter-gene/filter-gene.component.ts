@@ -19,10 +19,12 @@ export class FilterGeneComponent implements OnInit {
   public alphabeticallyGroupedGenes: any = '';
   public selectedGenes: Array<object> = [];
   public genes: Array<object> = [];
+  public genes_syns: Array<any> = [];
   private params: object = {};
   private result: any = [];
   private results2: any = [];
   public loading: boolean = false;
+  public loadingSyns: boolean = false;
   public genesCheck: boolean = false;
   public enableFilter: boolean = false;;
   public filterText: string = '';
@@ -34,6 +36,7 @@ export class FilterGeneComponent implements OnInit {
   public isAllSelected: boolean = false;
   togglecollapseStatus: boolean = false;
   private seeMoreGeneModal: any;
+  private seeSynsGeneModal: any;
   mouseOverON: any = undefined;
   otherMouseOverONElem: any = undefined;
   public disableProceed = true;
@@ -179,10 +182,37 @@ export class FilterGeneComponent implements OnInit {
   SeeMore(evt: any, seeMoreGeneModal: any) {
     this.seeMoreGeneModal = this.modalService.open(seeMoreGeneModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
   }
+
+  SeeSyns(evt: any, seeSynsGeneModal: any) {
+    this.loadingSyns = true;
+    this.seeSynsGeneModal = this.modalService.open(seeSynsGeneModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
+    this.geneService.getGeneSynonym()
+      .subscribe(
+        data => {
+          this.result = data;
+          // this.result = this.results1.diseasesRecords;
+          this.genes_syns = this.result.genesSynsRecords;
+          console.log("genes_syns: ", this.genes_syns);
+        },
+        err => {
+          this.loadingSyns = false;
+          console.log(err.message)
+        },
+        () => {
+          this.loadingSyns = false;
+          console.log("loading finish")
+        }
+      );
+  }
+
   seeMoreClosePopup() {
     this.selectedGenes = Array.from(this.globalVariableService.getSelectedGenes());
     this.isAllSelected = false;
     this.seeMoreGeneModal.close();
+  }
+
+  seeSynonymClosePopup() {
+    this.seeSynsGeneModal.close();
   }
 
   closePopup() {

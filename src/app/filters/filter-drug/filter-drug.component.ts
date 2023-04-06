@@ -19,10 +19,13 @@ export class FilterDrugComponent implements OnInit {
   public alphabeticallyGroupedDrugs: any = '';
   public selectedDrugs: Array<object> = [];
   public drugs: Array<object> = [];
+  public drugs_syns: Array<any> = [];
   private params: object = {};
   private result: any = [];
   private results2: any = [];
   public loading: boolean = false;
+  public loadingSyns: boolean = false;
+
   public drugsCheck: boolean = false;
   public enableFilter: boolean = false;
   public filterText: string = '';
@@ -34,6 +37,7 @@ export class FilterDrugComponent implements OnInit {
   public isAllSelected: boolean = false;
   togglecollapseStatus: boolean = false;
   private seeMoreDrugModal: any;
+  private seeSynsDrugModal: any;
   mouseOverON: any = undefined;
   otherMouseOverONElem: any = undefined;
   public disableProceed = true;
@@ -179,10 +183,38 @@ export class FilterDrugComponent implements OnInit {
   SeeMore(evt: any, seeMoreDrugModal: any) {
     this.seeMoreDrugModal = this.modalService.open(seeMoreDrugModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
   }
+
+  SeeSyns(evt: any, seeSynsDrugModal: any) {
+    this.loadingSyns = true;
+    this.seeSynsDrugModal = this.modalService.open(seeSynsDrugModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
+    this.drugService.getDrugSynonym()
+      .subscribe(
+        data => {
+          this.result = data;
+          // this.result = this.results1.diseasesRecords;
+          this.drugs_syns = this.result.drugsSynsRecords;
+          console.log("drugs_syns: ", this.drugs_syns);
+        },
+        err => {
+          this.loadingSyns = false;
+          console.log(err.message)
+        },
+        () => {
+          this.loadingSyns = false;
+          console.log("loading finish")
+        }
+      );
+
+  }
+
   seeMoreClosePopup() {
     this.selectedDrugs = Array.from(this.globalVariableService.getSelectedDrugs());
     this.isAllSelected = false;
     this.seeMoreDrugModal.close();
+  }
+
+  seeSynonymClosePopup() {
+    this.seeSynsDrugModal.close();
   }
 
   closePopup() {
