@@ -42,6 +42,7 @@ export class FilterDiseaseComponent implements OnInit {
   public disableProceed = true;
   diseaseFilter: string = '';
   diseaseFilterText: string = '';
+  diseaseSynFilterText: string = '';
   showDiseaseBody: boolean = false;
   // taCheck: any;
 

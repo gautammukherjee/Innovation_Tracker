@@ -26,9 +26,12 @@ import { FilterMoaComponent } from './filters/filter-moa/filter-moa.component';
 import { NewsletterListsComponent } from './newsletter-lists/newsletter-lists.component';
 import { NewsletterDetailsComponent } from './newsletter-details/newsletter-details.component';
 import { DiseaseDataPipe } from './pipes/diseaseDataPipe';
+import { DiseaseSynDataPipe } from './pipes/diseaseSynDataPipe';
 import { CompanyDataPipe } from './pipes/companyDataPipe';
 import { DrugDataPipe } from './pipes/drugDataPipe';
+import { DrugSynDataPipe } from './pipes/drugSynDataPipe';
 import { GeneDataPipe } from './pipes/geneDataPipe';
+import { GeneSynDataPipe } from './pipes/geneSynDataPipe';
 import { MoaDataPipe } from './pipes/moaDataPipe';
 
 @NgModule({
@@ -53,7 +56,10 @@ import { MoaDataPipe } from './pipes/moaDataPipe';
     CompanyDataPipe,
     DrugDataPipe,
     GeneDataPipe,
-    MoaDataPipe
+    MoaDataPipe,
+    DiseaseSynDataPipe,
+    DrugSynDataPipe,
+    GeneSynDataPipe
   ],
   imports: [
     BrowserModule,
@@ -76,7 +82,10 @@ import { MoaDataPipe } from './pipes/moaDataPipe';
     CompanyDataPipe,
     DrugDataPipe,
     GeneDataPipe,
-    MoaDataPipe
+    MoaDataPipe,
+    DiseaseSynDataPipe,
+    DrugSynDataPipe,
+    GeneSynDataPipe
   ],
   schemas: [],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }],

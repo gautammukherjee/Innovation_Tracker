@@ -135,13 +135,13 @@
                 </div>
                 <div class="col-md-12">
                     <div class="indicator_search inputWithSearchIcn">
-                        <input class="form-control" type="text" [(ngModel)]="diseaseFilterText">
+                        <input class="form-control" type="text" [(ngModel)]="diseaseSynFilterText">
                         <span class="fa fa-search "></span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="custom-modal-body">
+        <div class="custom-modal-body" style="max-height: 400px;overflow: auto;margin-bottom: 18px;">
             <div class="container">
                 <div class="loading-custom" *ngIf="loadingSyns"><h3><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</h3></div>
                 <div class="row" *ngIf="diseases_syns.length > 0">
@@ -149,7 +149,7 @@
                     <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Disease Synonym Name</span></div>
                 </div> 
 
-                <div class="row" *ngFor="let diseasesyn of diseases_syns | DiseaseFilterPipe:diseaseFilterText" style="border:1px solid #32404e;">
+                <div class="row" *ngFor="let diseasesyn of diseases_syns | DiseaseSynFilterPipe:diseaseSynFilterText" style="border:1px solid #32404e;">
                     <div class="col-sm-6" style="background-color:#20264f;">
                         <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_name}}</span>
                     </div>

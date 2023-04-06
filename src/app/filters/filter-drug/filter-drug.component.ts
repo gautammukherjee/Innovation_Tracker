@@ -43,6 +43,7 @@ export class FilterDrugComponent implements OnInit {
   public disableProceed = true;
   drugFilter: string = '';
   drugFilterText: string = '';
+  drugSynFilterText: string = '';
   //diseaseCheck: any;
   //diseaseCheckCT: any;
   hideCardBody: boolean = true;
@@ -204,7 +205,6 @@ export class FilterDrugComponent implements OnInit {
           console.log("loading finish")
         }
       );
-
   }
 
   seeMoreClosePopup() {

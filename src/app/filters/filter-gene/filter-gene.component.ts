@@ -42,6 +42,7 @@ export class FilterGeneComponent implements OnInit {
   public disableProceed = true;
   geneFilter: string = '';
   geneFilterText: string = '';
+  geneSynFilterText: string = '';
   //diseaseCheck: any;
   //diseaseCheckCT: any;
   hideCardBody: boolean = true;
