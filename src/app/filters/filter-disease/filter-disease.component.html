@@ -33,9 +33,9 @@
             style="cursor: pointer;font-size: 13px;float:right;"
             (click)="resetDisease($event);">Reset</span>
 
-        <span *ngIf="diseases.length > 0" class="text-white float-left"
+        <!--<span *ngIf="diseases.length > 0" class="text-white float-left"
             style="cursor: pointer;font-size: 13px;float:right;"
-            (click)="SeeSyns($event,seeSynsdiseaseModal);">Synonym</span>
+            (click)="SeeSyns($event,seeSynsdiseaseModal);">Synonym</span>-->
 
         <span *ngIf="diseases.length>4" class="text-white float-right" style="cursor: pointer;"
             (click)="SeeMore($event,seeMorediseaseModal);">{{diseases.length-10}}
