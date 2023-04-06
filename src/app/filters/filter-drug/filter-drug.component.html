@@ -154,11 +154,11 @@
               </div> 
 
               <div class="row" *ngFor="let drugsyn of drugs_syns | DrugSynFilterPipe:drugSynFilterText" style="border:1px solid #32404e;">
-                  <div class="col-sm-6" style="background-color:#20264f;">
-                      <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{drugsyn.drug_name}}</span>
-                  </div>
                   <div class="col-sm-6" style="background-color:#572e51;">
                       <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{drugsyn.drug_syn_name}}</span>
+                  </div>
+                  <div class="col-sm-6" style="background-color:#20264f;">
+                    <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{drugsyn.drug_name}}</span>
                   </div>
               </div>
           </div>            

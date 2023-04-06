@@ -150,11 +150,11 @@
                 </div> 
 
                 <div class="row" *ngFor="let diseasesyn of diseases_syns | DiseaseSynFilterPipe:diseaseSynFilterText" style="border:1px solid #32404e;">
-                    <div class="col-sm-6" style="background-color:#20264f;">
-                        <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_name}}</span>
-                    </div>
                     <div class="col-sm-6" style="background-color:#572e51;">
                         <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_syn_name}}</span>
+                    </div>
+                    <div class="col-sm-6" style="background-color:#20264f;">
+                        <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_name}}</span>
                     </div>
                 </div>
             </div>            
