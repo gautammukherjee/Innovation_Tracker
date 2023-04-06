@@ -105,10 +105,22 @@ a {
             overflow: auto;
         }
 
+        &.mobile{
+            display: none;
+
+            @media (max-width:768px){
+                display: block;
+            }
+        }
+
         @media (max-width:768px) {
             top: 0;
             height: 100%;
             z-index: 9999;
+
+            &.desktop{
+                display: none !important;
+            }
         }
     }
 

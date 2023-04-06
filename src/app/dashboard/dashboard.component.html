@@ -16,7 +16,18 @@
   </div>
   <div class="main-wrapper">
 
-    <div class="sidebar-wrapper" *ngIf="showSidebar">
+    <div class="sidebar-wrapper desktop">
+      <app-filter-company (onSelectCompany)='companyChanged($event)'>
+      </app-filter-company>
+      <app-filter-drug (onSelectDrug)='drugChanged($event)'>
+      </app-filter-drug>
+      <app-filter-gene (onSelectGene)='geneChanged($event)'>
+      </app-filter-gene>
+      <app-filter-moa (onSelectMoa)='moaChanged($event)'>
+      </app-filter-moa>
+    </div>
+
+    <div class="sidebar-wrapper mobile" *ngIf="showSidebar">
       <app-filter-company (onSelectCompany)='companyChanged($event)'>
       </app-filter-company>
       <app-filter-drug (onSelectDrug)='drugChanged($event)'>
