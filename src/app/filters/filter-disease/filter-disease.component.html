@@ -33,6 +33,10 @@
             style="cursor: pointer;font-size: 13px;float:right;"
             (click)="resetDisease($event);">Reset</span>
 
+        <span *ngIf="diseases.length > 0" class="text-white float-left"
+            style="cursor: pointer;font-size: 13px;float:right;"
+            (click)="SeeSyns($event,seeSynsdiseaseModal);">Synonym</span>
+
         <span *ngIf="diseases.length>4" class="text-white float-right" style="cursor: pointer;"
             (click)="SeeMore($event,seeMorediseaseModal);">{{diseases.length-10}}
             More</span>
@@ -114,6 +118,32 @@
             <button class="btn btn-outline-primary btn-sm" [disabled]="disableProceed"
                 (click)="seeMoreproceed()">Proceed</button>
             <button class="btn btn-danger btn-sm" (click)="seeMoreClosePopup()">Close</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #seeSynsdiseaseModal let-c="close" let-d="dismiss">
+    <div class="modal-body without_bord_rad indicators-modal">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h6 class="text-white">Synonyms
+                        <span aria-hidden="true" aria-label="Close" (click)="seeMoreClosePopup()"
+                            class="close pull-right">&times;</span>
+                        <div class="clearfix"></div>
+                    </h6>
+                </div>
+                <div class="col-md-12">
+                    <!--<div class="indicator_search inputWithSearchIcn">
+                        <input class="form-control" type="text" [(ngModel)]="diseaseFilterText">
+                        <span class="fa fa-search "></span>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-modal-body">
+           
         </div>
     </div>
 </ng-template>
