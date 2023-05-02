@@ -12,17 +12,27 @@
         <!-- <li class="nav-item">
           <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
         </li> -->
-        <li class="nav-item">
+        <li class="nav-item px-3">
           <a class="nav-link text-light" href="#">
             <h2 class="mb-0">News Letter</h2>
           </a>
-        </li>
-        
-        <li class="nav-item ms-4">
-          <a class="nav-link text-light" [routerLink]="['/logout']">
+        </li>        
+        <!--<li class="nav-item ms-4">
+          <a class="nav-link text-light" [routerLink]="['/manage-password']">
             <img src="../assets/images/logout.svg" />
           </a>
+        </li>-->
+        <li class="nav-item dropdown user-dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../assets/images/profile.png" width="40px" />&nbsp;
+            <span>{{userName.email}}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['/manage-password']">Reset Password</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/logout']">Logout</a></li>
+          </ul>
         </li>
+
       </ul>
     </div>
   </div>

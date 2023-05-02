@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   result: any;
   error = "false";
   errorMessage = "";
+  userName: any = '';
 
   constructor(private router: Router, private _activatedRoute: ActivatedRoute, private usersService: UsersService, private globalVariableService: GlobalVariableService) {
     // this.result = JSON.parse(sessionStorage.getItem('currentUser') || '');
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     var sessVal = sessionStorage.getItem('currentUser');
+    this.userName = JSON.parse(sessionStorage.getItem('currentUser') || '');
     if (sessVal == null) {
       this.router.navigate(['login']);
     }

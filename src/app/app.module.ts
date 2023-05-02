@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ManagePasswordComponent } from './manage-password/manage-password.component';
 import { IndexComponent } from './index/index.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
@@ -39,6 +40,7 @@ import { MoaDataPipe } from './pipes/moaDataPipe';
     AppComponent,
     LoginComponent,
     LogoutComponent,
+    ManagePasswordComponent,
     IndexComponent,
     DashboardComponent,
     NewsletterListsComponent,
