@@ -4,7 +4,7 @@
 
   <div *ngIf="!loading">
     <h3>
-      <span>Total News: </span>
+      <span>All Total News: </span>
       <span class="badge bg-dark">{{newsletterListings.length}}</span>
     </h3>
   </div>
@@ -42,15 +42,13 @@
         </div>
 
         <div class="tag-lists">
-          <h3 *ngIf="newsletterListsTable.ta_names || newsletterListsTable.disease_names || newsletterListsTable.company_names || newsletterListsTable.drug_names || newsletterListsTable.gene_names || newsletterListsTable.moa_names || newsletterListsTable.news_type_name || newsletterListsTable.dev_phase_names">Tags</h3>
+          <h3 *ngIf="newsletterListsTable.ta_names || newsletterListsTable.disease_names || newsletterListsTable.company_names || newsletterListsTable.drug_names || newsletterListsTable.gene_names || newsletterListsTable.moa_names">Tags</h3>
           <li *ngIf="newsletterListsTable.ta_names">TA: {{newsletterListsTable.ta_names}}</li> 
           <li *ngIf="newsletterListsTable.disease_names">Disease: {{newsletterListsTable.disease_names}}</li> 
           <li *ngIf="newsletterListsTable.company_names">Company: {{newsletterListsTable.company_names}}</li> 
           <li *ngIf="newsletterListsTable.drug_names">Drug: {{newsletterListsTable.drug_names}}</li>
           <li *ngIf="newsletterListsTable.gene_names">Gene: {{newsletterListsTable.gene_names}}</li> 
           <li *ngIf="newsletterListsTable.moa_names">MOA: {{newsletterListsTable.moa_names}}</li>
-          <!--<li *ngIf="newsletterListsTable.news_type_name">Type: {{newsletterListsTable.news_type_name}}</li>-->
-          <li *ngIf="newsletterListsTable.dev_phase_names">DevPhase : {{newsletterListsTable.dev_phase_names}}</li>
         </div>
       </div>
     </div>

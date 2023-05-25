@@ -13,10 +13,6 @@
       <app-filter-disease (onSelectIndication)='indicationChanged($event)'>
       </app-filter-disease>
     </div>
-    <div class="filter-single">
-      <app-filter-news-type (onSelectNewsType)='newsTypeChanged($event)'>
-      </app-filter-news-type>
-    </div>
   </div>
   <div class="main-wrapper">
 
@@ -29,8 +25,6 @@
       </app-filter-gene>
       <app-filter-moa (onSelectMoa)='moaChanged($event)'>
       </app-filter-moa>
-      <app-filter-development-phase (onSelectDevelopmentPhase)='developmentPhaseChanged($event)'>
-      </app-filter-development-phase>
     </div>
 
     <div class="sidebar-wrapper mobile" *ngIf="showSidebar">
@@ -42,15 +36,13 @@
       </app-filter-gene>
       <app-filter-moa (onSelectMoa)='moaChanged($event)'>
       </app-filter-moa>
-      <app-filter-development-phase (onSelectDevelopmentPhase)='developmentPhaseChanged($event)'>
-      </app-filter-development-phase>
     </div>
 
     <div class="main-article">
       <div class="toggleBtn" (click)='ontoggleSidebar()'>
         <img src="../../assets/images/menu.svg" alt="" width="40px">
       </div>
-      <app-newsletter-lists [ProceedDoFilterApply]="doFilterApply"></app-newsletter-lists>
+      <app-all-news-lists [ProceedDoFilterApply]="doFilterApply"></app-all-news-lists>
       <app-footer></app-footer>
     </div>
 

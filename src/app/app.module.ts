@@ -24,6 +24,8 @@ import { FilterCompanyComponent } from './filters/filter-company/filter-company.
 import { FilterDrugComponent } from './filters/filter-drug/filter-drug.component';
 import { FilterGeneComponent } from './filters/filter-gene/filter-gene.component';
 import { FilterMoaComponent } from './filters/filter-moa/filter-moa.component';
+import { FilterNewsTypeComponent } from './filters/filter-news-type/filter-news-type.component';
+import { FilterDevelopmentPhaseComponent } from './filters/filter-development-phase/filter-development-phase.component';
 import { NewsletterListsComponent } from './newsletter-lists/newsletter-lists.component';
 import { NewsletterDetailsComponent } from './newsletter-details/newsletter-details.component';
 import { DiseaseDataPipe } from './pipes/diseaseDataPipe';
@@ -34,6 +36,9 @@ import { DrugSynDataPipe } from './pipes/drugSynDataPipe';
 import { GeneDataPipe } from './pipes/geneDataPipe';
 import { GeneSynDataPipe } from './pipes/geneSynDataPipe';
 import { MoaDataPipe } from './pipes/moaDataPipe';
+import { AllNewsComponent } from './all-news/all-news.component';
+import { AllNewsListsComponent } from './all-news-lists/all-news-lists.component';
+import { DevelopmentPhaseDataPipe } from './pipes/developmentPhaseDataPipe';
 
 @NgModule({
   declarations: [
@@ -54,6 +59,8 @@ import { MoaDataPipe } from './pipes/moaDataPipe';
     FilterDrugComponent,
     FilterGeneComponent,
     FilterMoaComponent,
+    FilterNewsTypeComponent,
+    FilterDevelopmentPhaseComponent,
     DiseaseDataPipe,
     CompanyDataPipe,
     DrugDataPipe,
@@ -61,7 +68,10 @@ import { MoaDataPipe } from './pipes/moaDataPipe';
     MoaDataPipe,
     DiseaseSynDataPipe,
     DrugSynDataPipe,
-    GeneSynDataPipe
+    GeneSynDataPipe,
+    DevelopmentPhaseDataPipe,
+    AllNewsComponent,
+    AllNewsListsComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +90,8 @@ import { MoaDataPipe } from './pipes/moaDataPipe';
     FilterDrugComponent,
     FilterGeneComponent,
     FilterMoaComponent,
+    FilterNewsTypeComponent,
+    FilterDevelopmentPhaseComponent,
     DiseaseDataPipe,
     CompanyDataPipe,
     DrugDataPipe,
@@ -87,7 +99,8 @@ import { MoaDataPipe } from './pipes/moaDataPipe';
     MoaDataPipe,
     DiseaseSynDataPipe,
     DrugSynDataPipe,
-    GeneSynDataPipe
+    GeneSynDataPipe,
+    DevelopmentPhaseDataPipe
   ],
   schemas: [],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }],

@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { GlobalVariableService } from '../services/common/global-variable.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-all-news',
+  templateUrl: './all-news.component.html',
+  styleUrls: ['./all-news.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class AllNewsComponent implements OnInit {
 
   doFilterApply: Subject<any> = new Subject();  // ## P= Parent
   showSidebar: boolean = false;
@@ -45,12 +45,6 @@ export class DashboardComponent implements OnInit {
   }
   moaChanged(e: any) {
     // this.doFilterApply.next(e);
-  }
-  newsTypeChanged(e: any) {
-    this.doFilterApply.next(e);
-  }
-  developmentPhaseChanged(e: any) {
-    this.doFilterApply.next(e);
   }
 
 }

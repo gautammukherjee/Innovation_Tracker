@@ -14,12 +14,14 @@ export class GlobalVariableService {
 
   // selectedTa = this.configureTAID();
   selectedTa = [];
+  selectedNewsType = [];
   // defaultTAID: any;
   selectedDefaultTasWithName: any = [];
 
   filterParams = {};
   selectedIndication = [];
   selectedCompany = [];
+  selectedDevelopment = [];
   selectedDrug = [];
   selectedGene = [];
   selectedMoa = [];
@@ -59,6 +61,12 @@ export class GlobalVariableService {
   getSelectedTa() {
     return this.selectedTa;
   }
+  setSelectedNewsType(newsType: any) { // array of Selected TAs
+    this.selectedNewsType = newsType;
+  }
+  getSelectedNewsType() {
+    return this.selectedNewsType;
+  }
 
   // setSelectedDefaultTA(ta: any) { //First Choice i.e Single TA
   //   this.selectedDefaultTasWithName[0] = ta;
@@ -80,6 +88,12 @@ export class GlobalVariableService {
   }
   getSelectedCompanies() {
     return this.selectedCompany;
+  }
+  setSelectedDevelopments(development_phase: any) {
+    this.selectedDevelopment = development_phase;
+  }
+  getSelectedDevelopments() {
+    return this.selectedDevelopment;
   }
   setSelectedDrugs(drug: any) {
     this.selectedDrug = drug;
@@ -105,8 +119,10 @@ export class GlobalVariableService {
       from_date: this.getFromDate(),
       to_date: this.getToDate(),
       ta_id: this.getSelectedTa().length > 0 ? this.getSelectedTa() : undefined,
+      news_type_id: this.getSelectedNewsType().length > 0 ? this.getSelectedNewsType() : undefined,
       di_ids: this.getSelectedIndication().length > 0 ? this.getSelectedIndication() : undefined,
       comp_id: this.getSelectedCompanies().length > 0 ? this.getSelectedCompanies() : undefined,
+      dev_phase_id: this.getSelectedDevelopments().length > 0 ? this.getSelectedDevelopments() : undefined,
       drug_id: this.getSelectedDrugs().length > 0 ? this.getSelectedDrugs() : undefined,
       gene_id: this.getSelectedGenes().length > 0 ? this.getSelectedGenes() : undefined,
       moa_id: this.getSelectedMoas().length > 0 ? this.getSelectedMoas() : undefined,

@@ -128,6 +128,20 @@ export class NewsletterListsComponent implements OnInit {
           // let userName = this.getUserName(event.user_id);
           // console.log("username: ", userName);
 
+          // var newsTypeName = '';
+          // var newsTypeId = this.filterParams['news_type_id'];
+          // console.log("newsType: ", newsTypeId);
+
+          // if (newsTypeId == 1) {
+          //   newsTypeName = "Innovation"
+          // }
+          // else if (newsTypeId == 2) {
+          //   newsTypeName = "News"
+          // }
+          // else if (newsTypeId.includes([1, 2])) {
+          //   newsTypeName = "Innovation, News"
+          // }
+
           var temps: any = {};
           // temps['userName'] = userName;
           temps['news_id'] = event.news_id;
@@ -141,6 +155,8 @@ export class NewsletterListsComponent implements OnInit {
           temps["gene_names"] = event.gene_names;
           temps["marker_names"] = event.marker_names;
           temps["moa_names"] = event.moa_names;
+          temps["dev_phase_names"] = event.dev_phase_names;
+          // temps["news_type_name"] = newsTypeName;
           temps["publication_date"] = this.datePipe.transform(event.publication_date, 'yyyy-MM-dd');
           //temps["link"] = '<a href="' + event.link + '" target="_blank">link</a>';
           //temps["url_title"] = '<a href="' + event.link + '" target="_blank">' + event.link + '</a>';
@@ -163,6 +179,13 @@ export class NewsletterListsComponent implements OnInit {
     // }
   }
 
+  // containsAll(needles: any, haystack: any) {
+  //   for (var i = 0; i < needles.length; i++) {
+  //     if ($.inArray(needles[i], haystack) == -1) return false;
+  //   }
+  //   return true;
+  // }
+
   getNewsletterLists2(_filterParams: any) {
     this.loading = true;
 
@@ -173,10 +196,25 @@ export class NewsletterListsComponent implements OnInit {
       data => {
         this.result = data;
         this.newsletterListsRecords = this.result.newsletterRecords;
-        console.log("showNewsletterListsData: ", this.newsletterListsRecords);
+        // console.log("showNewsletterListsData: ", this.newsletterListsRecords);
+
+        // var newsTypeName = '';
+        // var newsTypeId = this.filterParams['news_type_id'];
+
+        // if (newsTypeId == 1) {
+        //   newsTypeName = "Innovation"
+        // }
+        // else if (newsTypeId == 2) {
+        //   newsTypeName = "News"
+        // }
+        // else if (newsTypeId.includes([1, 2])) {
+        //   newsTypeName = "Innovation, News"
+        // }
+
         this.newsletterListings = [];
 
         this.newsletterListsRecords.forEach((event: any) => {
+
           var temps: any = {};
           temps['news_id'] = event.news_id;
           temps["title"] = event.title;
@@ -189,6 +227,8 @@ export class NewsletterListsComponent implements OnInit {
           temps["gene_names"] = event.gene_names;
           temps["marker_names"] = event.marker_names;
           temps["moa_names"] = event.moa_names;
+          temps["dev_phase_names"] = event.dev_phase_names;
+          // temps["news_type_name"] = newsTypeName;
           temps["publication_date"] = this.datePipe.transform(event.publication_date, 'yyyy-MM-dd');
           //temps["link"] = '<a href="' + event.link + '" target="_blank">link</a>';
           //temps["url_title"] = '<a href="' + event.link + '" target="_blank">' + event.link + '</a>';

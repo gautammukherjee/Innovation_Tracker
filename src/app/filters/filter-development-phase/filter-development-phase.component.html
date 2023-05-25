@@ -1,0 +1,123 @@
+<div class="card-panel-box bg-theme top-tile">
+  <div class="card-panel-box-heading">
+    <img src="../../assets/images/associated_company.png" />
+    Dev Phase <img *ngIf="loading" src="../../assets/images/small-loader.gif" width="18px" />
+    <!--<i *ngIf="developments.length > 0" class="fa fa-file-excel-o hideOn640" alt="Download"
+      title="Download" style="float:right;"></i>-->
+
+    <i *ngIf="developmentCheck==true" (click)="reloadDevelopment()"
+      style="color:white; float:right; cursor: pointer; margin-right: 8px;" title="Reload"
+      class="ion-refresh">Reload</i>
+  </div>
+
+  <div class="card-panel-box-detail" *ngIf="developments.length > 0" style="height: 150px;overflow: auto;">
+    <div class="checkbox-group" style="min-height: 183px; color: aliceblue;">
+      <div class="search-input">
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="developmentFilter" />
+      </div>
+      <div class="checkbox-group">
+        <div class="form-check" *ngFor="let development of developments | DevelopmentPhaseFilterPipe:developmentFilter">
+          <input class="form-check-input" type="checkbox" name="developments" [value]="development"
+            [checked]="selectedDevelopments.indexOf(development.dev_phase_id)>-1 " (change)="selectDevelopmentPhase(development,$event)">
+          <label class="form-check-label" for="defaultCheck1">
+            {{development.dev_phase_name}}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <span *ngIf="selectedDevelopments.length > 0" style="cursor: pointer; float:right;" class="text-white float-left"
+      (click)="resetDevelopment();">Reset</span>
+
+    <span *ngIf="developments.length > 2" style="cursor: pointer" class="text-white float-right"
+      (click)="SeeMore($event,seeMoreDevelopmentModal);">{{developments.length-10}}
+      More</span>
+  </div>
+
+  <div class="card-panel-box-detail" *ngIf="developments.length <= 0">
+    <div class="" *ngIf="(developmentCheck==false)">
+      <i (click)="reloadDevelopment()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
+        Click here to load Development</i>
+    </div>
+    <div *ngIf="(developmentCheck==true)">
+      <i style="color:white" title="Reload">&nbsp;
+        No news exists for any development</i>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #developmentWarningModal let-c="close" let-d="dismiss">
+  <div class="modal-header    modal-lg" style="background: #ff0c66 !important;">
+    <h4 class="modal-title">Warning</h4>
+    &nbsp;
+    <button class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body white_bg without_bord_rad">
+    <h6 style="color:#ff0c66">You unchecked the "Select All" option. If you will Proceed with this then result-set
+      of
+      with all development(s).
+      Otherwise you may choose indications and proceed.</h6>
+    <div class="pull-right">
+      <button class="btn btn-hero-info btn-demo" (click)="closePopup()">Okay</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #seeMoreDevelopmentModal let-c="close" let-d="dismiss">
+  <div class="modal-body without_bord_rad indicators-modal">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-md-12">
+          <h6 class="text-white">Select Developments
+            <span aria-hidden="true" aria-label="Close" (click)="seeMoreClosePopup()"
+              class="close pull-right">&times;</span>
+            <div class="clearfix"></div>
+          </h6>
+        </div>
+        <div class="col-md-12">
+          <div class="indicator_search">
+            <input class="form-control" type="text" [(ngModel)]="developmentFilterText">
+            <span class="fa fa-search "></span>
+          </div>
+
+          <div class="indicator_alpha">
+            <span *ngFor="let developments of alphabeticallyGroupedDevelopments">
+              <span class="text-white" (mouseleave)="mouseOverON=''" (mouseover)="mouseOverON =developments.key"
+                (click)="scrollToView(developments.key)">{{developments.key}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="custom-modal-body">
+      <div class="my-div-content singleIndicatorFilter" id="{{developments.key}}"
+        [ngClass]="(mouseOverON==developments.key ) ?'cls-highlight':''"
+        *ngFor="let developments of alphabeticallyGroupedDevelopments">
+        <div class="two-column_popup demo-checkboxes-radio"
+          *ngFor="let development of developments.value | DevelopmentPhaseFilterPipe:developmentFilterText">
+          <input type="checkbox" name="developments" [value]="development"
+            [checked]="selectedDevelopments.indexOf(development.dev_phase_id)>-1 "
+            (change)="selectDevelopmentPhase(development,$event,'developmentWarningModal')">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description text-dark">&nbsp;&nbsp;{{development.dev_phase_name}}</span>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="demo-checkboxes-radio">
+        <!--<input type="checkbox" name="developments" [(ngModel)]="isAllSelected" [value]="developments" [checked]=""
+          (change)="selectAll($event,developmentWarningModal);">
+        <span class="custom-control-description text-dark">&nbsp;Select All</span>-->
+      </div>
+      <button class="btn btn-outline-primary" [disabled]="disableProceed" (click)="seeMoreproceed()">Proceed</button>
+      <button class="btn btn-danger" (click)="seeMoreClosePopup()">Close</button>
+    </div>
+  </div>
+</ng-template>
