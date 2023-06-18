@@ -20,7 +20,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FilterDataRangeComponent } from './filters/filter-data-range/filter-data-range.component';
 import { FilterCategoriesAIV2Component } from './filters/filter-categories-ai-v2/filter-categories-ai-v2.component';
-import { FilterDiseaseComponent } from './filters/filter-disease/filter-disease.component';
 import { FilterDiseaseSynonymComponent } from './filters/filter-disease-synonym/filter-disease-synonym.component';
 import { FilterCompanyComponent } from './filters/filter-company/filter-company.component';
 import { FilterDrugComponent } from './filters/filter-drug/filter-drug.component';
@@ -43,6 +42,7 @@ import { AllNewsListsComponent } from './all-news-lists/all-news-lists.component
 import { DevelopmentPhaseDataPipe } from './pipes/developmentPhaseDataPipe';
 // import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import { FilterDiseaseComponent } from './filters/filter-disease/filter-disease.component';
 // import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
