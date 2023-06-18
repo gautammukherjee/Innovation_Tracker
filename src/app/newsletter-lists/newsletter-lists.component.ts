@@ -5,7 +5,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import * as moment from "moment";
-import { NgxSpinnerService } from 'ngx-spinner';
+// import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var jQuery: any;
 
@@ -41,7 +41,7 @@ export class NewsletterListsComponent implements OnInit {
     private newsletterListsService: NewsletterListsService,
     private datePipe: DatePipe,
     private modalService: NgbModal,
-    private spinner: NgxSpinnerService
+    // private spinner: NgxSpinnerService
   ) { }
 
   notEmptyPost: boolean = true;
