@@ -34,9 +34,8 @@
             (click)="resetDisease($event);">Reset</span>
 
         <span *ngIf="diseases.length > 0" class="text-white float-left"
-            style="cursor: pointer;font-size: 13px;float: right;margin-top: 4px;clear:both;">
-            <a target="_blank" [routerLink]="['/filter-disease-synonym']">Synonym</a>
-        </span>
+            style="cursor: pointer;font-size: 13px;float: right;margin-top: 4px;clear:both;"
+            (click)="SeeSyns($event,seeSynsDiseaseModal);">Synonym</span>
 
         <span *ngIf="diseases.length>4" class="text-white float-right" style="cursor: pointer;"
             (click)="SeeMore($event,seeMorediseaseModal);">{{diseases.length-10}}
@@ -123,60 +122,43 @@
     </div>
 </ng-template>
 
-
-<!--<div class="demo-infinite-container"
-infinite-scroll
-[infiniteScrollDistance]="2"
-[infiniteScrollThrottle]="50"
-(scrolled)="onScroll()">
-
 <ng-template #seeSynsDiseaseModal let-c="close" let-d="dismiss">
-
-        <div class="modal-body without_bord_rad indicators-modal">
-            <div class="modal-header">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h6 class="text-white">Disease Synonyms
-                            <span aria-hidden="true" aria-label="Close" (click)="seeSynonymClosePopup()"
-                                class="close pull-right" style="cursor: pointer;font-size: 30px;">&times;</span>
-                            <div class="clearfix"></div>
-                        </h6>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="indicator_search inputWithSearchIcn">
-                            <input class="form-control" type="text" [(ngModel)]="diseaseSynFilterText">
-                            <span class="fa fa-search "></span>
-                        </div>
+    <div class="modal-body without_bord_rad indicators-modal">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <h6 class="text-white">Disease Synonyms
+                        <span aria-hidden="true" aria-label="Close" (click)="seeSynonymClosePopup()"
+                            class="close pull-right" style="cursor: pointer;font-size: 30px;">&times;</span>
+                        <div class="clearfix"></div>
+                    </h6>
+                </div>
+                <div class="col-md-12">
+                    <div class="indicator_search inputWithSearchIcn">
+                        <input class="form-control" type="text" [(ngModel)]="diseaseSynFilterText">
+                        <span class="fa fa-search "></span>
                     </div>
                 </div>
             </div>
-            <div class="custom-modal-body" style="max-height: 400px;overflow: auto;margin-bottom: 18px;">
-                <div class="container">
-                    <div class="loading-custom" *ngIf="loadingSyns"><h3><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</h3></div>
-                    <div class="row" *ngIf="diseases_syns.length > 0">
-                        <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Disease Synonym Name</span></div>
-                        <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Disease Name</span></div>
-                    </div> 
+        </div>
+        <div class="custom-modal-body" style="max-height: 400px;overflow: auto;margin-bottom: 18px;">
+            <div class="container">
+                <div class="loading-custom" *ngIf="loadingSyns"><h3><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</h3></div>
+                <div class="row" *ngIf="diseases_syns.length > 0">
+                    <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Disease Synonym Name</span></div>
+                    <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Disease Name</span></div>
+                </div> 
 
-                    <div class="row" *ngFor="let diseasesyn of diseases_syns | DiseaseSynFilterPipe:diseaseSynFilterText" style="border:1px solid #32404e;">
-                        <div class="col-sm-6" style="background-color:#572e51;">
-                            <span class="custom-control-description" style="color:#fff;" (click)="onScroll()">&nbsp;&nbsp;{{diseasesyn.disease_syn_name}}</span>
-                        </div>
-                        <div class="col-sm-6" style="background-color:#20264f;">
-                            <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_name}}</span>
-                        </div>
+                <div class="row" *ngFor="let diseasesyn of diseases_syns | DiseaseSynFilterPipe:diseaseSynFilterText" style="border:1px solid #32404e;">
+                    <div class="col-sm-6" style="background-color:#572e51;">
+                        <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_syn_name}}</span>
                     </div>
-                </div>            
-                <div class="clearfix"></div>
-            </div>
+                    <div class="col-sm-6" style="background-color:#20264f;">
+                        <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_name}}</span>
+                    </div>
+                </div>
+            </div>            
+            <div class="clearfix"></div>
         </div>
-
-        <div class="loading-custom text-center" *ngIf="isLoading"><img src="./assets/images/spinner_loader.gif"></div>
-        <div *ngIf="!notEmptyPost" class="row">
-            <div class="alert alert-warning">
-            No more news
-            </div>
-        </div>
+    </div>
 </ng-template>
-
-</div>-->

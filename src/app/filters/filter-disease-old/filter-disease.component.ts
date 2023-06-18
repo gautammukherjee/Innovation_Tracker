@@ -44,8 +44,8 @@ export class FilterDiseaseComponent implements OnInit {
   diseaseFilterText: string = '';
   diseaseSynFilterText: string = '';
   showDiseaseBody: boolean = false;
-  private filterParams: any;
   // taCheck: any;
+
 
   constructor(
     private indicationService: IndicationService,
@@ -53,12 +53,6 @@ export class FilterDiseaseComponent implements OnInit {
     private modalService: NgbModal,
     private elementRef: ElementRef
   ) { }
-
-  notEmptyPost: boolean = true;
-  notscrolly: boolean = true;
-  currentPage: number = 1;
-  itemsPerPage: number = 100;
-  isLoading: boolean = false;
 
   ngOnInit(): void {
     //To filter the disease indication lists
@@ -191,11 +185,8 @@ export class FilterDiseaseComponent implements OnInit {
 
   SeeSyns(evt: any, seeSynsDiseaseModal: any) {
     this.loadingSyns = true;
-    this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": 0, "limitValue": this.itemsPerPage });
-    console.log("filterparamsFirst: ", this.filterParams);
-
     this.seeSynsDiseaseModal = this.modalService.open(seeSynsDiseaseModal, { size: 'lg', windowClass: 'diseaseModal-custom-class', keyboard: false, backdrop: 'static' });
-    this.indicationService.getIndicationSynonym(this.filterParams)
+    this.indicationService.getIndicationSynonym_old()
       .subscribe(
         data => {
           this.result = data;
@@ -270,44 +261,6 @@ export class FilterDiseaseComponent implements OnInit {
     var elmnt = document.getElementById(key);
     if (elmnt !== null)
       elmnt.scrollIntoView();
-  }
-
-  onScroll() {
-    console.log("scrolled");
-    // this.loadNextPost();
-
-    if (this.notscrolly && this.notEmptyPost) {
-      this.notscrolly = false;
-      this.currentPage++;
-      this.loadNextPost();
-    }
-  }
-
-  loadNextPost() {
-    console.log("in scrolled");
-    this.isLoading = true;
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-
-    this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": startIndex, "limitValue": this.itemsPerPage });
-
-    this.indicationService.getIndicationSynonym(this.filterParams)
-      .subscribe(
-        data => {
-          this.result = data;
-          // this.result = this.results1.diseasesRecords;
-          this.diseases_syns = this.result.diseasesSynsRecords;
-          console.log("diseases_syns: ", this.diseases_syns);
-        },
-        err => {
-          this.isLoading = false;
-          console.log(err.message)
-        },
-        () => {
-          this.isLoading = false;
-          console.log("loading finish")
-        }
-      );
-
   }
 
 

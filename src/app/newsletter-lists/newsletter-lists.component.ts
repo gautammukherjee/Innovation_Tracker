@@ -5,6 +5,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import * as moment from "moment";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var jQuery: any;
 
@@ -18,6 +19,7 @@ export class NewsletterListsComponent implements OnInit {
   @Input() ProceedDoFilterApply?: Subject<any>; //# Input for ProceedDoFilter is getting from clinical details html
   private filterParams: any;
   result: any = [];
+  newPost: any = [];
   newsletterListsRecords: any = [];
   // newsletterDiseaseNames: any = [];
   newsletterListings: any = [];
@@ -26,7 +28,7 @@ export class NewsletterListsComponent implements OnInit {
 
   array1: any = [];
 
-  loading = false;
+  loading: boolean = false;
   params: any;
   layout: any = {};
   // diseaseCheck: any;
@@ -34,14 +36,21 @@ export class NewsletterListsComponent implements OnInit {
   modalRef: any;
   helpContents: any;
 
-
   constructor(
     private globalVariableService: GlobalVariableService,
     private newsletterListsService: NewsletterListsService,
     private datePipe: DatePipe,
     private modalService: NgbModal,
+    private spinner: NgxSpinnerService
   ) { }
 
+  notEmptyPost: boolean = true;
+  notscrolly: boolean = true;
+  currentPage: number = 1;
+  itemsPerPage: number = 100;
+  isLoading: boolean = false;
+
+  // toggleLoading = () => this.isLoading = !this.isLoading;
 
   ngOnInit() {
     this.filterParams = this.globalVariableService.getFilterParams();
@@ -49,15 +58,15 @@ export class NewsletterListsComponent implements OnInit {
     // this.getNewsletterLists(this.filterParams);
 
     this.ProceedDoFilterApply?.subscribe(data => {  // Calling from details, details working as mediator
-      console.log("data: ", data);
+      // console.log("data: ", data);
       if (data === undefined) { // data=undefined true when apply filter from side panel
         //this.hideCardBody = true;
         this.filterParams = this.globalVariableService.getFilterParams();
-        this.getNewsletterLists2(this.filterParams);
-        console.log("new Filters for newsletter: ", this.filterParams);
+        this.getNewsletterLists(this.filterParams);
+        // console.log("new Filters for newsletter: ", this.filterParams);
       } else if (data.clickOn !== 'clickOnEventDetails') { // because graph should not change when click on this component itself
         // this.filterParams = this.globalVariableService.getFilterParams(this.globalVariableService.getChartFilterParams());
-        this.getNewsletterLists2(this.filterParams);
+        this.getNewsletterLists(this.filterParams);
       }
     });
     this.getNewsletterLists(this.filterParams);
@@ -66,10 +75,15 @@ export class NewsletterListsComponent implements OnInit {
   getNewsletterLists(_filterParams: any) {
     this.loading = true;
 
+    // this.toggleLoading();
+
     // this.diseaseCheck = _filterParams['di_ids']; // if disease_id is checked
     // console.log("checked here Disease in event description: ", this.diseaseCheck);
     // if (this.diseaseCheck !== undefined) {
-    this.newsletterListsService.getNewsletterLists(_filterParams).subscribe(
+    this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": 0, "limitValue": this.itemsPerPage });
+    console.log("filterparamsFirst: ", this.filterParams);
+
+    this.newsletterListsService.getNewsletterLists(this.filterParams).subscribe(
       data => {
         this.result = data;
         this.newsletterListsRecords = this.result.newsletterRecords;
@@ -163,6 +177,7 @@ export class NewsletterListsComponent implements OnInit {
           this.newsletterListings.push(temps);
         });
         console.log("newsletterListings: ", this.newsletterListings);
+        // complete: () => this.toggleLoading()
       },
       err => {
         console.log(err.message);
@@ -170,7 +185,7 @@ export class NewsletterListsComponent implements OnInit {
       },
       () => {
         this.loading = false;
-      }
+      },
     );
     // }
     // else {
@@ -185,71 +200,6 @@ export class NewsletterListsComponent implements OnInit {
   //   }
   //   return true;
   // }
-
-  getNewsletterLists2(_filterParams: any) {
-    this.loading = true;
-
-    // this.diseaseCheck = _filterParams['di_ids']; // if disease_id is checked
-    // console.log("checked here Disease in event description: ", this.diseaseCheck);
-    //if (this.diseaseCheck !== undefined) {
-    this.newsletterListsService.getNewsletterLists2(_filterParams).subscribe(
-      data => {
-        this.result = data;
-        this.newsletterListsRecords = this.result.newsletterRecords;
-        // console.log("showNewsletterListsData: ", this.newsletterListsRecords);
-
-        // var newsTypeName = '';
-        // var newsTypeId = this.filterParams['news_type_id'];
-
-        // if (newsTypeId == 1) {
-        //   newsTypeName = "Innovation"
-        // }
-        // else if (newsTypeId == 2) {
-        //   newsTypeName = "News"
-        // }
-        // else if (newsTypeId.includes([1, 2])) {
-        //   newsTypeName = "Innovation, News"
-        // }
-
-        this.newsletterListings = [];
-
-        this.newsletterListsRecords.forEach((event: any) => {
-
-          var temps: any = {};
-          temps['news_id'] = event.news_id;
-          temps["title"] = event.title;
-          temps["url"] = event.url;
-          temps["description"] = event.description;
-          temps["ta_names"] = event.ta_names;
-          temps["disease_names"] = event.disease_names;
-          temps["drug_names"] = event.drug_names;
-          temps["company_names"] = event.company_names;
-          temps["gene_names"] = event.gene_names;
-          temps["marker_names"] = event.marker_names;
-          temps["moa_names"] = event.moa_names;
-          temps["dev_phase_names"] = event.dev_phase_names;
-          // temps["news_type_name"] = newsTypeName;
-          temps["publication_date"] = this.datePipe.transform(event.publication_date, 'yyyy-MM-dd');
-          //temps["link"] = '<a href="' + event.link + '" target="_blank">link</a>';
-          //temps["url_title"] = '<a href="' + event.link + '" target="_blank">' + event.link + '</a>';
-          this.newsletterListings.push(temps);
-        });
-        console.log("newsletterListings2: ", this.newsletterListings);
-      },
-      err => {
-        console.log(err.message);
-        this.loading = false;
-      },
-      () => {
-        this.loading = false;
-      }
-    );
-    // }
-    // else {
-    //   this.newsletterListsRecords = [];
-    //   this.loading = false;
-    // }
-  }
 
   // getUserName(userId: number) {
   //   this.loading = true;
@@ -283,5 +233,84 @@ export class NewsletterListsComponent implements OnInit {
   //   this.helpContents = "Event Description";
   //   this.modalRef = this.modalService.open(helpDesc, { size: 'lg' });
   // }
+
+  onScroll() {
+    // console.log("scrolled");
+    // this.spinner.show();
+    if (this.notscrolly && this.notEmptyPost) {
+      // this.spinner.show();
+      this.notscrolly = false;
+      this.currentPage++;
+      this.loadNextPost();
+    }
+  }
+
+  loadNextPost() {
+    // this.toggleLoading();
+    this.isLoading = true;
+    // const lastPost = this.newsletterListsRecords[this.newsletterListsRecords.length - 1];
+    // //get id of last post
+    // const lastPostId = lastPost.news_id;
+    // //sent this id  as key value pare using formdata()
+    // const dataToSend = new FormData();
+    // dataToSend.append('news_id', lastPostId);
+
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+
+    this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": startIndex, "limitValue": this.itemsPerPage });
+    // console.log("filterparamScroll: ", this.filterParams);
+
+    this.newsletterListsService.getNewsletterLists(this.filterParams).subscribe(
+      data => {
+        this.newPost = data;
+        // console.log("newPost: ", this.newPost.newsletterRecords);
+        // console.log("newPostLength: ", this.newPost.newsletterRecords.length);
+        // this.spinner.hide();
+        if (this.newPost.length === 0) {
+          this.notEmptyPost = false;
+        }
+
+        //add newly fetched posts to the existing posts
+        // this.newsletterListsRecords = [];
+        // this.newsletterListsRecords = this.newsletterListsRecords.concat(this.newPost.newsletterRecords);
+        this.newsletterListsRecords = this.newPost.newsletterRecords;
+        console.log("finalTotal: ", this.newsletterListsRecords);
+        this.notscrolly = true;
+
+        this.newsletterListsRecords.forEach((event: any) => {
+          var temps: any = {};
+          // temps['userName'] = userName;
+          temps['news_id'] = event.news_id;
+          temps["title"] = event.title;
+          temps["url"] = event.url;
+          temps["description"] = event.description;
+          temps["ta_names"] = event.ta_names;
+          temps["disease_names"] = event.disease_names;
+          temps["drug_names"] = event.drug_names;
+          temps["company_names"] = event.company_names;
+          temps["gene_names"] = event.gene_names;
+          temps["marker_names"] = event.marker_names;
+          temps["moa_names"] = event.moa_names;
+          temps["dev_phase_names"] = event.dev_phase_names;
+          // temps["news_type_name"] = newsTypeName;
+          temps["publication_date"] = this.datePipe.transform(event.publication_date, 'yyyy-MM-dd');
+          //temps["link"] = '<a href="' + event.link + '" target="_blank">link</a>';
+          //temps["url_title"] = '<a href="' + event.link + '" target="_blank">' + event.link + '</a>';
+          this.newsletterListings.push(temps);
+        });
+
+
+        // complete: () => this.toggleLoading()
+      },
+      err => {
+        console.log(err.message);
+        this.isLoading = false;
+      },
+      () => {
+        this.isLoading = false;
+      },
+    );
+
+  }
 
 }

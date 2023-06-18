@@ -12,12 +12,18 @@
   <!--<div class="total-count" *ngIf="!loading"><span><strong>Total News: </strong></span><span class="circle">{{newsletterListings.length}}</span></div>
   <br/>-->
 
+  <div class="search-results" 
+  infinite-scroll 
+  [infiniteScrollDistance]="2" 
+  [infiniteScrollThrottle]="300" 
+  (scrolled)="onScroll()">  
+
   <div class="row card-listing-row" *ngFor="let newsletterListsTable of newsletterListings">
     <div class="col-md-12">
       <div class="blogs-card">
         <div class="title">
           <h3>
-            <a [routerLink]="['/newsletter-details', newsletterListsTable.news_id]">
+            <a target="_blank" [routerLink]="['/newsletter-details', newsletterListsTable.news_id]">
               {{newsletterListsTable.title}}
             </a>
           </h3>
@@ -58,6 +64,15 @@
     
 
   </div>
+  <div class="loading-custom text-center" *ngIf="!loading && isLoading"><img src="./assets/images/spinner_loader.gif"></div>
+
+  <div *ngIf="!notEmptyPost" class="row">
+    <div class="alert alert-warning">
+      No more news
+    </div>
+  </div>
+</div>
+
 </div>
 
   

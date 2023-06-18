@@ -31,11 +31,13 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/font-awesome/css/font-awesome.min.css"
+              "./node_modules/font-awesome/css/font-awesome.min.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "./src/assets/extrnalJs/jquery.min.js",
-              "./src/assets/extrnalJs/popper.min.js"
+              "./src/assets/extrnalJs/popper.min.js",
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
             ]
           },
           "configurations": {

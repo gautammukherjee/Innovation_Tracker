@@ -8,6 +8,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -20,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FilterDataRangeComponent } from './filters/filter-data-range/filter-data-range.component';
 import { FilterCategoriesAIV2Component } from './filters/filter-categories-ai-v2/filter-categories-ai-v2.component';
 import { FilterDiseaseComponent } from './filters/filter-disease/filter-disease.component';
+import { FilterDiseaseSynonymComponent } from './filters/filter-disease-synonym/filter-disease-synonym.component';
 import { FilterCompanyComponent } from './filters/filter-company/filter-company.component';
 import { FilterDrugComponent } from './filters/filter-drug/filter-drug.component';
 import { FilterGeneComponent } from './filters/filter-gene/filter-gene.component';
@@ -39,6 +41,9 @@ import { MoaDataPipe } from './pipes/moaDataPipe';
 import { AllNewsComponent } from './all-news/all-news.component';
 import { AllNewsListsComponent } from './all-news-lists/all-news-lists.component';
 import { DevelopmentPhaseDataPipe } from './pipes/developmentPhaseDataPipe';
+// import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+// import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -55,6 +60,7 @@ import { DevelopmentPhaseDataPipe } from './pipes/developmentPhaseDataPipe';
     FilterDataRangeComponent,
     FilterCategoriesAIV2Component,
     FilterDiseaseComponent,
+    FilterDiseaseSynonymComponent,
     FilterCompanyComponent,
     FilterDrugComponent,
     FilterGeneComponent,
@@ -80,12 +86,15 @@ import { DevelopmentPhaseDataPipe } from './pipes/developmentPhaseDataPipe';
     NgbModule,
     HttpClientModule,
     AutocompleteLibModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    InfiniteScrollModule,
+    // NgxSpinnerModule
   ],
   exports: [
     FilterDataRangeComponent,
     FilterCategoriesAIV2Component,
     FilterDiseaseComponent,
+    FilterDiseaseSynonymComponent,
     FilterCompanyComponent,
     FilterDrugComponent,
     FilterGeneComponent,

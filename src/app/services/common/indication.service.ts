@@ -35,16 +35,28 @@ export class IndicationService {
     }
   }
 
-  getIndicationSynonym() {
-    console.log("_Inds_syns: ", this._Inds_syns);
-    if (this._Inds_syns) {
-      return Observable.of(this._Inds_syns);
-    } else {
-      return this._http.get(this.API_URL + 'getDiseasesSynsLists', httpOptions).do(
-        (data: any) => {
-          this._Inds_syns = data;
-        });
-    }
+  getIndicationSynonym(params: any) {
+    // console.log("_Inds_syns: ", this._Inds_syns);
+    // if (this._Inds_syns) {
+    //   return Observable.of(this._Inds_syns);
+    // } else {
+    return this._http.post(this.API_URL + 'getDiseasesSynsLists', params, httpOptions).do(
+      (data: any) => {
+        this._Inds_syns = data;
+      });
+    // }
+  }
+
+  getIndicationSynonym_old() {
+    // console.log("_Inds_syns: ", this._Inds_syns);
+    // if (this._Inds_syns) {
+    //   return Observable.of(this._Inds_syns);
+    // } else {
+    return this._http.get(this.API_URL + 'getDiseasesSynsLists', httpOptions).do(
+      (data: any) => {
+        this._Inds_syns = data;
+      });
+    // }
   }
 
 
