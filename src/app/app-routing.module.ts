@@ -32,7 +32,7 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path: 'filter-disease-synonym',
+    path: 'filter/filter-disease-synonym',
     component: FilterDiseaseSynonymComponent
   },
   {
