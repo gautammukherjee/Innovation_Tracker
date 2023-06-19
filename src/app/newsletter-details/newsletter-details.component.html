@@ -10,8 +10,9 @@
         <div class="blog-detail-box">
           <div class="back-arrow">
             <span class="text-end">
-              <a class="btn btn-bxl" [routerLink]="['/dashboard']"> <img src="./../assets/images/back.svg" alt=""> Back
-              </a>
+              <button type="button" (click)="closePage()"> CLOSE </button>
+              <!--<a class="btn btn-bxl" [routerLink]="['/dashboard']"> <img src="./../assets/images/back.svg" alt=""> Back
+              </a>-->
             </span>
           </div>        
 
@@ -76,8 +77,7 @@
       <div class="blog-detail-box">
         <div class="back-arrow">
           <span class="text-end">
-            <a class="btn btn-bxl" [routerLink]="['/dashboard']"> <img src="./../assets/images/back.svg" alt=""> Back
-            </a>
+            <button type="button" class="" (click)="closePage()">  CLOSE </button>
           </span>
         </div>
       </div>

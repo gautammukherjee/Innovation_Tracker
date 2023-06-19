@@ -71,4 +71,8 @@ export class NewsletterDetailsComponent implements OnInit {
   //   this.location.back();
   // }
 
+  closePage() {
+    window.close();
+  }
+
 }
