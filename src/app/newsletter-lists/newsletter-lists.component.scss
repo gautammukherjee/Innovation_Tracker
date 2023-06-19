@@ -67,3 +67,10 @@
 .search-results {
 	height: 100%;
 }
+
+.totalNewsHeadingCount {
+	position: fixed;
+	top: 36px;
+	z-index: 9999;
+	color: #fff;
+}

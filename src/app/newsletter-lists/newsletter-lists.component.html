@@ -2,10 +2,10 @@
 
   <div class="loading-custom" *ngIf="loading"><h1><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</h1></div>
 
-  <div *ngIf="!loading">
+  <div *ngIf="!loading" class="totalNewsHeadingCount">
     <h3>
       <span>Total News: </span>
-      <span class="badge bg-dark">{{newsletterListings.length}}</span>
+      <span class="">{{newsletterListings.length}}</span>
     </h3>
   </div>
 
