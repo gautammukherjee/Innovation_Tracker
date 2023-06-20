@@ -1,3 +1,5 @@
+<app-filter-disease-synonym-search></app-filter-disease-synonym-search>
+
 <div class="main-article-content" style="min-height:365px;">
 
     <div class="search-results" 
@@ -9,12 +11,16 @@
         <div class="modal-body without_bord_rad indicators-modal">
             <div class="modal-header">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="text-white">Disease Synonyms &nbsp; <span *ngIf="!loadingSyns" class="badge bg-dark">{{diseases_syns.length}}</span>
+                    <div class="col-md-12" *ngIf="!loadingSyns">
+                        <h5 class="text-white">Current &nbsp; 
+                            <span  class="badge bg-dark">{{diseases_syns.length}}</span>
                             <!--<span aria-hidden="true" aria-label="Close" (click)="seeSynonymClosePopup()"
                                 class="close pull-right" style="cursor: pointer;font-size: 30px;">&times;</span>
                             <div class="clearfix"></div>-->
                         </h5>
+                        <h6 class="text-white">Total Synonyms: &nbsp;
+                            <span class="badge bg-dark" style="margin-left:0px;"> {{diseases_syns_count}}</span>
+                        </h6>
                     </div>
                     <div class="col-md-12">
                         <div class="indicator_search inputWithSearchIcn">

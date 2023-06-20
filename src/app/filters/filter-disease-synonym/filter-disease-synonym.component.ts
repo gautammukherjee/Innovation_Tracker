@@ -15,6 +15,7 @@ export class FilterDiseaseSynonymComponent implements OnInit {
 
   public diseases: Array<object> = [];
   public diseases_syns: Array<any> = [];
+  public diseases_syns_count: Array<any> = [];
   private params: object = {};
   private result: any = [];
   newPost: any = [];
@@ -54,7 +55,16 @@ export class FilterDiseaseSynonymComponent implements OnInit {
     this.loadingSyns = true;
 
     this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": 0, "limitValue": this.itemsPerPage });
-    console.log("filterparamsFirst: ", this.filterParams);
+    // console.log("filterparamsFirst: ", this.filterParams);
+
+    this.indicationService.getIndicationSynonymCount(this.filterParams)
+      .subscribe(
+        data => {
+          this.result = data;
+          this.diseases_syns_count = this.result.diseasesSynsCount[0].count;
+          // console.log("diseases_syns_count: ", this.diseases_syns_count);
+        },
+      );
 
     this.indicationService.getIndicationSynonym(this.filterParams)
       .subscribe(
@@ -115,7 +125,7 @@ export class FilterDiseaseSynonymComponent implements OnInit {
           // this.diseases_syns = this.newPost.diseasesSynsRecords;
           console.log("finalTotal: ", this.diseases_syns);
           this.notscrolly = true;
-          console.log("length: ", this.result.diseasesSynsRecords.length);
+          console.log("length: ", this.newPost.diseasesSynsRecords.length);
         },
         err => {
           this.isLoading = false;

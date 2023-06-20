@@ -5,8 +5,11 @@
   <div *ngIf="!loading" class="totalNewsHeadingCount">
     <h3>
       <span>Total News: </span>
-      <span class="">{{newsletterListings.length}}</span>
+      <span class="">{{newsletterTotalCounts}}</span>
     </h3>
+    <h5>
+      <span class="" style="margin-left:80px;">Current: {{newsletterListings.length}}</span>
+    </h5>
   </div>
 
   <!--<div class="total-count" *ngIf="!loading"><span><strong>Total News: </strong></span><span class="circle">{{newsletterListings.length}}</span></div>
@@ -68,7 +71,7 @@
 
   <div *ngIf="!notEmptyPost" class="row">
     <div class="alert alert-warning">
-      No more news
+      No More News..
     </div>
   </div>
 </div>

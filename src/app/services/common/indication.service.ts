@@ -59,5 +59,31 @@ export class IndicationService {
     // }
   }
 
+  getIndicationSynonymCount(params: any) {
+    return this._http.post(this.API_URL + 'getIndicationSynonymCount', params, httpOptions).do(
+      (data: any) => {
+        this._Inds_syns = data;
+      });
+  }
+
+  getIndicationSynonymSearchCount(params: any) {
+    return this._http.post(this.API_URL + 'getIndicationSynonymSearchCount', params, httpOptions).do(
+      (data: any) => {
+        this._Inds_syns = data;
+      });
+  }
+
+  getIndicationSynonymSearch(params: any) {
+    // console.log("_Inds_syns: ", this._Inds_syns);
+    // if (this._Inds_syns) {
+    //   return Observable.of(this._Inds_syns);
+    // } else {
+    return this._http.post(this.API_URL + 'getIndicationSynonymSearch', params, httpOptions).do(
+      (data: any) => {
+        this._Inds_syns = data;
+      });
+    // }
+  }
+
 
 }

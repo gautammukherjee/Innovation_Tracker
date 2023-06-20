@@ -21,6 +21,7 @@ export class NewsletterListsComponent implements OnInit {
   result: any = [];
   newPost: any = [];
   newsletterListsRecords: any = [];
+  newsletterTotalCounts: any = [];
   // newsletterDiseaseNames: any = [];
   newsletterListings: any = [];
   newsletterDListings: any = [];
@@ -59,6 +60,8 @@ export class NewsletterListsComponent implements OnInit {
 
     this.ProceedDoFilterApply?.subscribe(data => {  // Calling from details, details working as mediator
       // console.log("data: ", data);
+      this.notEmptyPost = true;
+      this.currentPage = 1;
       if (data === undefined) { // data=undefined true when apply filter from side panel
         //this.hideCardBody = true;
         this.filterParams = this.globalVariableService.getFilterParams();
@@ -80,6 +83,15 @@ export class NewsletterListsComponent implements OnInit {
     // this.diseaseCheck = _filterParams['di_ids']; // if disease_id is checked
     // console.log("checked here Disease in event description: ", this.diseaseCheck);
     // if (this.diseaseCheck !== undefined) {
+
+    this.newsletterListsService.getAllNews(this.filterParams).subscribe(
+      data => {
+        this.result = data;
+        // console.log("count: ", this.result.newsletterTotalCounts[0].count);
+        this.newsletterTotalCounts = this.result.newsletterTotalCounts[0].count;
+      }
+    );
+
     this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": 0, "limitValue": this.itemsPerPage });
     console.log("filterparamsFirst: ", this.filterParams);
 
@@ -264,9 +276,9 @@ export class NewsletterListsComponent implements OnInit {
       data => {
         this.newPost = data;
         // console.log("newPost: ", this.newPost.newsletterRecords);
-        // console.log("newPostLength: ", this.newPost.newsletterRecords.length);
+        console.log("newPostLength: ", this.newPost.newsletterRecords.length);
         // this.spinner.hide();
-        if (this.newPost.length === 0) {
+        if (this.newPost.newsletterRecords.length === 0) {
           this.notEmptyPost = false;
         }
 

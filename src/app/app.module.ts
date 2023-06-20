@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FilterDataRangeComponent } from './filters/filter-data-range/filter-data-range.component';
 import { FilterCategoriesAIV2Component } from './filters/filter-categories-ai-v2/filter-categories-ai-v2.component';
 import { FilterDiseaseSynonymComponent } from './filters/filter-disease-synonym/filter-disease-synonym.component';
+import { FilterDiseaseSynonymSearchComponent } from './filters/filter-disease-synonym-search/filter-disease-synonym-search.component';
 import { FilterCompanyComponent } from './filters/filter-company/filter-company.component';
 import { FilterDrugComponent } from './filters/filter-drug/filter-drug.component';
 import { FilterGeneComponent } from './filters/filter-gene/filter-gene.component';
@@ -61,6 +62,7 @@ import { FilterDiseaseComponent } from './filters/filter-disease/filter-disease.
     FilterCategoriesAIV2Component,
     FilterDiseaseComponent,
     FilterDiseaseSynonymComponent,
+    FilterDiseaseSynonymSearchComponent,
     FilterCompanyComponent,
     FilterDrugComponent,
     FilterGeneComponent,
@@ -95,6 +97,7 @@ import { FilterDiseaseComponent } from './filters/filter-disease/filter-disease.
     FilterCategoriesAIV2Component,
     FilterDiseaseComponent,
     FilterDiseaseSynonymComponent,
+    FilterDiseaseSynonymSearchComponent,
     FilterCompanyComponent,
     FilterDrugComponent,
     FilterGeneComponent,

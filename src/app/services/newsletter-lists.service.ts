@@ -50,7 +50,9 @@ export class NewsletterListsService {
     return this._http.post(this.API_URL + 'getNewsletterFrontListsExtra', params, httpOptions);
   }
 
-
+  getAllNews(params: any) {
+    return this._http.post(this.API_URL + 'getAllNews', params, httpOptions);
+  }
 
   getNewsletterDetails(params: any) {
     return this._http.post(this.API_URL + 'getNewsletterFrontDetails', params, httpOptions);
