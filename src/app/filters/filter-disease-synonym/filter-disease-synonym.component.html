@@ -12,15 +12,9 @@
             <div class="modal-header">
                 <div class="row">
                     <div class="col-md-12" *ngIf="!loadingSyns">
-                        <h5 class="text-white">Current &nbsp; 
-                            <span  class="badge bg-dark">{{diseases_syns.length}}</span>
-                            <!--<span aria-hidden="true" aria-label="Close" (click)="seeSynonymClosePopup()"
-                                class="close pull-right" style="cursor: pointer;font-size: 30px;">&times;</span>
-                            <div class="clearfix"></div>-->
-                        </h5>
-                        <h6 class="text-white">Total Synonyms: &nbsp;
+                        <div class="text-white total-syn-count mb-2">Total Synonyms: &nbsp; <span  class="badge bg-dark">{{diseases_syns.length}}</span> of 
                             <span class="badge bg-dark" style="margin-left:0px;"> {{diseases_syns_count}}</span>
-                        </h6>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <div class="indicator_search inputWithSearchIcn">
@@ -33,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="custom-modal-body" style="">
+            <div class="custom-modal-body" style="max-height: calc(100vh - 480px);overflow: auto;">
                 <div class="container">
                     <div class="loading-custom" *ngIf="loadingSyns"><h3><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</h3></div>
                     <div class="row" *ngIf="diseases_syns.length > 0">

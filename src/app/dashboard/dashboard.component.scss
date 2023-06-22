@@ -15,6 +15,16 @@
 
     .filter-single {
         width: 100%;
+        position: relative;
+
+        .allDisSynlink{
+            position: absolute;
+            top: -23px;
+            a{
+                color: rgb(175, 93, 162);
+                font-size: 12px;
+            }
+        }
     }
 
     @media (max-width:768px) {

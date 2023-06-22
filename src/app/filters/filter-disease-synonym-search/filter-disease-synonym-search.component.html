@@ -3,63 +3,78 @@
     <div class="modal-body without_bord_rad indicators-modal">
         <div class="modal-header">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-8 offset-md-2">
                     <form #form="ngForm" class="md-inline-block form-inline  ml-auto mr-0 mr-md-3 my-2 my-md-0">
                         <div class="input-group">
-                            <input type="text" #searchInput class="form-control" placeholder='Search Synonym' aria-label="Search" area-describedby="basic-addon2">&nbsp;
+                            <input type="text" #searchInput class="form-control"
+                                placeholder='Search Synonym from database' aria-label="Search"
+                                area-describedby="basic-addon2">&nbsp;
                             <div class="input-group-append">
-                                <button class="btn btn-primary" [disabled]="!form.form.valid" (click)="synonymSearch(searchInput.value)">Search</button>
-                            </div>
-
-                            <div *ngIf="loading">
-                                <h5 class="text-white" style="padding:5px;">Current &nbsp; <span class="badge bg-dark">{{diseases_syns_search.length}}</span></h5>
-                                <h6 class="text-white">Total: &nbsp;
-                                    <span class="badge bg-dark"> {{diseases_syns_search_count}}</span>
-                                </h6>
+                                <button class="btn btn-primary" [disabled]="!form.form.valid"
+                                    (click)="synonymSearch(searchInput.value)">Search from database</button>
                             </div>
                         </div>
                     </form>
+                    <div class="col-md-12" *ngIf="loading">
+                        <div class="text-white total-syn-count mt-2 text-center">Total results: &nbsp; <span
+                                class="badge bg-dark">{{diseases_syns_search.length}}</span> of
+                            <span class="badge bg-dark" style="margin-left:0px;"> {{diseases_syns_search_count}}</span>
+                        </div>
+                        <!-- <h5 class="text-white" style="padding:5px;">Current &nbsp; <span
+                                class="badge bg-dark">{{diseases_syns_search.length}}</span></h5>
+                        <h6 class="text-white">Total: &nbsp;
+                            <span class="badge bg-dark"> {{diseases_syns_search_count}}</span>
+                        </h6> -->
+                    </div>
                 </div>
             </div>
             <div *ngIf="loading && diseases_syns_search.length == 0" class="row" style="text-align:center;">
                 <div class="alert alert-warning">
-                No Synonym
+                    No Synonym
                 </div>
             </div>
         </div>
 
-        <div class="loading-custom" *ngIf="loadingSynsSearch"><h3><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</h3></div>
+        <div class="loading-custom" *ngIf="loadingSynsSearch">
+            <h3><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</h3>
+        </div>
 
-        <div class="search-results" 
-            infinite-scroll 
-            [infiniteScrollDistance]="2" 
-            [infiniteScrollThrottle]="300" 
+        <div class="empty-placeholder" *ngIf="!loadingSynsSearch && !diseases_syns_search.length">
+            Search synonyms to get results 
+        </div>
+
+        <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
             (scrolled)="inScroll()" *ngIf="diseases_syns_search.length > 0">
-            <div class="custom-modal-body" style="">
+            <div class="custom-modal-body" style="max-height: 350px; overflow:auto;">
                 <div class="container">
                     <div class="row" *ngIf="diseases_syns_search.length > 0">
-                        <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Disease Synonym Name</span></div>
-                        <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description" style="color:#fff;">Disease Name</span></div>
-                    </div> 
+                        <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description"
+                                style="color:#fff;">Disease Synonym Name</span></div>
+                        <div class="col-sm-6" style="background-color:#32404E;"><span class="custom-control-description"
+                                style="color:#fff;">Disease Name</span></div>
+                    </div>
 
                     <div class="row" *ngFor="let diseasesyn of diseases_syns_search" style="border:1px solid #32404e;">
                         <div class="col-sm-6" style="background-color:#572e51;">
-                            <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_syn_name}}</span>
+                            <span class="custom-control-description"
+                                style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_syn_name}}</span>
                         </div>
                         <div class="col-sm-6" style="background-color:#20264f;">
-                            <span class="custom-control-description" style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_name}}</span>
+                            <span class="custom-control-description"
+                                style="color:#fff;">&nbsp;&nbsp;{{diseasesyn.disease_name}}</span>
                         </div>
                     </div>
-                </div>            
+                </div>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
 
-    <div class="loading-custom text-center" *ngIf="!loadingSynsSearch && isLoading"><img src="./assets/images/spinner_loader.gif"></div>        
+    <div class="loading-custom text-center" *ngIf="!loadingSynsSearch && isLoading"><img
+            src="./assets/images/spinner_loader.gif"></div>
     <div *ngIf="!notEmptyPost" class="row" style="text-align:center;">
         <div class="alert alert-warning">
-        No more Synonym
+            No more Synonym
         </div>
     </div>
 </div>
