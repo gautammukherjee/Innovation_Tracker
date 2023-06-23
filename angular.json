@@ -35,9 +35,9 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "./src/assets/extrnalJs/popper.min.js",
               "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js"
+              "./node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
